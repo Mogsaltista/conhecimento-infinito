@@ -103,27 +103,1140 @@ if(id=="topics")assuntos();
 if(id=="profile")perfil();
 }
 
+
+
 function texto(assunto,titulo){
-return "Este é um conceito fundamental de "+assunto.toLowerCase()+". A ideia é entender o que significa, como funciona, onde aparece e como se relaciona com outros conhecimentos. Em vez de apenas decorar o termo, procure explicar o conceito com suas próprias palavras e encontrar um exemplo na vida real.";
+  return "Nesta lição, você vai compreender o conceito de "+titulo+" dentro da área de "+assunto+". A proposta é entender o significado da ideia, como ela funciona, por que ela é importante e como pode aparecer em situações reais. O objetivo é construir uma compreensão que permita explicar o conceito com suas próprias palavras e reconhecê-lo quando ele aparecer na prática.";
 }
 
 function abrir(a,i){
-let t=dados[a][i];
-document.getElementById("sheet").innerHTML=
-'<span class="tag">'+a+' • Lição '+(i+1)+'/30</span>'+
-'<h2>'+t+'</h2>'+
-'<p>'+texto(a,t)+'</p>'+
-'<h3>Entenda</h3>'+
-'<p>O aprendizado fica mais sólido quando você conecta uma ideia nova a exemplos, compara conceitos e tenta explicar o assunto sem consultar a resposta.</p>'+
-'<h3>Mini-quiz</h3>'+
-'<p>Qual estratégia ajuda mais a aprender um conceito?</p>'+
-'<button class="opt" onclick="responder(true)">Relacionar, explicar e aplicar.</button>'+
-'<button class="opt" onclick="responder(false)">Apenas decorar o nome.</button>'+
-'<br><button class="btn" onclick="concluir(\''+a+'\','+i+')">✓ Estudar lição +10 XP</button>'+
-'<button class="btn ghost" onclick="ouvir(\''+a+'\','+i+')">🔊 Ouvir</button>'+
-'<button class="btn ghost" onclick="fechar()">Fechar</button>';
 
-document.getElementById("modal").classList.add("on");
+  let t=dados[a][i];
+
+  const c={
+
+  /* ================= PSICOLOGIA ================= */
+
+  "Efeito Dunning-Kruger":{
+    e:"É um viés cognitivo no qual pessoas com pouca experiência em uma área podem ter dificuldade para reconhecer suas próprias limitações. Avaliar corretamente a própria competência exige conhecimento sobre o assunto, portanto a falta desse conhecimento também pode dificultar a percepção dos próprios erros.",
+    x:"Uma pessoa que acabou de aprender algumas regras de um jogo pode acreditar que já domina a estratégia, porque ainda não conhece tudo aquilo que poderia estar fazendo de maneira diferente.",
+    a:"Ao estudar algo, compare sua compreensão com evidências, feedback e desempenho real em vez de confiar apenas na sensação de domínio."
+  },
+
+  "Memória de trabalho":{
+    e:"É o sistema mental usado para manter informações temporariamente disponíveis enquanto elas são manipuladas. Participa de cálculos mentais, compreensão de frases, resolução de problemas e acompanhamento de instruções.",
+    x:"Quando alguém diz um número e você o mantém na cabeça até conseguir anotá-lo, sua memória de trabalho está sendo utilizada.",
+    a:"Dividir informações em partes, fazer anotações e reduzir distrações diminui a carga sobre esse sistema."
+  },
+
+  "Viés de confirmação":{
+    e:"É a tendência de procurar, interpretar e lembrar informações de maneira que favoreça crenças que já possuímos. Podemos dar mais peso às evidências que confirmam nossa opinião e menos às que a contradizem.",
+    x:"Uma pessoa acredita que certo método de estudo funciona sempre e presta atenção principalmente aos casos em que ele deu certo.",
+    a:"Procure deliberadamente evidências contrárias e pergunte que informação faria você mudar de opinião."
+  },
+
+  "Condicionamento clássico":{
+    e:"É uma forma de aprendizagem baseada na associação entre estímulos. Um estímulo inicialmente neutro pode passar a provocar uma resposta depois de ser associado repetidamente a outro estímulo que naturalmente produz essa resposta.",
+    x:"Um som associado repetidamente a uma situação desagradável pode posteriormente provocar tensão mesmo antes de a pessoa saber o que acontecerá.",
+    a:"O conceito ajuda a entender algumas respostas emocionais automáticas e associações aprendidas."
+  },
+
+  "Reforço e punição":{
+    e:"São conceitos da aprendizagem comportamental. Reforço aumenta a probabilidade de um comportamento acontecer novamente; punição tende a diminuir essa probabilidade. Positivo significa adicionar algo e negativo significa retirar algo.",
+    x:"Receber uma consequência agradável depois de estudar pode aumentar a frequência do estudo. Retirar um privilégio depois de determinado comportamento pode reduzi-lo.",
+    a:"Analise sempre o efeito da consequência sobre o comportamento, não apenas se ela parece agradável ou desagradável."
+  },
+
+  "Atenção seletiva":{
+    e:"É a capacidade de direcionar recursos mentais para determinadas informações enquanto outras recebem menos atenção. Como muitos estímulos chegam simultaneamente, precisamos selecionar aquilo que receberá maior processamento.",
+    x:"Em uma sala barulhenta, você consegue acompanhar a conversa de uma pessoa enquanto outras conversas acontecem ao redor.",
+    a:"Definir uma prioridade e reduzir estímulos concorrentes facilita tarefas que exigem concentração."
+  },
+
+  "Efeito halo":{
+    e:"Ocorre quando uma característica marcante de uma pessoa influencia nossa avaliação de outras características que não necessariamente estão relacionadas. Uma primeira impressão pode funcionar como um filtro para julgamentos posteriores.",
+    x:"Uma pessoa percebida como muito simpática pode ser automaticamente considerada competente mesmo sem evidências suficientes de sua competência.",
+    a:"Avalie cada característica separadamente e procure evidências específicas antes de generalizar uma impressão."
+  },
+
+  "Dissonância cognitiva":{
+    e:"É o desconforto associado à existência de crenças, pensamentos ou comportamentos que entram em conflito. Para reduzi-lo, uma pessoa pode mudar seu comportamento, mudar sua crença ou criar justificativas.",
+    x:"Alguém considera importante dormir cedo, mas passa horas no celular todas as noites. Pode mudar o comportamento ou criar justificativas para manter a situação.",
+    a:"Observar contradições entre valores declarados e comportamentos reais pode revelar pontos importantes para mudança."
+  },
+
+  "Heurística da disponibilidade":{
+    e:"É um atalho mental no qual avaliamos a frequência ou probabilidade de algo pela facilidade com que exemplos vêm à memória. Acontecimentos recentes, emocionais ou marcantes podem parecer mais comuns do que realmente são.",
+    x:"Depois de assistir a várias notícias sobre acidentes aéreos, alguém pode superestimar a frequência desse tipo de acidente.",
+    a:"Para decisões importantes, compare a impressão criada pela memória com dados e evidências."
+  },
+
+  "Ancoragem":{
+    e:"É a influência desproporcional de uma informação inicial sobre julgamentos posteriores. Um primeiro número ou referência pode funcionar como ponto de comparação mesmo quando não deveria determinar a avaliação.",
+    x:"Um produto apresentado primeiro por R$1.000 pode fazer R$700 parecer muito barato, mesmo que você não tenha pesquisado seu valor real.",
+    a:"Faça uma estimativa própria antes de receber uma referência externa e depois compare os valores."
+  },
+
+  "Aprendizagem":{
+    e:"É o processo pelo qual experiências, prática e estudo produzem mudanças relativamente duradouras em conhecimento, habilidades ou comportamento. Aprender não significa apenas receber informação, mas conseguir utilizá-la.",
+    x:"Ler uma definição cria familiaridade; conseguir explicá-la sem consultar o material e aplicá-la a um problema demonstra compreensão mais profunda.",
+    a:"Combine recuperação da informação, prática, feedback e aplicação."
+  },
+
+  "Motivação":{
+    e:"É o conjunto de processos que influencia a direção, intensidade e persistência do comportamento. Pode envolver interesses internos, recompensas externas, objetivos, expectativas e percepção de capacidade.",
+    x:"Uma pessoa pode estudar porque gosta do assunto, porque deseja uma boa nota ou porque pretende alcançar uma profissão específica.",
+    a:"Objetivos claros e tarefas suficientemente pequenas podem facilitar a passagem da intenção para a ação."
+  },
+
+  "Inteligência emocional":{
+    e:"Refere-se a capacidades relacionadas à identificação, compreensão e regulação das emoções próprias e à percepção das emoções de outras pessoas. Não significa eliminar emoções, mas lidar melhor com elas.",
+    x:"Perceber que está ficando irritado durante uma discussão e adiar uma resposta impulsiva é uma aplicação prática.",
+    a:"Nomear a emoção, identificar o gatilho e escolher deliberadamente a resposta são habilidades treináveis."
+  },
+
+  "Autoeficácia":{
+    e:"É a crença de uma pessoa sobre sua capacidade de executar determinada ação ou enfrentar determinada tarefa. Ela influencia esforço, persistência e reação diante de dificuldades.",
+    x:"Um estudante que acredita conseguir aprender matemática tende a persistir mais diante de um exercício difícil do que alguém que considera o fracasso inevitável.",
+    a:"Experiências reais de progresso, prática gradual e feedback podem fortalecer a percepção de capacidade."
+  },
+
+  "Resiliência":{
+    e:"É a capacidade de se adaptar e continuar funcionando diante de adversidades, perdas, mudanças ou dificuldades. Não significa não sofrer, mas conseguir reorganizar-se e continuar respondendo às circunstâncias.",
+    x:"Depois de um fracasso, uma pessoa analisa o que aconteceu, ajusta sua estratégia e tenta novamente.",
+    a:"Resiliência envolve adaptação, aprendizagem com experiências e utilização adequada de recursos pessoais e sociais."
+  },
+
+  "Percepção":{
+    e:"É o processo pelo qual o cérebro organiza e interpreta informações provenientes dos sentidos. Perceber não é simplesmente registrar estímulos; experiências, expectativas e contexto também influenciam a interpretação.",
+    x:"A mesma frase pode parecer ofensiva, engraçada ou neutra dependendo do tom e do contexto.",
+    a:"Ao interpretar uma situação, diferencie o que foi efetivamente observado da interpretação construída sobre aquilo."
+  },
+
+  "Emoções":{
+    e:"São respostas que envolvem componentes fisiológicos, cognitivos, subjetivos e comportamentais diante de acontecimentos ou estímulos. Elas podem orientar atenção e comportamento, mas não determinam necessariamente a melhor decisão.",
+    x:"O medo pode direcionar atenção para uma ameaça e preparar o organismo para responder.",
+    a:"Reconhecer uma emoção permite utilizá-la como informação sem obrigatoriamente agir de acordo com seu primeiro impulso."
+  },
+
+  "Empatia":{
+    e:"É a capacidade de compreender ou considerar a experiência emocional e a perspectiva de outra pessoa. Pode envolver tanto compreender o que alguém pensa quanto reconhecer como a situação pode estar sendo vivenciada.",
+    x:"Durante uma discussão, tentar entender por que a outra pessoa interpretou determinada situação de maneira diferente é um exercício de perspectiva.",
+    a:"Empatia não exige concordar; exige tentar compreender antes de julgar."
+  },
+
+  "Personalidade":{
+    e:"Refere-se a padrões relativamente consistentes de pensamentos, emoções e comportamentos que caracterizam uma pessoa. Esses padrões resultam da interação entre fatores biológicos, desenvolvimento e ambiente.",
+    x:"Duas pessoas podem reagir de maneiras diferentes à mesma situação porque possuem tendências comportamentais diferentes.",
+    a:"Personalidade descreve tendências, não determinações absolutas. Contexto e aprendizagem também importam."
+  },
+
+  "Stress":{
+    e:"Estresse é uma resposta do organismo diante de demandas percebidas como desafiadoras ou ameaçadoras. Pode envolver alterações fisiológicas, atenção elevada e mudanças no comportamento.",
+    x:"Antes de uma prova importante, uma pessoa pode apresentar aumento da tensão, preocupação e dificuldade de relaxar.",
+    a:"A mesma situação pode produzir respostas diferentes dependendo da avaliação e dos recursos percebidos pela pessoa."
+  },
+
+  "Burnout":{
+    e:"É uma condição associada ao estresse ocupacional crônico, caracterizada principalmente por exaustão, distanciamento ou cinismo em relação ao trabalho e redução da percepção de eficácia profissional.",
+    x:"Uma pessoa submetida durante longo período a demandas profissionais intensas pode começar a apresentar esgotamento e distanciamento do trabalho.",
+    a:"É importante diferenciar cansaço comum de padrões persistentes relacionados ao contexto ocupacional."
+  },
+
+  "Transtornos":{
+    e:"Transtornos mentais são condições que envolvem alterações clinicamente significativas em pensamentos, emoções, comportamentos ou funcionamento. Seus critérios dependem do quadro específico e de avaliação profissional.",
+    x:"Uma mudança temporária de humor não é automaticamente um transtorno; diagnóstico envolve conjunto de características, duração, intensidade e prejuízo funcional.",
+    a:"Evite transformar descrições gerais da internet em autodiagnósticos."
+  },
+
+  "Psiquiatria":{
+    e:"É a especialidade médica dedicada à prevenção, avaliação, diagnóstico e tratamento de condições relacionadas à saúde mental. Por ser uma especialidade médica, envolve formação em medicina.",
+    x:"Um psiquiatra pode avaliar sintomas, contexto clínico e possíveis tratamentos, incluindo quando apropriado intervenções medicamentosas.",
+    a:"Psiquiatria e psicologia são áreas diferentes, embora frequentemente possam trabalhar de forma complementar."
+  },
+
+  "Neurociência":{
+    e:"É o campo científico que estuda o sistema nervoso, incluindo cérebro, medula, nervos e seus mecanismos. Reúne conhecimentos de biologia, medicina, psicologia, química e outras áreas.",
+    x:"Pesquisadores podem investigar como determinadas regiões e redes neurais participam de memória, movimento ou tomada de decisão.",
+    a:"Neurociência ajuda a relacionar processos biológicos com comportamento sem reduzir toda a experiência humana a uma única causa."
+  },
+
+  "Comportamento":{
+    e:"Comportamento corresponde às ações e respostas observáveis de organismos em interação com seu ambiente. Seu estudo considera fatores biológicos, psicológicos, sociais e contextuais.",
+    x:"A mesma pessoa pode apresentar comportamentos diferentes dependendo das consequências, das pessoas presentes e das circunstâncias.",
+    a:"Para compreender um comportamento, observe antecedentes, comportamento e consequências."
+  },
+
+  "Desenvolvimento":{
+    e:"O desenvolvimento humano envolve mudanças físicas, cognitivas, emocionais e sociais ao longo da vida. Essas mudanças resultam da interação entre maturação biológica, aprendizagem e ambiente.",
+    x:"Habilidades cognitivas e formas de relacionamento mudam durante infância, adolescência, vida adulta e envelhecimento.",
+    a:"Desenvolvimento não é apenas crescimento físico; envolve múltiplas dimensões."
+  },
+
+  "Socialização":{
+    e:"É o processo pelo qual pessoas aprendem normas, valores, comportamentos e formas de interação presentes nos grupos e sociedades em que vivem.",
+    x:"Família, escola, amigos e meios de comunicação podem transmitir diferentes expectativas sobre como uma pessoa deve agir.",
+    a:"Socialização explica parte importante de como padrões sociais são aprendidos e reproduzidos."
+  },
+
+  "Identidade":{
+    e:"É o conjunto de percepções e significados pelos quais uma pessoa entende quem é e como se posiciona em relação aos outros e aos grupos dos quais participa.",
+    x:"Uma pessoa pode construir diferentes aspectos de identidade relacionados a família, amizades, interesses, profissão e valores.",
+    a:"Identidade pode se desenvolver e reorganizar conforme experiências e contextos mudam."
+  },
+
+  "Crenças":{
+    e:"São ideias ou interpretações que uma pessoa considera verdadeiras ou plausíveis. Elas influenciam atenção, expectativas, decisões e interpretação de acontecimentos.",
+    x:"A crença de que determinada tarefa é impossível pode influenciar a disposição para tentar realizá-la.",
+    a:"Diferenciar crença de evidência ajuda a avaliar pensamentos de maneira mais crítica."
+  },
+
+  "Hábitos":{
+    e:"São padrões de comportamento que se tornam mais automáticos por repetição e associação com determinados contextos. Um hábito pode ser desencadeado por sinais ambientais e seguido por consequências.",
+    x:"Entrar no quarto, pegar o celular e abrir automaticamente uma rede social pode se tornar uma sequência habitual.",
+    a:"Modificar um hábito costuma envolver alterar gatilhos, rotina ou consequências e repetir a nova resposta."
+  },
+
+  /* ================= HISTÓRIA ================= */
+
+  "Revolução Neolítica":{
+    e:"Foi a transformação gradual pela qual grupos humanos passaram de formas predominantemente caçadoras e coletoras para sociedades que praticavam agricultura e domesticação de animais.",
+    x:"O cultivo de plantas e a criação de animais permitiram maior produção e armazenamento de alimentos.",
+    a:"Essa transformação favoreceu sedentarização, crescimento populacional e novas formas de organização social."
+  },
+
+  "Mesopotâmia":{
+    e:"Região histórica localizada entre os rios Tigre e Eufrates, onde surgiram importantes sociedades como sumérios, acádios, babilônios e assírios.",
+    x:"Cidades mesopotâmicas desenvolveram sistemas administrativos, escrita e complexas estruturas políticas.",
+    a:"Estudar a Mesopotâmia ajuda a compreender o surgimento de cidades, Estados e registros escritos."
+  },
+
+  "Egito Antigo":{
+    e:"Civilização desenvolvida ao longo do rio Nilo, caracterizada por uma organização política centralizada, religião complexa, agricultura irrigada e grandes projetos arquitetônicos.",
+    x:"As cheias do Nilo contribuíam para a fertilidade das terras agrícolas.",
+    a:"O rio, a organização estatal e as crenças religiosas foram elementos importantes da sociedade egípcia."
+  },
+
+  "Grécia Antiga":{
+    e:"Conjunto de sociedades do mundo grego antigo, organizadas em diferentes cidades-Estado e marcadas por importantes desenvolvimentos políticos, filosóficos, artísticos e científicos.",
+    x:"Atenas e Esparta desenvolveram instituições e culturas políticas diferentes.",
+    a:"A Grécia antiga não era um Estado único; compreender essa diversidade é essencial."
+  },
+
+  "Roma":{
+    e:"Civilização que passou por monarquia, república e império, expandindo seu domínio por grande parte do Mediterrâneo e deixando influências duradouras em direito, política, língua e infraestrutura.",
+    x:"O direito romano influenciou diversos sistemas jurídicos posteriores.",
+    a:"A história romana envolve mudanças institucionais e sociais ao longo de muitos séculos."
+  },
+
+  "Idade Média":{
+    e:"Período tradicionalmente situado entre a Antiguidade e a Idade Moderna, marcado por grande diversidade política, econômica e cultural na Europa e por importantes sociedades em outras regiões.",
+    x:"Feudalismo, comércio, cidades, reinos e instituições religiosas coexistiram e mudaram ao longo do período.",
+    a:"Evite imaginar a Idade Média como uma época uniforme; ela durou séculos e apresentou enormes diferenças regionais."
+  },
+
+  "Renascimento":{
+    e:"Movimento cultural associado principalmente a partes da Europa entre os séculos XIV e XVI, caracterizado por novas formas artísticas, interesse renovado pela Antiguidade e transformações intelectuais.",
+    x:"Artistas desenvolveram técnicas de perspectiva e representações mais naturalistas.",
+    a:"O Renascimento ocorreu junto a mudanças econômicas, políticas, científicas e culturais mais amplas."
+  },
+
+  "Reforma Protestante":{
+    e:"Conjunto de movimentos religiosos iniciados no século XVI que contestaram práticas e estruturas da Igreja Católica e deram origem a diferentes tradições protestantes.",
+    x:"As críticas de Martinho Lutero a práticas da Igreja contribuíram para mudanças religiosas e políticas na Europa.",
+    a:"A Reforma teve consequências religiosas, políticas, sociais e econômicas."
+  },
+
+  "Revolução Científica":{
+    e:"Período de transformações na produção do conhecimento científico, especialmente entre os séculos XVI e XVII, envolvendo observação, experimentação, matemática e novos modelos da natureza.",
+    x:"Os trabalhos de Copérnico, Galileu, Kepler e Newton contribuíram para novas formas de explicar fenômenos naturais.",
+    a:"A mudança foi tanto de teorias quanto de métodos e critérios de investigação."
+  },
+
+  "Iluminismo":{
+    e:"Movimento intelectual europeu dos séculos XVII e XVIII que valorizou razão, crítica, conhecimento e debate sobre política e sociedade.",
+    x:"Pensadores iluministas discutiram direitos, governo, liberdade e limites do poder.",
+    a:"As ideias iluministas influenciaram debates políticos e transformações institucionais posteriores."
+  },
+
+  "Revolução Industrial":{
+    e:"Processo de transformação econômica e tecnológica iniciado na Grã-Bretanha no século XVIII e posteriormente expandido, marcado por mecanização, fábricas e novas formas de produção.",
+    x:"A mecanização da produção têxtil aumentou a capacidade produtiva e alterou relações de trabalho.",
+    a:"A industrialização também provocou urbanização e profundas mudanças sociais."
+  },
+
+  "Revolução Francesa":{
+    e:"Processo revolucionário iniciado em 1789 que derrubou estruturas do Antigo Regime na França e produziu profundas transformações políticas e sociais.",
+    x:"A queda da Bastilha tornou-se um dos acontecimentos simbólicos da revolução.",
+    a:"O processo passou por diferentes fases, grupos e formas de governo."
+  },
+
+  "Impérios":{
+    e:"São estruturas políticas que controlam territórios e populações extensas, frequentemente reunindo diferentes povos sob uma autoridade central.",
+    x:"O Império Romano incorporou diferentes povos e regiões ao longo de sua expansão.",
+    a:"Impérios podem ser estudados considerando conquista, administração, economia, cultura e resistência."
+  },
+
+  "Colonialismo":{
+    e:"Sistema de dominação no qual uma potência estabelece controle político, econômico ou territorial sobre outras sociedades.",
+    x:"Potências europeias estabeleceram colônias em diferentes regiões das Américas, África e Ásia.",
+    a:"O colonialismo envolveu exploração de recursos, imposição institucional e conflitos com populações locais."
+  },
+
+  "Guerra Civil":{
+    e:"É um conflito armado entre grupos organizados dentro de um mesmo Estado ou território político.",
+    x:"A Guerra Civil Americana envolveu conflitos relacionados à escravidão, poder político e organização econômica.",
+    a:"Guerras civis podem resultar de disputas políticas, territoriais, econômicas ou identitárias."
+  },
+
+  "Primórdios da democracia":{
+    e:"Refere-se às primeiras formas históricas de participação política coletiva, incluindo experiências antigas como a democracia ateniense e processos posteriores de ampliação da representação.",
+    x:"Em Atenas, determinados cidadãos participavam diretamente de decisões políticas.",
+    a:"As primeiras democracias tinham critérios de participação muito diferentes dos sistemas contemporâneos."
+  },
+
+  "Nacionalismo":{
+    e:"Ideologia e movimento político que atribuem importância central à ideia de nação e à identificação coletiva de um povo.",
+    x:"No século XIX, movimentos nacionalistas contribuíram para processos de unificação e independência.",
+    a:"Nacionalismo assumiu formas diferentes dependendo do contexto histórico."
+  },
+
+  "Guerras mundiais":{
+    e:"As duas guerras mundiais do século XX envolveram grandes coalizões internacionais e produziram enormes perdas humanas, transformações territoriais e mudanças políticas.",
+    x:"A Primeira Guerra Mundial ocorreu entre 1914 e 1918; a Segunda, entre 1939 e 1945.",
+    a:"Estude causas, alianças, acontecimentos e consequências separadamente para compreender cada conflito."
+  },
+
+  "Guerra Fria":{
+    e:"Período de rivalidade geopolítica entre Estados Unidos e União Soviética após a Segunda Guerra Mundial, marcado por competição política, militar, econômica e tecnológica sem uma guerra direta total entre as duas potências.",
+    x:"A corrida espacial e a corrida nuclear foram expressões dessa competição.",
+    a:"A Guerra Fria também envolveu conflitos indiretos em diferentes regiões do mundo."
+  },
+
+  "Descolonização":{
+    e:"Processo pelo qual territórios submetidos ao domínio colonial conquistaram independência política, especialmente durante o século XX.",
+    x:"Diversos países africanos e asiáticos tornaram-se independentes após a Segunda Guerra Mundial.",
+    a:"Os processos de independência tiveram diferentes formas, incluindo negociações e guerras."
+  },
+
+  "Civilizações antigas":{
+    e:"Conjunto de sociedades complexas que desenvolveram cidades, Estados, sistemas econômicos, religiões e formas de produção cultural.",
+    x:"Egito, Mesopotâmia, China, Índia, Grécia e Roma desenvolveram estruturas sociais distintas.",
+    a:"Comparar civilizações ajuda a perceber diferentes soluções para problemas políticos e sociais."
+  },
+
+  "Invasões":{
+    e:"São incursões ou ocupações de um território por forças externas, geralmente associadas a objetivos políticos, econômicos ou militares.",
+    x:"Invasões podem provocar mudanças de fronteiras, governos e populações.",
+    a:"É importante analisar tanto os invasores quanto as populações que resistiram ou foram afetadas."
+  },
+
+  "Monarquias":{
+    e:"Sistemas políticos em que o cargo de monarca ocupa posição central no Estado e geralmente é transmitido por sucessão.",
+    x:"Monarquias podem ser absolutas, constitucionais ou assumir outras formas.",
+    a:"O poder real variou enormemente conforme época, instituições e sociedade."
+  },
+
+  "Conflitos religiosos":{
+    e:"São conflitos nos quais diferenças religiosas, instituições ou identidades religiosas participam das disputas políticas e sociais.",
+    x:"As guerras de religião europeias envolveram disputas políticas e religiosas simultaneamente.",
+    a:"Conflitos históricos raramente possuem uma única causa; religião pode interagir com poder e território."
+  },
+
+  "Arte medieval":{
+    e:"Conjunto diversificado de manifestações artísticas produzidas durante a Idade Média, incluindo arquitetura, pintura, escultura e manuscritos.",
+    x:"Igrejas românicas e góticas apresentam características arquitetônicas distintas.",
+    a:"A arte medieval esteve frequentemente ligada a instituições religiosas, mas também apresentou temas seculares."
+  },
+
+  "Sistemas políticos":{
+    e:"São formas pelas quais uma sociedade organiza autoridade, instituições, participação e tomada de decisões coletivas.",
+    x:"Monarquia, república, democracia e regimes autoritários possuem estruturas institucionais diferentes.",
+    a:"Compare quem exerce o poder, como ele é limitado e como ocorre a participação política."
+  },
+
+  "Era dos descobrimentos":{
+    e:"Período de expansão marítima europeia entre os séculos XV e XVI, marcado por novas rotas marítimas, contatos entre continentes e expansão colonial.",
+    x:"Portugal estabeleceu rotas marítimas para a África e Ásia e chegou ao território americano.",
+    a:"O processo conectou regiões, mas também envolveu conquista, exploração e violência."
+  },
+
+  "Urbanização":{
+    e:"Processo de crescimento da população urbana e expansão das cidades.",
+    x:"A industrialização acelerou a migração de populações rurais para centros urbanos.",
+    a:"Urbanização altera trabalho, infraestrutura, habitação, transporte e organização social."
+  },
+
+  "Globalização":{
+    e:"Processo de intensificação das conexões econômicas, tecnológicas, culturais e políticas entre diferentes regiões do mundo.",
+    x:"Uma empresa pode produzir componentes em vários países e vender seu produto globalmente.",
+    a:"Globalização aumenta interdependência, mas seus efeitos variam entre sociedades e setores."
+  },
+
+  /* ================= CIÊNCIA ================= */
+
+  "Método científico":{
+    e:"É um conjunto de práticas utilizadas para produzir e testar conhecimento científico, envolvendo observação, formulação de hipóteses, coleta de evidências, análise e comunicação dos resultados.",
+    x:"Um pesquisador pode formular uma hipótese, criar um experimento e comparar os resultados com o que a hipótese previa.",
+    a:"O método busca tornar conclusões testáveis, criticáveis e reproduzíveis."
+  },
+
+  "Átomos":{
+    e:"São unidades fundamentais da matéria química, compostas por núcleo contendo prótons e nêutrons e uma região onde se encontram elétrons.",
+    x:"Átomos de diferentes elementos possuem diferentes números de prótons.",
+    a:"O número de prótons define o elemento químico."
+  },
+
+  "Moléculas":{
+    e:"São estruturas formadas pela ligação de dois ou mais átomos, que podem ser iguais ou diferentes.",
+    x:"A molécula de água possui dois átomos de hidrogênio e um de oxigênio.",
+    a:"A forma como os átomos se ligam influencia as propriedades da substância."
+  },
+
+  "Gravidade":{
+    e:"É a interação associada à massa e responsável, entre outras coisas, pela atração entre corpos. Na descrição de Newton, ela é uma força; na relatividade geral, a gravidade está relacionada à curvatura do espaço-tempo.",
+    x:"A gravidade terrestre mantém pessoas e objetos próximos à superfície e mantém a Lua em órbita.",
+    a:"A gravidade atua em diferentes escalas, desde objetos cotidianos até sistemas planetários."
+  },
+
+  "Relatividade":{
+    e:"As teorias da relatividade de Einstein descrevem como espaço, tempo, movimento e gravidade se relacionam. A relatividade especial trata de referenciais inerciais e da velocidade da luz; a geral descreve a gravidade como geometria do espaço-tempo.",
+    x:"Relatividade especial prevê efeitos como dilatação temporal em determinadas situações de movimento relativo.",
+    a:"Relatividade substituiu algumas ideias clássicas por uma descrição mais abrangente de espaço, tempo e gravidade."
+  },
+
+  "Evolução":{
+    e:"Em biologia, evolução é a mudança nas características hereditárias de populações ao longo das gerações. Mutações, recombinação, seleção natural, deriva genética e fluxo gênico podem contribuir para essas mudanças.",
+    x:"Uma população pode apresentar variações hereditárias e, sob determinadas condições ambientais, algumas variantes podem deixar mais descendentes.",
+    a:"Evolução ocorre em populações ao longo de gerações, não porque indivíduos decidam mudar biologicamente."
+  },
+
+  "DNA":{
+    e:"DNA é a molécula que armazena informação genética em organismos celulares. Sua sequência de nucleotídeos contém instruções utilizadas na produção de RNAs e proteínas e na regulação de processos celulares.",
+    x:"Segmentos de DNA podem conter genes que participam da produção de proteínas.",
+    a:"O DNA é copiado durante a divisão celular e pode sofrer alterações chamadas mutações."
+  },
+
+  "Células":{
+    e:"São as unidades estruturais e funcionais básicas dos organismos vivos. Existem células procarióticas e eucarióticas, que apresentam diferenças importantes na organização interna.",
+    x:"Células humanas possuem membrana, citoplasma, núcleo e diversas organelas.",
+    a:"Compreender células é fundamental para estudar tecidos, órgãos, genética e metabolismo."
+  },
+
+  "Energia":{
+    e:"Energia é uma grandeza associada à capacidade de produzir mudanças ou realizar trabalho. Pode aparecer em diferentes formas, como cinética, potencial, térmica, química e eletromagnética.",
+    x:"Em uma montanha-russa, energia potencial gravitacional pode ser convertida em energia cinética.",
+    a:"A energia pode ser transferida e transformada, enquanto a conservação de energia é um princípio fundamental da física."
+  },
+
+  "Termodinâmica":{
+    e:"É a área da física que estuda calor, trabalho, energia e propriedades macroscópicas dos sistemas. Suas leis descrevem transformações de energia e o comportamento de processos térmicos.",
+    x:"Uma máquina térmica transforma parte da energia térmica em trabalho.",
+    a:"A segunda lei introduz o conceito de entropia e estabelece restrições sobre processos espontâneos."
+  },
+
+  "Eletricidade":{
+    e:"É o conjunto de fenômenos relacionados à presença e ao movimento de cargas elétricas.",
+    x:"Em um circuito fechado, uma diferença de potencial pode produzir corrente elétrica.",
+    a:"Corrente, tensão e resistência são conceitos fundamentais para entender circuitos."
+  },
+
+  "Magnetismo":{
+    e:"É o conjunto de fenômenos relacionados a campos magnéticos e cargas elétricas em movimento.",
+    x:"Uma corrente elétrica passando por um fio produz um campo magnético ao seu redor.",
+    a:"Eletricidade e magnetismo estão profundamente relacionados e são descritos conjuntamente pelo eletromagnetismo."
+  },
+
+  "Ondas":{
+    e:"Ondas são perturbações que se propagam transportando energia e informação, podendo ou não envolver transporte líquido de matéria.",
+    x:"Ondas sonoras propagam-se pelo meio material, enquanto ondas eletromagnéticas podem viajar no vácuo.",
+    a:"Frequência, comprimento de onda, amplitude e velocidade são propriedades importantes."
+  },
+
+  "Luz":{
+    e:"A luz é uma forma de radiação eletromagnética visível ao olho humano. Ela apresenta propriedades descritas tanto por modelos ondulatórios quanto quânticos.",
+    x:"Reflexão, refração, difração e interferência são fenômenos relacionados ao comportamento da luz.",
+    a:"A luz também pode ser descrita em termos de fótons."
+  },
+
+  "Som":{
+    e:"Som é uma onda mecânica produzida por vibrações e que necessita de um meio material para se propagar.",
+    x:"A vibração das cordas vocais produz ondas que se propagam pelo ar e podem chegar ao ouvido.",
+    a:"Frequência está relacionada à percepção de altura e amplitude à intensidade do som."
+  },
+
+  "Pressão":{
+    e:"Pressão é a razão entre uma força aplicada perpendicularmente e a área sobre a qual ela atua. Em fluidos, também pode representar uma grandeza relacionada ao estado do sistema.",
+    x:"Uma mesma força concentrada em uma área menor produz maior pressão.",
+    a:"Pressão é importante em mecânica, meteorologia, hidráulica e muitos processos biológicos."
+  },
+
+  "Clima":{
+    e:"Clima corresponde aos padrões estatísticos de condições atmosféricas observados em uma região durante períodos longos.",
+    x:"Uma região pode apresentar clima tropical, enquanto outra apresenta clima polar.",
+    a:"Clima é diferente de tempo atmosférico, que descreve condições de curto prazo."
+  },
+
+  "Planetas":{
+    e:"Planetas são corpos celestes que orbitam estrelas e possuem características determinadas por sua massa, composição e história de formação.",
+    x:"A Terra é um planeta rochoso que orbita o Sol.",
+    a:"Planetas podem ser classificados em diferentes categorias conforme suas características."
+  },
+
+  "Ecologia":{
+    e:"É o ramo da biologia que estuda as relações entre organismos e o ambiente, incluindo interações entre espécies e fluxos de energia e matéria.",
+    x:"Predação, competição e mutualismo são exemplos de interações ecológicas.",
+    a:"Ecologia conecta indivíduos, populações, comunidades e ecossistemas."
+  },
+
+  "Biologia molecular":{
+    e:"É a área que investiga os processos biológicos em escala molecular, especialmente envolvendo DNA, RNA, proteínas e suas interações.",
+    x:"A expressão gênica envolve a utilização da informação do DNA para produzir RNA e, em muitos casos, proteínas.",
+    a:"Ela conecta genética, bioquímica e funcionamento celular."
+  },
+
+  "Geologia":{
+    e:"É a ciência que estuda a Terra, sua composição, estrutura, história e processos que modificam o planeta.",
+    x:"Movimentos tectônicos podem formar montanhas e provocar terremotos.",
+    a:"Geologia ajuda a compreender minerais, rochas, relevo e evolução do planeta."
+  },
+
+  "Química orgânica":{
+    e:"É o ramo da química dedicado principalmente ao estudo dos compostos de carbono, suas estruturas, propriedades e reações.",
+    x:"Hidrocarbonetos, álcoois e ácidos carboxílicos são classes de compostos orgânicos.",
+    a:"A química orgânica é fundamental para bioquímica, farmacologia e materiais."
+  },
+
+  "Física quântica":{
+    e:"É o conjunto de teorias que descrevem fenômenos físicos em escalas atômicas e subatômicas. Ela introduz conceitos como quantização, superposição e comportamento probabilístico.",
+    x:"Elétrons em átomos ocupam estados de energia quantizados.",
+    a:"A física quântica é fundamental para compreender átomos, moléculas, semicondutores e lasers."
+  },
+
+  "Astronomia":{
+    e:"É a ciência que estuda objetos e fenômenos do universo, incluindo planetas, estrelas, galáxias e sua evolução.",
+    x:"Astrônomos analisam a luz emitida ou refletida por objetos celestes para inferir suas propriedades.",
+    a:"A astronomia utiliza física, matemática, observações e modelos."
+  },
+
+  "Bioquímica":{
+    e:"É o estudo dos processos químicos que acontecem nos organismos vivos, incluindo metabolismo, proteínas, lipídios, carboidratos e ácidos nucleicos.",
+    x:"A quebra de moléculas durante o metabolismo pode liberar energia utilizada pelas células.",
+    a:"Bioquímica conecta processos moleculares ao funcionamento dos organismos."
+  },
+
+  "Genética":{
+    e:"É a área da biologia que estuda hereditariedade, genes e variação biológica.",
+    x:"Características podem ser influenciadas por variantes genéticas herdadas dos pais.",
+    a:"Genética moderna combina estudos de DNA, expressão gênica, populações e evolução."
+  },
+
+  "Microscopia":{
+    e:"É o conjunto de técnicas utilizadas para observar estruturas pequenas demais para serem vistas adequadamente a olho nu.",
+    x:"Microscópios ópticos podem revelar células e algumas estruturas celulares.",
+    a:"Diferentes técnicas possuem diferentes resoluções e aplicações."
+  },
+
+  "Robótica":{
+    e:"É a área que envolve projeto, construção, programação e controle de sistemas robóticos capazes de realizar tarefas físicas ou interagir com ambientes.",
+    x:"Robôs industriais podem executar movimentos repetitivos com alta precisão.",
+    a:"Robótica combina mecânica, eletrônica, computação e controle."
+  },
+
+  "Nanotecnologia":{
+    e:"É o estudo e desenvolvimento de materiais e dispositivos em escalas extremamente pequenas, geralmente envolvendo estruturas na ordem de nanômetros.",
+    x:"Nanomateriais podem apresentar propriedades diferentes das mesmas substâncias em escalas maiores.",
+    a:"A área possui aplicações em materiais, eletrônica, medicina e energia."
+  },
+
+  /* ================= TECNOLOGIA ================= */
+
+  "Algoritmos":{
+    e:"Algoritmo é uma sequência estruturada de instruções utilizada para resolver um problema ou executar uma tarefa.",
+    x:"Uma receita culinária pode ser vista como uma sequência de passos, embora algoritmos computacionais sejam muito mais formais.",
+    a:"Bons algoritmos precisam considerar correção, eficiência e as condições de entrada."
+  },
+
+  "Internet":{
+    e:"É uma rede mundial de redes de computadores que utiliza diferentes protocolos para permitir comunicação e troca de dados.",
+    x:"Quando você acessa um site, seu dispositivo troca dados com servidores por meio de redes interconectadas.",
+    a:"A internet é a infraestrutura; a Web é um dos serviços que funcionam sobre ela."
+  },
+
+  "Web":{
+    e:"A World Wide Web é um sistema de documentos e aplicações interconectados acessados principalmente por navegadores através da internet.",
+    x:"Sites utilizam tecnologias como HTML, CSS e JavaScript para apresentar e executar conteúdo.",
+    a:"Internet e Web não são sinônimos: a Web é um serviço que utiliza a internet."
+  },
+
+  "Nuvem":{
+    e:"Computação em nuvem é o fornecimento de recursos computacionais, como armazenamento, processamento e aplicações, por meio de infraestrutura acessada pela rede.",
+    x:"Um arquivo salvo em um serviço de nuvem pode ser acessado em diferentes dispositivos.",
+    a:"A nuvem desloca parte da infraestrutura física e da administração para provedores especializados."
+  },
+
+  "Banco de dados":{
+    e:"É um sistema organizado para armazenar, consultar, modificar e gerenciar informações.",
+    x:"Um aplicativo pode armazenar usuários, senhas protegidas, configurações e registros em um banco de dados.",
+    a:"Modelagem, integridade, segurança e desempenho são aspectos fundamentais."
+  },
+
+  "Criptografia":{
+    e:"É o uso de técnicas matemáticas para proteger informações, permitindo propriedades como confidencialidade, integridade e autenticação.",
+    x:"Mensagens podem ser cifradas para que apenas quem possui a chave apropriada consiga interpretá-las.",
+    a:"Criptografia moderna é baseada em algoritmos e chaves, não simplesmente em esconder uma mensagem."
+  },
+
+  "Inteligência Artificial":{
+    e:"É um campo da computação dedicado ao desenvolvimento de sistemas capazes de executar tarefas que envolvem capacidades associadas à inteligência, como reconhecimento de padrões, previsão, geração e tomada de decisões.",
+    x:"Modelos de IA podem analisar grandes conjuntos de dados e produzir classificações ou gerar texto.",
+    a:"IA depende de dados, modelos, objetivos e métodos de avaliação; não significa necessariamente consciência."
+  },
+
+  "Machine Learning":{
+    e:"Aprendizado de máquina é uma área da IA na qual algoritmos aprendem padrões a partir de dados para realizar tarefas sem que todas as regras sejam programadas manualmente.",
+    x:"Um modelo pode aprender a classificar imagens depois de ser treinado com exemplos rotulados.",
+    a:"Dados de treinamento, validação, generalização e métricas são partes importantes."
+  },
+
+  "Redes neurais":{
+    e:"São modelos computacionais inspirados de forma abstrata em redes de neurônios biológicos. São compostos por unidades organizadas em camadas que transformam entradas por meio de parâmetros ajustáveis.",
+    x:"Redes neurais profundas são utilizadas em reconhecimento de imagens e processamento de linguagem.",
+    a:"Durante o treinamento, os parâmetros são ajustados para reduzir erros segundo uma função objetivo."
+  },
+
+  "Computação quântica":{
+    e:"É um paradigma computacional que utiliza propriedades de sistemas quânticos para realizar determinados tipos de processamento.",
+    x:"Qubits podem apresentar superposição e ser manipulados por operações quânticas.",
+    a:"Computação quântica não significa que todos os problemas serão automaticamente mais rápidos."
+  },
+
+  "Sistemas operacionais":{
+    e:"São softwares responsáveis por administrar recursos do computador e fornecer serviços para programas e usuários.",
+    x:"O sistema operacional gerencia memória, processos, arquivos, dispositivos e permissões.",
+    a:"Windows, Linux, macOS, Android e iOS são exemplos de sistemas operacionais."
+  },
+
+  "CPU":{
+    e:"A unidade central de processamento executa instruções e realiza operações fundamentais para o funcionamento dos programas.",
+    x:"Quando um aplicativo realiza cálculos, a CPU executa as instruções correspondentes.",
+    a:"Desempenho depende de arquitetura, frequência, número de núcleos, cache e outros fatores."
+  },
+
+  "GPU":{
+    e:"É um processador especializado em operações altamente paralelas, originalmente associado a gráficos e hoje também muito utilizado em computação científica e IA.",
+    x:"Modelos de aprendizado de máquina podem utilizar GPUs para executar muitas operações matemáticas simultaneamente.",
+    a:"GPU e CPU possuem arquiteturas e objetivos de otimização diferentes."
+  },
+
+  "RAM":{
+    e:"Memória RAM é uma memória de acesso rápido utilizada para manter temporariamente dados e programas em uso.",
+    x:"Abrir muitos aplicativos simultaneamente pode aumentar o consumo de RAM.",
+    a:"RAM não é armazenamento permanente como SSD ou HD."
+  },
+
+  "Arquitetura de computadores":{
+    e:"Estuda a organização e funcionamento dos componentes computacionais, incluindo processadores, memória, armazenamento e comunicação.",
+    x:"A arquitetura define como CPU, memória e dispositivos interagem para executar programas.",
+    a:"Arquitetura influencia desempenho, consumo de energia e capacidade do sistema."
+  },
+
+  "Segurança digital":{
+    e:"É o conjunto de práticas e tecnologias destinadas a proteger sistemas, dispositivos, redes e informações contra acesso indevido, perda ou manipulação.",
+    x:"Usar autenticação multifator reduz o risco de uma senha comprometida ser suficiente para acessar uma conta.",
+    a:"Segurança envolve pessoas, processos e tecnologia."
+  },
+
+  "Blockchain":{
+    e:"É uma estrutura de registro distribuído na qual informações são organizadas em blocos ligados criptograficamente.",
+    x:"Redes de blockchain podem registrar transações de forma compartilhada entre participantes.",
+    a:"Blockchain é uma tecnologia; suas aplicações dependem do desenho específico da rede."
+  },
+
+  "Internet das Coisas":{
+    e:"Refere-se à conexão de objetos físicos a redes para coletar, transmitir ou receber dados.",
+    x:"Uma lâmpada inteligente pode receber comandos pela rede e enviar informações sobre seu estado.",
+    a:"IoT envolve sensores, conectividade, processamento e segurança."
+  },
+
+  "Software":{
+    e:"É o conjunto de instruções e dados que orienta um computador a executar determinadas tarefas.",
+    x:"Um navegador, jogo ou editor de texto são tipos de software.",
+    a:"Software pode ser dividido em sistemas, aplicativos, bibliotecas e outros componentes."
+  },
+
+  "Hardware":{
+    e:"É a parte física de um sistema computacional, incluindo processador, memória, armazenamento, placa-mãe e periféricos.",
+    x:"CPU, teclado, monitor e SSD são componentes de hardware.",
+    a:"Hardware e software dependem um do outro para formar um sistema funcional."
+  },
+
+  "Robótica":{
+    e:"É uma área interdisciplinar que combina mecânica, eletrônica, sensores, programação e controle para construir máquinas capazes de executar tarefas.",
+    x:"Um braço robótico pode movimentar objetos em uma linha de produção.",
+    a:"Robôs podem ser industriais, móveis, médicos, domésticos e de pesquisa."
+  },
+
+  "Virtualização":{
+    e:"É uma técnica que permite criar representações virtuais de recursos computacionais, como máquinas virtuais que executam sistemas isolados sobre o mesmo hardware.",
+    x:"Um computador físico pode executar simultaneamente várias máquinas virtuais.",
+    a:"Virtualização aumenta flexibilidade e aproveitamento de recursos."
+  },
+
+  "DevOps":{
+    e:"É um conjunto de práticas que aproxima desenvolvimento de software e operações, buscando automatizar processos de entrega, testes, implantação e monitoramento.",
+    x:"Uma equipe pode usar integração e entrega contínuas para testar e publicar alterações automaticamente.",
+    a:"DevOps envolve cultura, automação, colaboração e observabilidade."
+  },
+
+  "Automação":{
+    e:"É o uso de sistemas para executar tarefas com pouca intervenção humana direta.",
+    x:"Um programa pode processar automaticamente arquivos recebidos todos os dias.",
+    a:"Automação reduz trabalho repetitivo, mas precisa ser projetada e monitorada corretamente."
+  },
+
+  "UX/UI":{
+    e:"UX significa experiência do usuário e envolve a experiência geral de interação com um produto. UI refere-se principalmente à interface visual e aos elementos de interação.",
+    x:"Um aplicativo pode ter uma interface bonita, mas ainda oferecer uma experiência ruim se suas funções forem difíceis de encontrar.",
+    a:"Boa UX considera necessidades, contexto, acessibilidade e facilidade de uso."
+  },
+
+  "APIs":{
+    e:"API é uma interface que define como diferentes softwares podem solicitar e fornecer funcionalidades ou dados entre si.",
+    x:"Um aplicativo pode utilizar uma API para solicitar informações de um serviço externo.",
+    a:"APIs permitem integração sem que um sistema precise conhecer toda a implementação interna do outro."
+  },
+
+  "Protocolos":{
+    e:"Protocolos são conjuntos de regras que definem como sistemas se comunicam e interpretam informações.",
+    x:"HTTP define regras usadas na comunicação entre navegadores e servidores web.",
+    a:"Protocolos permitem interoperabilidade entre sistemas diferentes."
+  },
+
+  "Data science":{
+    e:"Ciência de dados combina estatística, programação, conhecimento de domínio e análise para extrair informações úteis de dados.",
+    x:"Um analista pode utilizar dados históricos para identificar padrões e construir modelos preditivos.",
+    a:"Qualidade dos dados e definição correta do problema são tão importantes quanto o algoritmo."
+  },
+
+  "Big Data":{
+    e:"Refere-se a conjuntos de dados que apresentam características de grande volume, velocidade, variedade ou outras propriedades que dificultam seu processamento por métodos tradicionais.",
+    x:"Plataformas digitais podem gerar enormes quantidades de registros de uso diariamente.",
+    a:"Big Data exige infraestrutura e métodos adequados de armazenamento e análise."
+  },
+
+  "Cybersecurity":{
+    e:"É a área dedicada à proteção de sistemas, redes, dispositivos e informações contra ameaças digitais.",
+    x:"Ataques de phishing tentam enganar usuários para obter credenciais ou outras informações.",
+    a:"Segurança depende de prevenção, detecção, resposta e recuperação."
+  },
+
+  /* ================= FILOSOFIA ================= */
+
+  "Sócrates":{
+    e:"Filósofo ateniense conhecido principalmente pelos diálogos registrados por autores posteriores, especialmente Platão. Seu método envolvia perguntas destinadas a examinar conceitos e crenças.",
+    x:"Em vez de simplesmente apresentar uma resposta, Sócrates frequentemente questionava definições dadas por seus interlocutores.",
+    a:"Sua importância está ligada à investigação crítica e ao exame racional das próprias crenças."
+  },
+
+  "Platão":{
+    e:"Filósofo grego e discípulo de Sócrates. Seus diálogos abordam temas como conhecimento, justiça, política, alma e realidade.",
+    x:"Na alegoria da caverna, Platão utiliza uma narrativa para discutir conhecimento e aparência.",
+    a:"Sua filosofia influenciou profundamente a tradição ocidental."
+  },
+
+  "Aristóteles":{
+    e:"Filósofo grego e discípulo de Platão que escreveu sobre lógica, ética, política, metafísica, biologia e outros campos.",
+    x:"Na ética, Aristóteles relaciona a vida boa ao desenvolvimento de virtudes.",
+    a:"Seu pensamento busca analisar sistematicamente diferentes aspectos da realidade."
+  },
+
+  "Estoicismo":{
+    e:"Escola filosófica antiga que enfatiza a distinção entre aquilo que está sob nosso controle e aquilo que não está, além do desenvolvimento de virtudes e julgamento racional.",
+    x:"Uma pessoa pode não controlar o resultado de uma competição, mas pode controlar sua preparação e resposta ao resultado.",
+    a:"O estoicismo não significa ausência de emoções; envolve uma relação disciplinada com julgamentos e ações."
+  },
+
+  "Epicurismo":{
+    e:"Filosofia associada a Epicuro que considera o prazer, entendido principalmente como ausência de sofrimento e perturbação, um elemento central da vida boa.",
+    x:"Epicuro valorizava amizade, moderação e redução de desejos desnecessários.",
+    a:"O epicurismo não se resume a buscar excessos; enfatiza prazer estável e prudência."
+  },
+
+  "Ceticismo":{
+    e:"Tradições filosóficas céticas questionam a possibilidade ou facilidade de alcançar determinadas formas de conhecimento e incentivam a suspensão do julgamento quando as evidências são insuficientes.",
+    x:"Diante de duas explicações igualmente plausíveis, um cético pode evitar concluir antes de obter melhores evidências.",
+    a:"Ceticismo filosófico não significa acreditar que nada existe ou que nenhuma informação pode ser conhecida."
+  },
+
+  "Spinoza":{
+    e:"Baruch Spinoza foi um filósofo do século XVII que desenvolveu uma concepção de Deus e natureza profundamente integrada e uma ética baseada na compreensão das causas que determinam os seres.",
+    x:"Para Spinoza, compreender as causas das paixões pode aumentar nossa capacidade de agir racionalmente.",
+    a:"Sua filosofia questiona concepções tradicionais de liberdade, mente, corpo e divindade."
+  },
+
+  "Hume":{
+    e:"David Hume foi um filósofo empirista que investigou conhecimento, causalidade, identidade pessoal e moralidade.",
+    x:"Hume argumentou que nossa expectativa de causalidade não deriva simplesmente de observar uma conexão necessária, mas também do hábito criado pela repetição.",
+    a:"Seu pensamento influenciou debates modernos sobre conhecimento e ciência."
+  },
+
+  "Kant":{
+    e:"Immanuel Kant desenvolveu uma filosofia que buscou explicar como experiência e estruturas da mente participam do conhecimento. Na ética, formulou princípios de ação baseados na autonomia e universalização.",
+    x:"O imperativo categórico pede que princípios de ação possam ser pensados como regras universais.",
+    a:"Kant influenciou profundamente epistemologia, ética e filosofia política."
+  },
+
+  "Nietzsche":{
+    e:"Friedrich Nietzsche criticou diversos valores, instituições e pressupostos da tradição ocidental. Seus escritos exploram poder, moralidade, cultura, criação de valores e transformação pessoal.",
+    x:"Sua crítica à moral tradicional questiona a origem e os efeitos de determinados valores.",
+    a:"Nietzsche não deve ser reduzido a frases isoladas; suas ideias aparecem em obras complexas e frequentemente provocativas."
+  },
+
+  "Existencialismo":{
+    e:"É uma corrente filosófica associada a diferentes autores que discutem liberdade, responsabilidade, existência, escolha, angústia e sentido.",
+    x:"A ideia de responsabilidade pessoal pode ser usada para discutir como indivíduos lidam com escolhas e circunstâncias.",
+    a:"Existencialismo não é uma teoria única; autores associados a ele discordam em vários pontos."
+  },
+
+  "Utilitarismo":{
+    e:"É uma família de teorias éticas que avalia ações principalmente pelas consequências e busca maximizar algum critério de bem-estar ou utilidade.",
+    x:"Uma decisão utilitarista pode comparar os efeitos positivos e negativos de diferentes alternativas.",
+    a:"Debates utilitaristas envolvem como medir consequências e como tratar direitos e justiça."
+  },
+
+  "Ética":{
+    e:"É o campo filosófico que investiga questões sobre certo e errado, dever, virtude, responsabilidade e vida boa.",
+    x:"Perguntar se uma ação é correta apenas porque produz bons resultados é uma questão ética.",
+    a:"Diferentes teorias éticas utilizam critérios diferentes para avaliar ações."
+  },
+
+  "Virtude":{
+    e:"Virtude é uma disposição ou excelência de caráter associada à capacidade de agir de maneira adequada segundo determinada concepção ética.",
+    x:"Coragem pode ser entendida como uma disposição equilibrada diante do medo, não simplesmente ausência de medo.",
+    a:"Na ética das virtudes, o foco está não apenas em ações isoladas, mas também no caráter."
+  },
+
+  "Lógica":{
+    e:"É o estudo de formas de raciocínio e das relações que permitem avaliar se conclusões seguem de premissas.",
+    x:"Se todas as pessoas de um grupo possuem uma característica e João pertence ao grupo, uma conclusão pode ser derivada segundo a estrutura do argumento.",
+    a:"Lógica ajuda a separar validade do argumento de verdade das premissas."
+  },
+
+  "Metafísica":{
+    e:"É o ramo da filosofia que investiga questões fundamentais sobre realidade, existência, causalidade, identidade, tempo e outros aspectos do ser.",
+    x:"Perguntar o que significa existir é uma questão metafísica.",
+    a:"Metafísica trabalha com problemas que não podem ser reduzidos simplesmente à observação cotidiana."
+  },
+
+  "Época clássica":{
+    e:"Refere-se principalmente ao período da Grécia e Roma antigas considerado fundamental para a formação de tradições intelectuais, políticas e culturais posteriores.",
+    x:"Filosofia grega clássica produziu debates sobre ética, política e conhecimento.",
+    a:"O período não deve ser tratado como culturalmente homogêneo."
+  },
+
+  "Teoria do conhecimento":{
+    e:"Também chamada epistemologia, investiga natureza, origem, limites e justificativa do conhecimento.",
+    x:"Perguntar como sabemos que uma crença é verdadeira é uma questão epistemológica.",
+    a:"Percepção, memória, razão e testemunho são fontes discutidas pela epistemologia."
+  },
+
+  "Moralidade":{
+    e:"Refere-se a sistemas de normas, valores e julgamentos sobre ações consideradas certas ou erradas.",
+    x:"Uma sociedade pode considerar determinada prática moralmente aceitável enquanto outra a avalia de forma diferente.",
+    a:"Filosofia moral procura analisar criticamente as justificativas desses julgamentos."
+  },
+
+  "Liberdade":{
+    e:"Na filosofia, liberdade pode significar ausência de coerção, capacidade de escolha, autonomia ou outras formas de autodeterminação.",
+    x:"Um debate pode perguntar se uma escolha é livre quando uma pessoa sofre forte pressão externa.",
+    a:"Diferentes teorias relacionam liberdade a responsabilidade e causalidade de maneiras distintas."
+  },
+
+  "Consciência":{
+    e:"É um conceito utilizado para discutir experiência subjetiva, percepção de si e estados mentais conscientes.",
+    x:"A experiência de perceber uma cor ou sentir uma emoção envolve aspectos da experiência consciente.",
+    a:"A natureza da consciência continua sendo tema de debates filosóficos e científicos."
+  },
+
+  "Racionalidade":{
+    e:"Refere-se à capacidade de formar crenças e tomar decisões utilizando razões, evidências e relações coerentes entre objetivos e ações.",
+    x:"Revisar uma opinião diante de evidências fortes pode ser considerado um comportamento racional.",
+    a:"Racionalidade não significa ausência de emoção; decisões humanas podem envolver ambos."
+  },
+
+  "Poder":{
+    e:"Em filosofia política e social, poder pode ser entendido como capacidade de influenciar ações, decisões ou relações entre pessoas e instituições.",
+    x:"Uma autoridade formal possui poder institucional, enquanto outras formas de influência podem surgir de recursos, conhecimento ou posição social.",
+    a:"O conceito possui diferentes definições e deve ser analisado conforme o contexto."
+  },
+
+  "Justiça":{
+    e:"É um conceito filosófico relacionado à distribuição de benefícios e encargos, direitos, deveres, tratamento e instituições.",
+    x:"Uma teoria da justiça pode perguntar como recursos deveriam ser distribuídos em uma sociedade.",
+    a:"Filósofos discordam sobre quais critérios tornam uma distribuição justa."
+  },
+
+  "Política":{
+    e:"É o campo relacionado à organização do poder e à tomada de decisões coletivas em sociedades.",
+    x:"Instituições políticas definem processos para elaborar leis e administrar recursos públicos.",
+    a:"Filosofia política investiga conceitos como autoridade, liberdade, igualdade e legitimidade."
+  },
+
+  "Ideias":{
+    e:"Ideias são conteúdos mentais, conceitos ou proposições usados para representar, interpretar ou explicar aspectos da realidade.",
+    x:"A ideia de justiça pode ser analisada e comparada com diferentes teorias.",
+    a:"Filosofia examina não apenas ideias isoladas, mas seus fundamentos e consequências."
+  },
+
+  "Realidade":{
+    e:"É um conceito usado para discutir aquilo que existe ou é efetivamente o caso, em contraste com aparência, imaginação ou representação.",
+    x:"A filosofia pode perguntar se aquilo que percebemos corresponde diretamente à realidade.",
+    a:"Questões sobre realidade aparecem na metafísica, epistemologia e filosofia da mente."
+  },
+
+  /* ================= ECONOMIA ================= */
+
+  "Oferta e demanda":{
+    e:"Oferta representa a quantidade que produtores estão dispostos a vender em determinadas condições; demanda representa a quantidade que consumidores desejam comprar. A interação entre ambas influencia preços e quantidades em mercados.",
+    x:"Se a demanda por um produto aumenta enquanto a oferta permanece limitada, pode haver pressão de alta sobre seu preço.",
+    a:"O modelo é uma ferramenta de análise e depende das condições específicas do mercado."
+  },
+
+  "Inflação":{
+    e:"É o aumento persistente e generalizado do nível de preços de bens e serviços ao longo do tempo, reduzindo o poder de compra da moeda.",
+    x:"Se os preços sobem de forma generalizada, a mesma quantia de dinheiro compra menos produtos.",
+    a:"Inflação pode ter diferentes causas e é medida por índices de preços."
+  },
+
+  "Juros":{
+    e:"Juros representam o custo de utilizar dinheiro ao longo do tempo ou a remuneração pelo fornecimento de capital.",
+    x:"Um empréstimo de R$1.000 com juros resulta em pagamento superior ao valor inicialmente recebido.",
+    a:"Taxa, prazo e regime de capitalização influenciam o resultado."
+  },
+
+  "PIB":{
+    e:"Produto Interno Bruto é o valor monetário dos bens e serviços finais produzidos dentro de uma economia durante determinado período.",
+    x:"O PIB pode ser usado para acompanhar a atividade econômica de um país.",
+    a:"PIB não mede sozinho distribuição de renda, qualidade de vida ou bem-estar."
+  },
+
+  "Desemprego":{
+    e:"É a situação de pessoas economicamente ativas que estão sem trabalho e procuram emprego, segundo a definição utilizada por determinada estatística.",
+    x:"Uma pessoa sem emprego que está procurando trabalho pode ser classificada como desempregada.",
+    a:"Taxas de desemprego dependem da metodologia usada para definir população e busca por trabalho."
+  },
+
+  "Produtividade":{
+    e:"É a relação entre a quantidade de produção e os recursos utilizados para produzi-la.",
+    x:"Uma fábrica que produz mais unidades utilizando a mesma quantidade de trabalho aumentou sua produtividade.",
+    a:"Produtividade pode aumentar por tecnologia, organização, qualificação ou outros fatores."
+  },
+
+  "Moeda":{
+    e:"É um meio utilizado para facilitar trocas, servir como unidade de conta e preservar valor, embora sua capacidade de preservar valor dependa das condições econômicas.",
+    x:"O dinheiro permite comprar produtos sem precisar trocar diretamente um produto por outro.",
+    a:"Sistemas monetários facilitam a especialização e as transações."
+  },
+
+  "Bancos":{
+    e:"São instituições financeiras que realizam atividades como intermediação de recursos, depósitos, crédito e pagamentos, conforme sua estrutura e regulamentação.",
+    x:"Um banco pode captar recursos e conceder empréstimos a outros agentes.",
+    a:"Bancos desempenham papel importante no sistema de pagamentos e crédito."
+  },
+
+  "Crédito":{
+    e:"É a possibilidade de obter recursos agora e realizar pagamento posteriormente, geralmente mediante condições acordadas.",
+    x:"Um empréstimo permite receber dinheiro hoje e devolvê-lo ao longo do tempo.",
+    a:"Custo, prazo, risco e capacidade de pagamento influenciam operações de crédito."
+  },
+
+  "Dívida":{
+    e:"É uma obrigação financeira de pagar determinado valor ou cumprir uma obrigação futura.",
+    x:"Uma pessoa que financia um bem assume uma dívida que será paga conforme o contrato.",
+    a:"Dívida pode ser útil para financiar investimentos, mas envolve custos e riscos."
+  },
+
+  "Impostos":{
+    e:"São tributos cobrados pelo poder público para financiar atividades e serviços públicos e cumprir outras funções fiscais.",
+    x:"Impostos podem incidir sobre renda, consumo, propriedade ou operações.",
+    a:"Sistemas tributários variam conforme legislação e estrutura econômica."
+  },
+
+  "Mercado":{
+    e:"É o ambiente ou sistema no qual compradores e vendedores interagem para realizar trocas de bens, serviços ou ativos.",
+    x:"Um mercado pode existir fisicamente ou funcionar por plataformas digitais.",
+    a:"Mercados podem assumir diferentes estruturas e níveis de concorrência."
+  },
+
+  "Concorrência":{
+    e:"É a situação em que diferentes empresas ou vendedores disputam consumidores em um mercado.",
+    x:"Empresas podem competir por preço, qualidade, inovação ou atendimento.",
+    a:"Concorrência pode incentivar eficiência e inovação, embora seus efeitos dependam da estrutura do mercado."
+  },
+
+  "Monopólio":{
+    e:"É uma estrutura de mercado na qual uma única empresa ou fornecedor possui posição dominante no fornecimento de determinado produto ou serviço, especialmente quando não existem substitutos próximos.",
+    x:"Um fornecedor exclusivo pode possuir maior capacidade de influenciar preços.",
+    a:"Barreiras à entrada são importantes para a manutenção de monopólios."
+  },
+
+  "Comércio internacional":{
+    e:"É a troca de bens e serviços entre países.",
+    x:"Um país pode exportar produtos agrícolas e importar máquinas.",
+    a:"Comércio internacional envolve vantagens comparativas, tarifas, câmbio e relações políticas."
+  },
+
+  "Câmbio":{
+    e:"É a relação de troca entre moedas diferentes.",
+    x:"Uma variação do câmbio pode alterar o preço de produtos importados quando convertidos para a moeda doméstica.",
+    a:"Taxas de câmbio influenciam comércio, viagens, investimentos e preços."
+  },
+
+  "Investimentos":{
+    e:"São aplicações de recursos com expectativa de obter retorno futuro, podendo envolver diferentes níveis de risco.",
+    x:"Comprar um ativo financeiro buscando retorno futuro é uma forma de investimento.",
+    a:"Risco, retorno, prazo, liquidez e diversificação são conceitos fundamentais."
+  },
+
+  "Empreendedorismo":{
+    e:"É o processo de identificar oportunidades e organizar recursos para criar ou desenvolver atividades econômicas, frequentemente envolvendo inovação e risco.",
+    x:"Uma pessoa pode identificar uma necessidade não atendida e criar um negócio para oferecer uma solução.",
+    a:"Empreendedorismo envolve mercado, gestão, execução e adaptação."
+  },
+
+  "Setor público":{
+    e:"É o conjunto de instituições e atividades governamentais que administram recursos e prestam serviços públicos.",
+    x:"Escolas públicas, órgãos administrativos e sistemas de infraestrutura podem fazer parte do setor público.",
+    a:"O setor público também exerce funções regulatórias e redistributivas."
+  },
+
+  "Finanças pessoais":{
+    e:"É a administração de renda, gastos, reservas, dívidas, investimentos e objetivos financeiros individuais ou familiares.",
+    x:"Registrar despesas e definir uma reserva de emergência são práticas de organização financeira.",
+    a:"Planejamento depende de renda, despesas, riscos e objetivos."
+  },
+
+  "Política económica":{
+    e:"É o conjunto de medidas utilizadas por governos e autoridades econômicas para influenciar atividade econômica, inflação, emprego, crédito e outros objetivos.",
+    x:"Políticas fiscais envolvem gastos e tributos; políticas monetárias envolvem instrumentos relacionados à moeda e crédito.",
+    a:"Políticas possuem efeitos e custos que dependem do contexto econômico."
+  },
+
+  "Desigualdade":{
+    e:"É a distribuição desigual de renda, riqueza, oportunidades ou outros recursos entre indivíduos ou grupos.",
+    x:"Duas famílias podem possuir rendas muito diferentes mesmo vivendo na mesma economia.",
+    a:"É importante distinguir desigualdade de pobreza: são conceitos relacionados, mas não equivalentes."
+  },
+
+  "Mercado financeiro":{
+    e:"É o conjunto de instituições e mecanismos por meio dos quais recursos financeiros e ativos são negociados.",
+    x:"Mercados de ações e de títulos permitem diferentes formas de captação e investimento.",
+    a:"Risco, liquidez, informação e regulação são elementos importantes."
+  },
+
+  "Consumismo":{
+    e:"Refere-se a padrões de consumo nos quais aquisição de bens e serviços ocupa papel elevado na vida econômica e cultural.",
+    x:"Publicidade e tendências podem incentivar compras além das necessidades imediatas.",
+    a:"Estudar consumo envolve economia, psicologia, cultura e sustentabilidade."
+  },
+
+  "Microeconomia":{
+    e:"É o ramo da economia que estuda decisões de consumidores e empresas e o funcionamento de mercados específicos.",
+    x:"A análise de oferta, demanda e formação de preços é parte da microeconomia.",
+    a:"Microeconomia examina incentivos e escolhas em diferentes estruturas de mercado."
+  },
+
+  "Macroeconomia":{
+    e:"É o ramo da economia que estuda fenômenos agregados como inflação, crescimento, desemprego e ciclos econômicos.",
+    x:"A taxa de inflação de um país é uma variável macroeconômica.",
+    a:"Macroeconomia utiliza modelos e indicadores para analisar a economia como um conjunto."
+  },
+
+  "Mercado de ações":{
+    e:"É o ambiente no qual participações societárias de empresas podem ser negociadas.",
+    x:"Ao comprar uma ação, o investidor adquire uma participação correspondente naquele ativo.",
+    a:"Preços das ações podem variar conforme expectativas, resultados, riscos e condições de mercado."
+  },
+
+  "Economia digital":{
+    e:"É a parte da atividade econômica fortemente baseada em tecnologias digitais, dados, plataformas e serviços online.",
+    x:"Aplicativos de transporte conectam consumidores e prestadores por meio de plataformas digitais.",
+    a:"Dados, efeitos de rede e plataformas são características relevantes."
+  },
+
+  "Sustentabilidade":{
+    e:"É a busca por atender necessidades atuais considerando a capacidade de sistemas ambientais, sociais e econômicos de permanecerem funcionais no longo prazo.",
+    x:"Uma empresa pode avaliar consumo de recursos e impactos ambientais de sua produção.",
+    a:"Sustentabilidade envolve dimensões ambientais, econômicas e sociais."
+  }
+
+  };
+
+  let dadosC=c[t];
+
+  if(!dadosC){
+    dadosC={
+      e:"Este conceito pertence à área de "+a+" e deve ser estudado considerando sua definição, seus mecanismos, seu contexto e suas aplicações. O objetivo desta plataforma é ir além da memorização do termo: procure compreender como a ideia funciona e como ela se relaciona com outros conhecimentos.",
+      x:"Procure identificar um exemplo concreto desse conceito em uma situação real, histórica, científica ou cotidiana.",
+      a:"Tente explicar o conceito com suas próprias palavras e depois conectá-lo a pelo menos uma outra ideia que você já estudou."
+    };
+  }
+
+  document.getElementById("sheet").innerHTML=
+  '<span class="tag">'+a+' • Lição '+(i+1)+'</span>'+
+  '<h2>'+t+'</h2>'+
+
+  '<h3>O que é?</h3>'+
+  '<p>'+dadosC.e+'</p>'+
+
+  '<h3>Exemplo</h3>'+
+  '<p>'+dadosC.x+'</p>'+
+
+  '<h3>Aplicação</h3>'+
+  '<p>'+dadosC.a+'</p>'+
+
+  '<h3>Mini-quiz</h3>'+
+  '<p>Qual é a melhor maneira de consolidar este conhecimento?</p>'+
+
+  '<button class="opt" onclick="responder(this,true)">Compreender, explicar e aplicar o conceito</button>'+
+  '<button class="opt" onclick="responder(this,false)">Apenas decorar o nome</button>'+
+
+  '<br><button class="btn" onclick="concluir(\''+a+'\','+i+')">Concluir lição</button>'+
+  '<button class="btn ghost" onclick="ouvirTexto()">Ouvir</button>'+
+  '<button class="btn ghost" onclick="fecharSheet()">Fechar</button>';
+}
+
+  let explicacoes={
+    "Efeito Dunning-Kruger":"O efeito Dunning-Kruger descreve uma situação em que pessoas com pouca experiência em determinada área podem ter dificuldade para reconhecer as próprias limitações. Para avaliar corretamente o próprio desempenho, também é necessário possuir conhecimento suficiente sobre aquilo que está sendo avaliado. Por isso, uma pessoa pode cometer erros sem perceber completamente que está errando. Com mais estudo, prática e feedback, a pessoa passa a compreender melhor a complexidade do assunto e consegue avaliar suas próprias capacidades com maior precisão.",
+
+    "Memória de trabalho":"A memória de trabalho é o sistema mental utilizado para manter informações temporariamente disponíveis enquanto pensamos ou realizamos uma tarefa. Ela participa de situações como fazer uma conta mentalmente, seguir instruções com várias etapas, acompanhar uma conversa e comparar informações. Sua capacidade é limitada: quando muitas informações precisam ser mantidas ao mesmo tempo, aumenta a possibilidade de esquecimentos e erros. Dividir informações em partes, fazer anotações e reduzir distrações pode facilitar seu funcionamento.",
+
+    "Viés de confirmação":"O viés de confirmação é a tendência de dar mais atenção a informações que apoiam uma crença que já possuímos e de dar menos importância a informações que a contradizem. Isso pode acontecer sem intenção consciente. Uma pessoa que acredita que determinado método funciona pode lembrar principalmente dos casos em que ele deu certo e explicar os fracassos por outros motivos. Para reduzir esse viés, é útil procurar evidências contrárias e perguntar quais informações poderiam fazer você mudar de opinião.",
+
+    "Condicionamento clássico":"O condicionamento clássico é uma forma de aprendizagem baseada na associação entre estímulos. Um estímulo que inicialmente não produz determinada resposta pode passar a provocá-la depois de ser associado repetidamente a outro estímulo que naturalmente provoca essa resposta. O fenômeno ficou conhecido pelos estudos de Ivan Pavlov. Esse princípio ajuda a compreender algumas respostas emocionais e comportamentos aprendidos que surgem automaticamente diante de determinadas situações.",
+
+    "Reforço e punição":"Reforço e punição são conceitos utilizados para compreender como consequências influenciam comportamentos. Reforço é uma consequência que aumenta a probabilidade de um comportamento voltar a acontecer, enquanto punição tende a diminuir essa probabilidade. O termo positivo significa adicionar algo e negativo significa retirar algo. Portanto, reforço negativo não significa castigo: significa retirar algo para aumentar um comportamento. Essa diferença é fundamental para compreender a aprendizagem comportamental.",
+
+    "Atenção seletiva":"A atenção seletiva é a capacidade de direcionar os recursos mentais para determinadas informações enquanto outras recebem menos atenção. Como recebemos muitos estímulos simultaneamente, não conseguimos processar todos com a mesma profundidade. Nossos objetivos, expectativas, emoções e características dos estímulos influenciam aquilo que recebe prioridade. Isso explica por que conseguimos nos concentrar em uma conversa específica em um ambiente barulhento, mas também por que podemos deixar passar informações que não estavam no foco da nossa atenção."
+  };
+
+  let explicacao=explicacoes[t] || "Este conceito é estudado dentro de "+a+" e será explorado considerando sua definição, funcionamento, importância e aplicação prática. Procure compreender não apenas o significado do termo, mas também como ele pode ser identificado em situações concretas.";
+
+  document.getElementById("sheet").innerHTML=
+  '<span class="tag">'+a+' • Lição '+(i+1)+'</span>'+
+  '<h2>'+t+'</h2>'+
+  '<h3>O que é?</h3>'+
+  '<p>'+explicacao+'</p>'+
+  '<h3>Entenda</h3>'+
+  '<p>Para aprender de verdade, tente explicar este conceito sem olhar a resposta. Depois, procure relacioná-lo a uma situação concreta do cotidiano. Quanto mais você consegue reconhecer, explicar e aplicar uma ideia, mais profunda tende a ser sua compreensão.</p>'+
+  '<h3>Mini-quiz</h3>'+
+  '<p>Qual atitude ajuda mais a consolidar este conhecimento?</p>'+
+  '<button class="opt" onclick="responder(this,true)">Compreender, explicar e aplicar o conceito</button>'+
+  '<button class="opt" onclick="responder(this,false)">Apenas decorar o nome</button>'+
+  '<br><button class="btn" onclick="concluir(\''+a+'\','+i+')">Concluir lição</button>'+
+  '<button class="btn ghost" onclick="ouvirTexto()">Ouvir</button>'+
+  '<button class="btn ghost" onclick="fecharSheet()">Fechar</button>';
 }
 
 function responder(c){
