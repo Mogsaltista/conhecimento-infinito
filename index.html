@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0d12">
+<title>Conhecimento Infinito</title>
+<style>
+:root{--bg:#080a0f;--card:#11151d;--card2:#171c26;--text:#f4f6fa;--muted:#a6adba;--accent:#7c5cff;--accent2:#23d5ab;--line:#272e3a}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{min-height:100vh}
+button{font:inherit;border:0;color:inherit;cursor:pointer}.app{max-width:620px;margin:auto;min-height:100vh}
+.top{position:sticky;top:0;z-index:20;background:rgba(8,10,15,.88);backdrop-filter:blur(16px);padding:18px 18px 12px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;justify-content:space-between}.brand h1{font-size:20px;margin:0}.xpbox{font-size:12px;color:var(--muted)}.xpbox b{color:var(--text)}
+.progress{height:5px;background:#242a34;border-radius:9px;margin-top:10px;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0}
+.feed{padding:16px}.card{min-height:72vh;border:1px solid var(--line);border-radius:28px;background:linear-gradient(160deg,var(--card),#0e1219);padding:22px;display:flex;flex-direction:column;justify-content:space-between;margin-bottom:18px;box-shadow:0 16px 45px rgba(0,0,0,.22)}
+.visual{height:260px;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:88px;background:radial-gradient(circle at 30% 20%,rgba(124,92,255,.4),transparent 55%),linear-gradient(135deg,#171d2b,#0c1017);border:1px solid #303747}
+.cat{margin-top:22px;color:#b7aaff;font-size:12px;font-weight:800;letter-spacing:1.5px}.card h2{font-size:30px;line-height:1.08;margin:10px 0}.summary{font-size:16px;line-height:1.55;color:var(--muted);margin:0}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.btn{background:var(--card2);border:1px solid #303746;padding:14px;border-radius:15px;font-weight:750}.btn.primary{background:var(--accent);border-color:var(--accent)}.btn.save{grid-column:1/-1;background:transparent}
+.nav{position:sticky;bottom:0;background:rgba(8,10,15,.94);backdrop-filter:blur(16px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);padding:10px 12px calc(10px + env(safe-area-inset-bottom));z-index:20}.nav button{background:none;color:var(--muted);font-size:12px}.nav span{display:block;font-size:22px;margin-bottom:3px}.nav .active{color:var(--text)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:50;display:none;align-items:flex-end}.sheet{width:100%;max-width:620px;margin:auto;background:#11151d;border:1px solid var(--line);border-radius:28px 28px 0 0;max-height:88vh;overflow:auto;padding:24px}.sheet h2{margin-top:0}.close{float:right;background:#222936;border-radius:50%;width:38px;height:38px}.article{color:#c6ccd6;line-height:1.7;font-size:16px}.article strong{color:white}
+.onboard{position:fixed;inset:0;background:var(--bg);z-index:100;overflow:auto;padding:30px 22px}.onboard .hero{max-width:620px;margin:30px auto}.hero h1{font-size:42px;line-height:1;margin:0 0 14px}.hero p{color:var(--muted);line-height:1.6}.chips{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}.chip{padding:12px 15px;border-radius:999px;background:#141923;border:1px solid #2c3441;color:#cbd1db}.chip.on{background:rgba(124,92,255,.2);border-color:var(--accent);color:white}.start{width:100%;padding:16px;border-radius:16px;background:var(--accent);font-weight:800}.profile{padding:20px}.stat{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;margin:10px 0}.stat b{font-size:28px}.small{color:var(--muted);font-size:13px}.quizopt{display:block;width:100%;text-align:left;margin:10px 0;padding:14px;border-radius:14px;background:#171c26;border:1px solid #303746}.quizopt.correct{border-color:var(--accent2)}.quizopt.wrong{border-color:#ff667d}
+.empty{padding:60px 20px;text-align:center;color:var(--muted)}
+@media(max-width:420px){.card{min-height:68vh}.visual{height:220px}.card h2{font-size:26px}}
+</style>
+</head>
+<body>
+<div id="onboard" class="onboard" style="display:none">
+  <div class="hero">
+    <div style="font-size:54px">🧠</div>
+    <h1>Conhecimento<br>Infinito</h1>
+    <p>Um feed que nunca acaba — mas em vez de vídeos aleatórios, você escolhe o que quer descobrir.</p>
+    <h3>Escolha seus interesses</h3>
+    <div id="chips" class="chips"></div>
+    <button class="start" onclick="finishOnboarding()">Começar a explorar →</button>
+  </div>
+</div>
+
+<div class="app">
+<header class="top">
+  <div class="brand"><h1>🧠 Conhecimento Infinito</h1><div class="xpbox">Nível <b id="level">1</b> · <b id="xp">0</b> XP</div></div>
+  <div class="progress"><i id="levelbar"></i></div>
+</header>
+
+<main id="main"></main>
+
+<nav class="nav">
+  <button class="active" onclick="showFeed(this)"><span>⌂</span>Feed</button>
+  <button onclick="showProfile(this)"><span>◉</span>Perfil</button>
+  <button onclick="changeInterests(this)"><span>⚙</span>Interesses</button>
+</nav>
+</div>
+
+<div id="overlay" class="overlay" onclick="if(event.target===this)closeSheet()">
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<script>
+const DATA=[
+{cat:"PSICOLOGIA",emoji:"🧠",title:"Por que criamos falsas memórias?",summary:"A memória não funciona como uma gravação perfeita. Ao lembrar de algo, o cérebro reconstrói a experiência — e pode incorporar detalhes que nunca aconteceram.",body:"A memória humana é um processo de reconstrução. Quando lembramos de um acontecimento, diferentes elementos são reunidos novamente. Informações posteriores, expectativas e outras lembranças podem influenciar essa reconstrução.<br><br><strong>Por que isso importa?</strong><br>Uma pessoa pode ter muita confiança em uma lembrança e, ainda assim, estar equivocada sobre algum detalhe. Isso é uma das razões pelas quais memória e certeza não são exatamente a mesma coisa.",tags:["memória","cognição","cérebro"]},
+{cat:"HISTÓRIA",emoji:"🏛️",title:"Por que Roma construiu tantas estradas?",summary:"As estradas romanas ajudavam a conectar cidades, movimentar tropas, transportar mercadorias e administrar um território enorme.",body:"A infraestrutura era uma ferramenta de integração. Estradas bem construídas reduziam o tempo de deslocamento e facilitavam a circulação de pessoas, bens e mensagens.<br><br><strong>Uma ideia importante:</strong><br>Infraestrutura não serve apenas para transporte. Ela também pode mudar a capacidade de um Estado de administrar territórios e conectar mercados.",tags:["Roma","infraestrutura","impérios"]},
+{cat:"ASTRONOMIA",emoji:"🌌",title:"O que acontece perto de um buraco negro?",summary:"A gravidade se torna tão intensa que o espaço e o tempo são profundamente afetados. Depois do horizonte de eventos, nem a luz consegue escapar.",body:"Um buraco negro é uma região do espaço-tempo cuja gravidade é extrema. O horizonte de eventos é a fronteira a partir da qual não existe caminho de volta para um observador externo.<br><br><strong>Curiosidade:</strong><br>Para alguém distante, processos próximos ao horizonte podem parecer ocorrer cada vez mais lentamente devido aos efeitos relativísticos.",tags:["espaço","física","relatividade"]},
+{cat:"CIÊNCIA",emoji:"⚛️",title:"Por que o céu é azul?",summary:"A luz solar contém várias cores. Na atmosfera, a luz azul é espalhada mais intensamente do que cores de comprimentos de onda maiores.",body:"A luz do Sol parece branca, mas é composta por várias faixas de cores. Moléculas da atmosfera espalham a luz em diferentes intensidades; a componente azul sofre espalhamento eficiente e chega aos nossos olhos de várias direções.<br><br>No pôr do sol, a luz atravessa uma camada maior de atmosfera, o que favorece tons avermelhados e alaranjados.",tags:["luz","atmosfera","física"]},
+{cat:"FILOSOFIA",emoji:"🏺",title:"O que significa viver uma vida boa?",summary:"Uma das perguntas centrais da filosofia não é apenas 'o que devo ter?', mas 'que tipo de vida vale a pena viver?'.",body:"Diferentes tradições filosóficas respondem de maneiras diferentes. Algumas enfatizam virtude e caráter; outras discutem prazer, liberdade, dever, sentido ou florescimento humano.<br><br><strong>O ponto interessante:</strong><br>A pergunta continua aberta porque envolve valores e concepções diferentes sobre o que torna uma vida significativa.",tags:["ética","virtude","sentido"]},
+{cat:"TECNOLOGIA",emoji:"💻",title:"Como a internet encontra uma página tão rápido?",summary:"Seu navegador não procura manualmente cada computador do mundo. Sistemas de nomes, roteamento e servidores especializados ajudam a localizar o recurso solicitado.",body:"Quando você acessa um endereço, vários sistemas trabalham juntos. O DNS ajuda a transformar um nome de domínio em um endereço de rede, enquanto roteadores encaminham os dados por diferentes caminhos até o servidor.<br><br>O resultado parece instantâneo porque esses processos são automatizados e porque muitos serviços utilizam caches e redes distribuídas.",tags:["internet","DNS","redes"]},
+{cat:"ECONOMIA",emoji:"💰",title:"Por que imprimir dinheiro não deixa todos mais ricos?",summary:"A quantidade de dinheiro não é a mesma coisa que a quantidade de bens e serviços disponíveis. Se a oferta de dinheiro cresce muito mais rápido que a produção, os preços podem subir.",body:"Dinheiro funciona dentro de uma economia que também produz bens e serviços. A relação entre oferta monetária, produção, demanda, expectativas e outros fatores ajuda a determinar os preços.<br><br><strong>Importante:</strong> inflação não possui uma única causa universal; diferentes episódios podem envolver combinações distintas de fatores.",tags:["inflação","moeda","economia"]},
+{cat:"BIOLOGIA",emoji:"🧬",title:"Por que temos impressões digitais diferentes?",summary:"As cristas da pele dos dedos se formam durante o desenvolvimento antes do nascimento e resultam de uma combinação de fatores genéticos e ambientais.",body:"As impressões digitais possuem padrões que são extremamente estáveis ao longo da vida. Mesmo irmãos geneticamente muito próximos possuem combinações diferentes.<br><br>Isso torna as impressões úteis para identificação, embora nenhuma tecnologia de identificação deva ser tratada como infalível.",tags:["corpo","genética","desenvolvimento"]},
+{cat:"PSICOLOGIA",emoji:"🔎",title:"O que é viés de confirmação?",summary:"É a tendência de dar mais atenção, peso ou credibilidade a informações que combinam com aquilo que já acreditamos.",body:"Imagine que alguém acredite que determinada estratégia sempre funciona. Ao encontrar três exemplos favoráveis, pode tratá-los como prova, enquanto ignora exemplos contrários.<br><br><strong>Como reduzir o efeito?</strong><br>Procurar ativamente evidências que poderiam contradizer uma hipótese é uma estratégia útil para raciocinar de forma mais equilibrada.",tags:["viés","decisão","pensamento"]},
+{cat:"GEOGRAFIA",emoji:"🌍",title:"Por que existem tantos fusos horários?",summary:"A Terra gira e diferentes partes do planeta recebem luz solar em horários diferentes. Os fusos ajudam a organizar os horários locais.",body:"A Terra completa uma rotação aproximadamente a cada 24 horas. Como resultado, a posição do Sol no céu varia conforme avançamos para leste ou oeste.<br><br>Os fusos horários são uma convenção humana baseada nessa diferença, e suas fronteiras reais também são influenciadas por decisões políticas.",tags:["Terra","tempo","geografia"]}
+];
+
+const INTERESTS=["Psicologia","História","Ciência","Tecnologia","Filosofia","Economia","Biologia","Astronomia","Geografia"];
+let state=JSON.parse(localStorage.getItem("ki_state")||"null")||{xp:0,seen:0,interests:INTERESTS.slice(0,5),saved:[],onboard:false};
+let pool=[],index=0;
+
+function save(){localStorage.setItem("ki_state",JSON.stringify(state));updateXP();}
+function updateXP(){
+ const level=Math.max(1,Math.floor(Math.sqrt(state.xp/100))+1);
+ const prev=100*Math.pow(level-1,2), next=100*Math.pow(level,2);
+ document.getElementById("level").textContent=level;
+ document.getElementById("xp").textContent=state.xp;
+ document.getElementById("levelbar").style.width=Math.min(100,((state.xp-prev)/(next-prev))*100)+"%";
+}
+function addXP(n){state.xp+=n;save();toast("+"+n+" XP ✨")}
+function toast(t){let x=document.createElement("div");x.textContent=t;x.style="position:fixed;left:50%;top:82px;transform:translateX(-50%);z-index:200;background:#f4f6fa;color:#080a0f;padding:10px 16px;border-radius:999px;font-weight:800;box-shadow:0 8px 30px #0008";document.body.appendChild(x);setTimeout(()=>x.remove(),1100)}
+
+function filtered(){
+ let wanted=state.interests.map(x=>x.toUpperCase());
+ let a=DATA.filter(d=>wanted.includes(d.cat));
+ return a.length?a:DATA;
+}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function buildPool(){pool=shuffle(filtered()); if(!pool.length)pool=shuffle(DATA); index=0;}
+function renderFeed(){
+ document.getElementById("main").innerHTML='<section class="feed" id="feed"></section>';
+ buildPool(); appendCards(5);
+ const f=document.getElementById("feed");
+ f.addEventListener("scroll",()=>{});
+ window.onscroll=()=>{if(window.innerHeight+window.scrollY>=document.body.offsetHeight-900)appendCards(4)};
+}
+function appendCards(n){
+ const f=document.getElementById("feed"); if(!f)return;
+ for(let i=0;i<n;i++){if(index>=pool.length){pool=shuffle(filtered());index=0}
+   const d=pool[index++]; const el=document.createElement("article");el.className="card";
+   el.innerHTML=`<div><div class="visual">${d.emoji}</div><div class="cat">${d.cat}</div><h2>${d.title}</h2><p class="summary">${d.summary}</p></div><div class="actions"><button class="btn primary" onclick='readContent(${JSON.stringify(d).replaceAll("'","&#39;")})'>📖 Ler</button><button class="btn" onclick='listenContent(${JSON.stringify(d).replaceAll("'","&#39;")})'>🎧 Ouvir</button><button class="btn save" onclick='saveContent(${JSON.stringify(d).replaceAll("'","&#39;")})'>🔖 Salvar</button></div>`;
+   f.appendChild(el);state.seen++; if(i===0) addXP(2);
+ }
+ save();
+}
+function readContent(d){
+ addXP(5); document.getElementById("sheet").innerHTML=`<button class="close" onclick="closeSheet()">×</button><div class="cat">${d.cat}</div><h2>${d.title}</h2><div class="article">${d.body}</div><hr style="border-color:#272e3a"><p class="small">Conceitos: ${d.tags.join(" · ")}</p><button class="btn primary" style="width:100%" onclick='quiz(${JSON.stringify(d)})'>🧠 Testar o que aprendi</button>`;openSheet();
+}
+function listenContent(d){
+ addXP(5); speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(d.title+". "+d.summary+" "+d.body.replace(/<[^>]*>/g," "));u.lang="pt-BR";u.rate=.95;speechSynthesis.speak(u);toast("Reproduzindo áudio 🎧");
+}
+function saveContent(d){if(!state.saved.includes(d.title)){state.saved.push(d.title);addXP(3);toast("Salvo 🔖")}else toast("Já está salvo")}
+function quiz(d){
+ document.getElementById("sheet").innerHTML=`<button class="close" onclick="closeSheet()">×</button><div class="cat">${d.cat}</div><h2>🧠 Desafio rápido</h2><p>Qual é a ideia central deste conteúdo?</p><button class="quizopt" onclick="answer(this,true)">A memória pode ser reconstruída e sofrer influência de informações posteriores.</button><button class="quizopt" onclick="answer(this,false)">Memórias são gravações perfeitas que nunca mudam.</button><button class="quizopt" onclick="answer(this,false)">Todas as pessoas possuem exatamente as mesmas memórias.</button>`;openSheet();
+}
+function answer(el,ok){el.classList.add(ok?"correct":"wrong");if(ok){addXP(15);toast("Acertou! 🧠")}else toast("Revise o conceito");}
+function openSheet(){document.getElementById("overlay").style.display="flex"}
+function closeSheet(){document.getElementById("overlay").style.display="none";speechSynthesis.cancel()}
+function showProfile(btn){
+ document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));btn.classList.add("active");
+ let level=Math.max(1,Math.floor(Math.sqrt(state.xp/100))+1);
+ document.getElementById("main").innerHTML=`<section class="profile"><h2>Seu perfil</h2><div class="stat"><div class="small">NÍVEL</div><b>${level}</b><p>${state.xp} XP acumulados</p></div><div class="stat"><div class="small">CONTEÚDOS EXPLORADOS</div><b>${state.seen}</b><p>O feed continua infinito.</p></div><div class="stat"><div class="small">CONTEÚDOS SALVOS</div><b>${state.saved.length}</b></div><div class="stat"><div class="small">SEUS INTERESSES</div><p>${state.interests.join(" · ")}</p></div></section>`;
+ window.onscroll=null;
+}
+function showFeed(btn){document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));btn.classList.add("active");renderFeed();scrollTo(0,0)}
+function changeInterests(btn){
+ document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));btn.classList.add("active");
+ document.getElementById("onboard").style.display="block";renderChips();document.querySelector(".onboard h1").innerHTML="Personalize<br>seu feed";document.querySelector(".onboard .start").textContent="Salvar interesses →";
+}
+function renderChips(){document.getElementById("chips").innerHTML=INTERESTS.map(i=>`<button class="chip ${state.interests.includes(i)?"on":""}" onclick="toggleInterest(this,'${i}')">${i}</button>`).join("")}
+function toggleInterest(el,i){if(state.interests.includes(i)){if(state.interests.length>1)state.interests=state.interests.filter(x=>x!==i)}else state.interests.push(i);el.classList.toggle("on",state.interests.includes(i))}
+function finishOnboarding(){state.onboard=true;save();document.getElementById("onboard").style.display="none";document.querySelector(".onboard h1").innerHTML="Conhecimento<br>Infinito";document.querySelector(".onboard .start").textContent="Começar a explorar →";showFeed(document.querySelector(".nav button"))}
+function init(){
+ updateXP();renderChips();
+ if(!state.onboard){document.getElementById("onboard").style.display="block"}
+ renderFeed();
+}
+init();
+</script>
+</body>
+</html>
