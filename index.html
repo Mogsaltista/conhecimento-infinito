@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090b10">
+<title>Conhecimento Infinito</title>
+<style>
+:root{--bg:#090b10;--panel:#121620;--panel2:#1b202b;--text:#f5f7fb;--muted:#a4adbd;--line:#2a3040;--accent:#8b76ff;--accent2:#b5a8ff;--good:#62d6a5;--warn:#ffca78}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid var(--accent2);outline-offset:3px}header{padding:20px 18px 14px;position:sticky;top:0;background:#090b10f2;backdrop-filter:blur(12px);border-bottom:1px solid #202531;z-index:4}header .brand{font-size:23px;font-weight:850;letter-spacing:-.5px}header .sub{color:var(--muted);font-size:13px}main{max-width:760px;margin:0 auto;padding:16px 15px calc(100px + env(safe-area-inset-bottom))}h1,h2,h3,p{margin-top:0}h1{font-size:25px}h2{font-size:21px;line-height:1.25}h3{font-size:16px;margin:20px 0 6px}p{color:var(--muted)}.muted{color:var(--muted)}.tiny{font-size:12px;color:var(--muted)}.hero{padding:20px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#17152a,#11151e 70%);margin-bottom:18px}.hero h2{font-size:23px;margin-bottom:7px}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:14px 0}.stat{background:#0e1119;border:1px solid var(--line);border-radius:14px;padding:11px}.stat strong{display:block;font-size:19px}.stat span{font-size:11px;color:var(--muted)}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.between{display:flex;align-items:center;justify-content:space-between;gap:10px}.btn{border:0;border-radius:12px;padding:11px 14px;background:var(--accent);color:white;font-weight:750}.btn.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text)}.btn.subtle{background:transparent;border:1px solid var(--line);color:var(--muted)}.btn.small{font-size:13px;padding:8px 10px}.btn:disabled{opacity:.4;cursor:not-allowed}.card,.subject-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:17px;margin:12px 0}.card h2{margin:9px 0}.tag{display:inline-flex;align-items:center;gap:5px;background:#292248;color:#d9d1ff;padding:5px 9px;border-radius:99px;font-size:12px;font-weight:700}.tag.green{background:#153b31;color:#a5f3d2}.tag.locked{background:#292d36;color:#abb2c0}.progress{height:7px;background:#292f3b;border-radius:99px;overflow:hidden;margin-top:10px}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--good));border-radius:99px}.search{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:13px;background:var(--panel);color:var(--text);margin:10px 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.subject-card{margin:0;padding:14px;min-width:0;text-align:left;color:var(--text);width:100%}.subject-card strong{display:block;font-size:15px}.subject-card .emoji{font-size:23px;display:block;margin-bottom:6px}.section-title{margin:8px 0 4px}.lesson-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.lesson-actions .btn{flex:1;min-width:75px}.lesson-desc{margin-bottom:8px}.level-label{color:var(--accent2);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.6px}.locked-note{font-size:13px;color:var(--muted)}nav{position:fixed;z-index:5;bottom:0;left:0;right:0;display:flex;justify-content:space-around;gap:2px;padding:8px 5px calc(8px + env(safe-area-inset-bottom));background:#10141cf5;backdrop-filter:blur(14px);border-top:1px solid var(--line)}nav button{flex:1;border:0;background:transparent;color:var(--muted);font-size:11px;padding:5px 0;border-radius:10px}nav button b{display:block;font-size:21px;line-height:1.2;margin-bottom:2px}nav button.active{color:var(--accent2);background:#211d36}.screen{display:none}.screen.active{display:block}.overlay{display:none;position:fixed;inset:0;z-index:10;background:#000c;overflow-y:auto;padding:14px 12px calc(20px + env(safe-area-inset-bottom))}.overlay.active{display:block}.sheet{max-width:700px;margin:15px auto;background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:20px;min-height:200px}.sheet-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.sheet p{line-height:1.65}.callout{background:#0d1119;border-left:3px solid var(--accent);padding:12px 14px;border-radius:8px;color:#d8dce6;margin:12px 0}.quiz-option{display:block;width:100%;text-align:left;background:var(--panel2);color:var(--text);border:1px solid var(--line);padding:12px;border-radius:12px;margin:8px 0}.quiz-option:disabled{opacity:.85}.quiz-option.correct{border-color:var(--good);background:#143126}.quiz-option.wrong{border-color:#ff8585;background:#3a1d25}.feedback{padding:11px;border-radius:10px;margin:10px 0}.feedback.good{background:#143126;color:#a5f3d2}.feedback.bad{background:#3a1d25;color:#ffb4b4}.badge-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.badge-card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:13px}.badge-card .symbol{font-size:26px}.badge-card.locked{opacity:.45;filter:grayscale(1)}.empty{border:1px dashed var(--line);padding:22px;border-radius:16px;text-align:center;color:var(--muted)}.divider{height:1px;background:var(--line);margin:17px 0}.pill{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:7px 10px;border-radius:99px;font-size:12px}.pill.active{border-color:var(--accent);background:#292248;color:#ded7ff}.toast{position:fixed;bottom:85px;left:50%;transform:translateX(-50%);background:#252b37;color:white;padding:11px 15px;border:1px solid #3a4253;border-radius:12px;z-index:20;max-width:90vw;display:none}.toast.show{display:block}.footnote{font-size:12px;color:var(--muted);margin-top:20px}@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{padding:25px}.card{padding:20px}}
+.study-box{background:#111722;border:1px solid var(--line);border-radius:14px;padding:13px 14px;margin:12px 0}.study-box h3{margin:0 0 6px}.study-box p{margin:0;line-height:1.7}.note-area{width:100%;min-height:100px;resize:vertical;background:#0e1119;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px;font:inherit;line-height:1.5}.lesson-section-label{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--accent2);font-weight:800;margin-bottom:5px}
+</style>
+</head>
+<body>
+<header><div class="brand">🧠 Conhecimento Infinito</div><div class="sub">Transforme o tempo de tela em aprendizado • no seu ritmo</div></header>
+<main>
+<section id="feed" class="screen active">
+  <div class="hero">
+    <div class="level-label">Seu espaço de aprendizagem</div><h2>Uma ideia de cada vez.</h2>
+    <p>Explore conceitos, teste o que aprendeu e avance pelas jornadas. Seu progresso fica salvo neste aparelho.</p>
+    <div class="stats"><div class="stat"><strong id="feedXp">0</strong><span>XP acumulados</span></div><div class="stat"><strong id="feedStreak">0 🔥</strong><span>dias seguidos</span></div><div class="stat"><strong id="feedDone">0</strong><span>lições concluídas</span></div></div>
+    <button class="btn" onclick="showScreen('topics')">Escolher um assunto</button>
+  </div>
+  <div class="between"><h2 class="section-title">Continue aprendendo</h2><button class="btn subtle small" onclick="showScreen('journeys')">Ver jornadas →</button></div>
+  <p class="tiny">As lições aparecem por etapas: conclua uma para liberar a próxima.</p>
+  <div id="feedList"></div>
+</section>
+<section id="journeys" class="screen">
+  <h1>Jornadas</h1><p>Avance em cinco níveis de seis lições por assunto. As próximas lições são liberadas conforme você conclui as anteriores.</p>
+  <div id="journeyList" class="grid"></div>
+</section>
+<section id="topics" class="screen">
+  <h1>Assuntos</h1><p>Escolha uma área para explorar seus conceitos.</p>
+  <input class="search" id="subjectSearch" placeholder="Buscar assunto..." oninput="renderTopics(this.value)" aria-label="Buscar assunto">
+  <div id="topicList" class="grid"></div>
+</section>
+<section id="subject" class="screen">
+  <div class="between"><button class="btn subtle small" onclick="showScreen('topics')">← Assuntos</button><button class="btn subtle small" onclick="showScreen('journeys')">Jornadas</button></div>
+  <h1 id="subjectTitle">Assunto</h1><p id="subjectIntro"></p><div id="subjectProgress"></div><div id="subjectLessons"></div>
+</section>
+<section id="favorites" class="screen">
+  <h1>Favoritos ★</h1><p>Guarde conceitos para rever depois.</p><div id="favoriteList"></div>
+</section>
+<section id="profile" class="screen">
+  <h1>Seu perfil</h1>
+  <div class="card"><div class="tag">SEU PROGRESSO</div><h2 id="profileLevel">Nível 1</h2><div class="xp" id="profileXp">0 XP</div><p id="profileDone">0 lições concluídas</p><div class="progress"><i id="profileProgress" style="width:0%"></i></div><p class="tiny" id="nextLevelText">0/100 XP para o próximo nível</p></div>
+  <div class="grid"><div class="stat"><strong id="profileStreak">0 🔥</strong><span>sequência atual</span></div><div class="stat"><strong id="profileFavs">0</strong><span>favoritos</span></div><div class="stat"><strong id="profileQuizzes">0</strong><span>quizzes acertados</span></div></div>
+  <h2>Conquistas</h2><div id="achievementList" class="badge-grid"></div>
+  <div class="divider"></div><button class="btn secondary" onclick="exportProgress()">Exportar meu progresso</button> <button class="btn subtle" onclick="resetProgress()">Reiniciar progresso</button>
+  <p class="footnote">O progresso é guardado no armazenamento local do navegador deste aparelho. Se limpar os dados do navegador, poderá perder o progresso salvo.</p>
+</section>
+</main>
+<nav aria-label="Navegação principal">
+<button id="nav-feed" class="active" onclick="showScreen('feed')"><b>⌂</b>Feed</button>
+<button id="nav-journeys" onclick="showScreen('journeys')"><b>◈</b>Jornadas</button>
+<button id="nav-topics" onclick="showScreen('topics')"><b>◉</b>Assuntos</button>
+<button id="nav-favorites" onclick="showScreen('favorites')"><b>★</b>Favoritos</button>
+<button id="nav-profile" onclick="showScreen('profile')"><b>●</b>Perfil</button>
+</nav>
+<div id="lessonOverlay" class="overlay" role="dialog" aria-modal="true" aria-label="Lição"><div id="lessonSheet" class="sheet"></div></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+const SUBJECTS = {
+"Psicologia":{emoji:"🧠",intro:"Como pensamos, sentimos, aprendemos e nos relacionamos.",lessons:[
+["Efeito Dunning-Kruger","Pessoas com pouca experiência em uma área podem superestimar o próprio desempenho porque ainda não reconhecem o que não sabem.","Exemplo: alguém que acabou de aprender algumas regras de um jogo pode achar que já domina estratégias avançadas. O efeito não significa que toda pessoa confiante seja incompetente; ele descreve uma possível falha de calibração."],
+["Memória de trabalho","É o sistema mental que mantém e manipula pequenas quantidades de informação por alguns segundos enquanto fazemos uma tarefa.","Exemplo: guardar o começo de uma frase enquanto entendemos o final, ou fazer uma conta de cabeça. Dividir uma tarefa em etapas reduz a sobrecarga."],
+["Viés de confirmação","É a tendência de procurar, interpretar e lembrar informações que favorecem uma crença que já temos.","Exemplo: depois de achar que alguém não gosta de você, você nota cada resposta curta e ignora sinais de cordialidade. Procure ativamente evidências que também poderiam contrariar sua hipótese."],
+["Condicionamento clássico","Aprendizagem por associação: um estímulo inicialmente neutro passa a provocar uma resposta depois de ser associado repetidamente a outro estímulo.","Exemplo: uma música associada a uma fase importante pode despertar emoção quando ouvida novamente. A associação pode surgir sem decisão consciente."],
+["Reforço e punição","No condicionamento operante, reforço aumenta a chance de um comportamento voltar a ocorrer; punição tende a diminuí-la. Ambos podem ser positivos (adicionar algo) ou negativos (retirar algo).","Exemplo: elogiar uma prática consistente pode reforçá-la. 'Positivo' e 'negativo' aqui significam adicionar e retirar, não bom e ruim."],
+["Atenção seletiva","É a capacidade limitada de priorizar parte dos estímulos e deixar outros em segundo plano.","Exemplo: numa sala barulhenta, você consegue acompanhar a conversa de uma pessoa, mas pode perder o que outra diz. O que recebe atenção não é necessariamente tudo o que está presente."],
+["Efeito halo","Uma impressão positiva ou negativa sobre uma característica influencia a avaliação de outras características da mesma pessoa.","Exemplo: alguém bem-apresentado pode ser presumido competente sem evidência suficiente. Avalie cada característica com dados próprios."],
+["Dissonância cognitiva","É o desconforto que pode surgir quando atitudes, crenças e ações entram em conflito; às vezes tentamos reduzir esse desconforto mudando a atitude ou justificando a ação.","Exemplo: uma pessoa que valoriza saúde mas dorme pouco pode minimizar o impacto do hábito. Reconhecer a contradição ajuda a escolher uma mudança concreta."],
+["Heurísticas","São atalhos mentais que permitem decisões rápidas com informação limitada, mas podem produzir erros sistemáticos.","Exemplo: estimar que algo é comum porque você se lembra facilmente de casos parecidos. Atalhos são úteis, mas decisões importantes merecem uma checagem adicional."],
+["Profecia autorrealizável","Uma expectativa pode influenciar comportamentos que aumentam a chance de o resultado esperado acontecer.","Exemplo: acreditar que será rejeitado pode levar alguém a evitar conversas, reduzindo oportunidades de conexão. A expectativa não controla tudo; ela pode alterar as próprias ações."],
+["Apego","Na psicologia do desenvolvimento, descreve vínculos emocionais e padrões de busca de segurança nas relações, influenciados por experiências e contexto.","Exemplo: diante de distância numa relação, algumas pessoas procuram mais contato e outras se afastam. Padrões não são rótulos fixos nem diagnóstico."],
+["Motivação","Conjunto de processos que inicia, direciona e sustenta uma ação. Pode envolver interesse, valores, recompensa, necessidade e contexto.","Exemplo: começar cinco minutos de estudo reduz a barreira inicial. Não é preciso esperar a vontade aparecer para dar o primeiro passo."],
+["Emoções","Respostas que envolvem experiência subjetiva, alterações corporais, interpretação e tendência à ação.","Exemplo: medo pode preparar para evitar perigo; raiva pode sinalizar um limite percebido. A emoção traz informação, mas não determina automaticamente a melhor decisão."],
+["Personalidade","Padrões relativamente estáveis de pensar, sentir e agir, que variam conforme situação e ao longo da vida.","Exemplo: alguém pode ser geralmente sociável e ainda preferir silêncio depois de um dia cansativo. Uma característica isolada não descreve a pessoa inteira."],
+["Empatia","Capacidade de compreender a perspectiva ou reconhecer o estado emocional de outra pessoa, sem necessariamente concordar com ela.","Exemplo: perguntar 'o que foi mais difícil nessa situação?' pode ajudar mais do que presumir que você já sabe como a pessoa se sente."],
+["Hábitos","Comportamentos que, por repetição em contextos semelhantes, podem se tornar mais automáticos.","Exemplo: deixar o livro aberto na mesa cria uma pista visual para estudar. A repetição e o ambiente costumam importar mais que depender apenas de força de vontade."],
+["Autocontrole","Regulação de impulsos, emoções e ações para agir de acordo com objetivos e valores, especialmente diante de tentações ou desconforto.","Exemplo: afastar o celular durante 20 minutos muda o ambiente para facilitar a escolha desejada. Autocontrole também pode ser projetar condições melhores, não só resistir."],
+["Estresse","Resposta física e psicológica a demandas percebidas como desafiadoras ou ameaçadoras; seus efeitos dependem de intensidade, duração e recursos disponíveis.","Exemplo: uma prova próxima pode aumentar alerta, mas estresse persistente sem recuperação pode prejudicar sono e concentração."],
+["Aprendizagem","Mudança relativamente duradoura em conhecimento ou comportamento decorrente de experiência, estudo ou prática.","Exemplo: tentar explicar um conceito sem olhar as notas revela o que foi realmente compreendido. Revisões espaçadas ajudam a recuperar a informação depois."],
+["Cognição","Conjunto de processos mentais envolvidos em perceber, lembrar, raciocinar, compreender linguagem e tomar decisões.","Exemplo: resolver um problema combina memória, atenção e avaliação de alternativas; não é uma única capacidade isolada."],
+["Linguagem","Sistema de símbolos e regras usado para comunicar significados, organizar ideias e coordenar ações sociais.","Exemplo: a mesma frase pode soar irônica ou séria conforme contexto e entonação. Palavras são interpretadas junto com situação e conhecimento compartilhado."],
+["Tomada de decisão","Processo de comparar opções diante de objetivos, consequências, incerteza e limitações de informação.","Exemplo: escolher um curso envolve interesse, custo, rotina e oportunidades. Escrever critérios antes de decidir ajuda a evitar que o impulso do momento domine."],
+["Influência social","Mudança de opinião ou comportamento relacionada à presença, expectativas ou ações de outras pessoas.","Exemplo: um grupo pode tornar uma escolha mais atraente por aprovação social. Perceber a influência permite avaliar se ela combina com seus próprios critérios."],
+["Conformidade","Ajuste de comportamento ou opinião a normas explícitas ou implícitas de um grupo.","Exemplo: rir de uma piada que você não achou engraçada para não destoar. Conformidade pode facilitar cooperação, mas também silenciar discordâncias úteis."],
+["Identidade","Conjunto de narrativas, valores, vínculos e características com que uma pessoa se reconhece e se apresenta ao longo do tempo.","Exemplo: alguém pode se ver como estudante, amigo, atleta e artista; essas dimensões coexistem e mudam com experiências."],
+["Autoeficácia","Crença sobre a própria capacidade de executar ações necessárias para uma tarefa específica.","Exemplo: acreditar que consegue estudar um capítulo por etapas pode aumentar a chance de começar. Autoeficácia se fortalece com prática, modelos e feedback realista."],
+["Metacognição","Capacidade de observar e regular o próprio pensamento e aprendizagem: planejar, monitorar e avaliar estratégias.","Exemplo: perceber que reler passivamente parece fácil, mas não garante lembrar, e trocar por perguntas de memória."],
+["Percepção social","Processos usados para formar impressões e interpretar ações, intenções e emoções de outras pessoas.","Exemplo: uma resposta curta pode significar pressa, distração ou desinteresse. Um único sinal raramente permite concluir a intenção com segurança."],
+["Memória","Processos de codificação, armazenamento e recuperação de informações; lembrar não é reproduzir uma gravação perfeita.","Exemplo: perguntas de recuperação fortalecem o acesso a conteúdos estudados. A lembrança pode ser influenciada por contexto, expectativas e informações posteriores."],
+["Formação de hábitos","Processo de tornar uma ação mais automática por repetição associada a pistas e contextos estáveis.","Exemplo: estudar depois do café todos os dias cria uma sequência previsível. Começar pequeno e reduzir obstáculos facilita manter a repetição."]]},
+"História":{emoji:"🏛️",intro:"Sociedades, conflitos, ideias e transformações ao longo do tempo.",lessons:[
+["Revolução Neolítica","A transição gradual, em diferentes regiões, de modos de vida baseados sobretudo em caça e coleta para agricultura e criação de animais.","O cultivo favoreceu assentamentos permanentes e crescimento populacional, mas também trouxe novas desigualdades, doenças e disputas por terra."],
+["Mesopotâmia","Região entre os rios Tigre e Eufrates, onde se desenvolveram cidades, sistemas de escrita, administração e Estados antigos.","Cidades como Uruk mostram como irrigação, comércio e organização do trabalho ajudaram a formar sociedades urbanas."],
+["Egito Antigo","Civilização do vale do Nilo, marcada pela agricultura irrigada, autoridade faraônica, escrita hieroglífica e complexa vida religiosa.","As cheias do Nilo sustentavam a produção agrícola; o Estado organizava obras, tributos e grandes projetos monumentais."],
+["Grécia Antiga","Conjunto de comunidades e cidades-Estado com culturas variadas, incluindo Atenas e Esparta, que influenciaram filosofia, política e artes.","A democracia ateniense era direta, mas excluía mulheres, escravizados e estrangeiros residentes; não era igual à democracia contemporânea."],
+["Roma","Civilização que passou de monarquia a república e império, conectando vastos territórios pelo Mediterrâneo.","Direito, infraestrutura e administração romana influenciaram sociedades posteriores, enquanto escravidão e conquista sustentavam parte da economia."],
+["Idade Média","Período convencional da história europeia entre a Antiguidade e a época moderna; inclui sociedades muito diferentes ao longo de séculos.","Feudalismo não descreve sozinho toda a época: comércio, cidades, universidades, impérios e culturas islâmicas também foram fundamentais."],
+["Renascimento","Movimentos culturais europeus que recuperaram referências clássicas e desenvolveram novas práticas artísticas e intelectuais, sobretudo entre os séculos XIV e XVI.","Mecenato, imprensa e intercâmbios culturais ajudaram a circular ideias; o período não foi uma ruptura simples com tudo o que veio antes."],
+["Reforma","Movimentos religiosos do século XVI que contestaram práticas e autoridades da Igreja ocidental e contribuíram para a formação de tradições protestantes.","A Reforma teve causas religiosas, políticas, econômicas e tecnológicas; a imprensa acelerou a circulação de debates."],
+["Revolução Científica","Transformações entre os séculos XVI e XVII na observação, matemática e explicação da natureza.","Trabalhos de Copérnico, Galileu e Newton mudaram modelos cosmológicos e físicos, sem que a ciência tenha avançado de forma linear ou isolada."],
+["Iluminismo","Movimento intelectual que valorizou razão, crítica à autoridade e debate sobre direitos, governo e conhecimento.","Pensadores iluministas discordavam entre si; suas ideias influenciaram reformas e revoluções, embora direitos fossem aplicados de modo desigual."],
+["Revolução Industrial","Transformação da produção por máquinas, fábricas e novas fontes de energia, iniciada na Grã-Bretanha no século XVIII.","A produtividade cresceu, mas urbanização rápida, longas jornadas e condições perigosas estimularam movimentos trabalhistas e reformas."],
+["Revolução Francesa","Processo iniciado em 1789 que derrubou a monarquia absoluta francesa e transformou instituições, direitos e relações políticas.","A revolução incluiu fases distintas, conflitos internos, violência e disputas sobre cidadania, igualdade e poder."],
+["Independência dos EUA","Ruptura das Treze Colônias com a Grã-Bretanha, declarada em 1776 e consolidada após a guerra.","A linguagem de liberdade coexistiu com escravidão e exclusão política de muitos grupos, uma contradição central da história do país."],
+["Independência do Brasil","Processo de separação política de Portugal em 1822, no contexto da transferência da corte portuguesa e de conflitos entre elites.","A independência preservou a monarquia e a escravidão; mudanças políticas não significaram igualdade social ampla."],
+["Imperialismo","Expansão do controle político, econômico e territorial de potências sobre outras regiões, especialmente intensa no século XIX.","A dominação colonial reorganizou economias e fronteiras e gerou exploração, resistência local e consequências duradouras."],
+["Primeira Guerra Mundial","Guerra de 1914 a 1918 envolvendo alianças, rivalidades imperiais, nacionalismos e mobilização industrial em larga escala.","Trincheiras, novas armas e perdas humanas enormes alteraram fronteiras e contribuíram para crises políticas posteriores."],
+["Revolução Russa","Processo de 1917 que derrubou o governo imperial e levou os bolcheviques ao poder, seguido de guerra civil e formação da União Soviética.","As revoluções de fevereiro e outubro tiveram atores e objetivos distintos; a sociedade russa enfrentava guerra, desigualdade e crise de abastecimento."],
+["Crise de 1929","Colapso financeiro iniciado com a quebra da bolsa de Nova York em 1929 e seguido por uma depressão econômica internacional.","Falências, desemprego e queda do comércio impulsionaram novas políticas econômicas e alteraram a relação entre Estado e mercado."],
+["Segunda Guerra Mundial","Conflito global de 1939 a 1945, marcado por expansionismo, genocídio, guerra total e uso de armas nucleares.","O Holocausto foi o assassinato sistemático de seis milhões de judeus pelo regime nazista e seus colaboradores, além da perseguição e morte de outros grupos."],
+["Guerra Fria","Rivalidade geopolítica entre Estados Unidos e União Soviética após a Segunda Guerra, com disputas ideológicas, militares e tecnológicas.","A rivalidade incluiu corrida nuclear, competição espacial e guerras indiretas; muitos países buscaram autonomia fora dos dois blocos."],
+["Descolonização","Processo pelo qual territórios colonizados conquistaram independência, sobretudo na Ásia e África durante o século XX.","As trajetórias variaram entre negociação e guerra; fronteiras coloniais e dependências econômicas continuaram influenciando os novos Estados."],
+["Ditadura no Brasil","Regime autoritário de 1964 a 1985, com restrições políticas, censura, perseguição e violações de direitos humanos.","O período também teve crescimento econômico em certos anos e aumento da dívida e desigualdades; esses dados não apagam a repressão documentada."],
+["Redemocratização","Transição brasileira do regime militar para instituições democráticas, culminando na Constituição de 1988 e eleições presidenciais diretas em 1989.","Foi um processo gradual com mobilização social, negociações políticas e disputas sobre memória, direitos e participação."],
+["Globalização","Intensificação das conexões entre países por comércio, finanças, migração, tecnologia, cultura e cadeias produtivas.","Ela pode ampliar acesso a bens e informação, mas distribui benefícios e custos de forma desigual entre setores e regiões."],
+["África Antiga","Histórias diversas de sociedades africanas, incluindo Egito, Núbia, Cartago, Axum e centros comerciais do Sahel.","A história do continente é muito anterior à colonização europeia e inclui Estados, redes comerciais, conhecimentos e culturas variados."],
+["China Imperial","Longa sucessão de dinastias e sistemas administrativos que governaram regiões chinesas ao longo de milênios.","Exames burocráticos, agricultura, comércio e inovações como papel e impressão tiveram impacto regional e global."],
+["Índia Antiga","Histórias do subcontinente indiano, incluindo a civilização do Indo, reinos védicos, Maurya e Gupta.","Religiões, comércio, matemática e diversidade linguística se desenvolveram em contextos diferentes; não houve uma única sociedade uniforme."],
+["Império Otomano","Estado imperial que existiu do fim do século XIII ao início do século XX, abrangendo partes da Europa, Ásia e África.","Sua administração governou populações diversas e controlou rotas estratégicas; reformas, nacionalismos e guerras contribuíram para sua dissolução."],
+["América pré-colombiana","Sociedades das Américas antes da chegada de Colombo em 1492, incluindo maias, mexicas, incas e muitos outros povos.","Essas sociedades desenvolveram agricultura, cidades, sistemas políticos e conhecimentos próprios, com diferenças regionais profundas."],
+["História da internet","Desenvolvimento de redes de computadores a partir de pesquisas e projetos como ARPANET, seguido pela expansão da web e do acesso público.","A internet e a World Wide Web não são a mesma coisa: a web é um serviço que funciona sobre a infraestrutura da internet."]]},
+"Ciência":{emoji:"🔬",intro:"Modelos, evidências e fenômenos do mundo natural.",lessons:[
+["Método científico","Conjunto flexível de práticas para investigar perguntas por observação, hipóteses, testes, análise e revisão por outras pessoas.","Nem toda pesquisa segue etapas rígidas; o ponto central é que explicações sejam confrontadas com evidências e possam ser revisadas."],
+["Átomos","Unidades básicas dos elementos químicos, compostas por núcleo com prótons e nêutrons e elétrons ao redor.","A identidade de um elemento depende do número de prótons. Átomos podem ganhar, perder ou compartilhar elétrons em processos químicos."],
+["Moléculas","Conjuntos de dois ou mais átomos unidos por ligações químicas.","A água (H₂O) tem dois átomos de hidrogênio e um de oxigênio; a estrutura molecular influencia propriedades como polaridade e ponto de ebulição."],
+["Gravidade","Interação pela qual massas e energia se atraem; na relatividade geral, a gravidade é descrita como curvatura do espaço-tempo.","Na vida cotidiana, a gravidade mantém objetos no chão e planetas em órbita. Em queda livre, objetos aceleram de modo semelhante quando a resistência do ar é desprezível."],
+["Relatividade","Teorias de Einstein que relacionam espaço, tempo, movimento e gravidade, mostrando que medidas dependem do referencial e da presença de massa e energia.","Efeitos como dilatação do tempo foram medidos e precisam ser considerados em sistemas de GPS."],
+["Evolução","Mudança nas características hereditárias de populações ao longo das gerações.","Mutação, seleção natural, deriva genética e fluxo gênico contribuem para mudanças populacionais; indivíduos não evoluem geneticamente durante a vida."],
+["DNA","Molécula que armazena informação hereditária em sequências de nucleotídeos.","Partes do DNA participam da produção de RNA e proteínas, mas nem todo trecho codifica proteínas e o ambiente também influencia características."],
+["Células","Unidades básicas estruturais e funcionais dos seres vivos.","Alguns organismos são unicelulares; outros possuem células especializadas que cooperam em tecidos e órgãos."],
+["Energia","Grandeza associada à capacidade de produzir mudanças ou realizar trabalho, presente em formas como cinética, química e térmica.","Energia pode ser transferida e transformada; em sistemas isolados, a quantidade total se conserva."],
+["Termodinâmica","Área que estuda calor, trabalho, temperatura e transformações de energia.","Suas leis explicam por que motores têm limites de eficiência e por que calor tende a fluir espontaneamente de corpos mais quentes para mais frios."],
+["Eletricidade","Fenômenos relacionados à presença e ao movimento de cargas elétricas.","Corrente elétrica é fluxo de carga; tensão representa diferença de potencial e resistência limita a corrente em muitos materiais."],
+["Magnetismo","Fenômenos associados a campos magnéticos, cargas em movimento e propriedades de certos materiais.","Motores e geradores dependem da relação entre eletricidade e magnetismo."],
+["Ondas","Perturbações que transportam energia e informação, como ondas sonoras, luminosas e ondas na água.","Frequência, comprimento de onda e amplitude ajudam a descrever suas propriedades; ondas podem se refletir, refratar e interferir."],
+["Luz","Radiação eletromagnética visível ao olho humano, com comportamento descrito por modelos ondulatórios e quânticos.","A luz pode se propagar no vácuo, ser absorvida ou refletida; cores percebidas dependem do espectro e do sistema visual."],
+["Som","Onda mecânica produzida por vibrações e que precisa de um meio material para se propagar.","No ar, frequência está relacionada à altura percebida e amplitude à intensidade, embora percepção também dependa do ouvido."],
+["Pressão","Força aplicada por unidade de área.","A pressão atmosférica muda com altitude; em fluidos, a pressão aumenta com a profundidade se outras condições forem constantes."],
+["Clima","Padrões estatísticos de condições atmosféricas observados durante períodos longos, geralmente décadas.","Tempo descreve condições de curto prazo; clima envolve tendências, médias e extremos. Um dia frio isolado não contradiz o aquecimento global."],
+["Placas tectônicas","Teoria segundo a qual a litosfera é dividida em placas que se movem sobre camadas mais deformáveis do manto.","Interações entre placas ajudam a explicar terremotos, vulcões, montanhas e a abertura de oceanos."],
+["Vulcões","Aberturas pelas quais magma, gases e materiais podem chegar à superfície.","Vulcões aparecem com frequência em limites de placas e pontos quentes; sua atividade varia de acordo com composição do magma e condições geológicas."],
+["Física quântica","Teoria que descreve matéria e energia em escalas atômicas e subatômicas, onde resultados são frequentemente probabilísticos.","Ela explica níveis de energia, comportamento de elétrons e tecnologias como lasers e semicondutores; não significa que qualquer coisa possa acontecer sem restrições."],
+["Probabilidade","Medida matemática da chance de um evento ocorrer, dadas hipóteses e informações definidas.","Probabilidade não garante o resultado de um caso único; ela descreve padrões esperados em muitas repetições ou modelos."],
+["Vacinas","Preparações que treinam o sistema imune para reconhecer agentes ou partes deles, reduzindo o risco ou a gravidade de certas doenças.","A proteção varia por vacina e doença; vacinação também pode reduzir circulação de patógenos na população."],
+["Antibióticos","Medicamentos que atuam contra bactérias, por exemplo interferindo na parede celular ou na síntese de proteínas bacterianas.","Eles não tratam infecções virais comuns. Uso inadequado favorece resistência bacteriana, tornando algumas infecções mais difíceis de tratar."],
+["Microrganismos","Seres ou agentes microscópicos, como bactérias, arqueias, protozoários e muitos fungos; vírus são agentes infecciosos acelulares.","Muitos microrganismos são essenciais para ecossistemas e saúde, embora alguns causem doenças."],
+["Ecossistemas","Conjuntos de organismos e fatores físicos que interagem em um local.","Fluxo de energia, ciclos de nutrientes e relações alimentares conectam seres vivos ao ambiente."],
+["Ciclo da água","Circulação contínua da água entre superfície, atmosfera e subsolo por evaporação, condensação, precipitação, infiltração e escoamento.","Energia solar e gravidade impulsionam diferentes etapas; mudanças no uso do solo podem alterar infiltração e enchentes."],
+["Carbono","Elemento químico capaz de formar muitas estruturas moleculares, essencial à química da vida e ao ciclo climático.","Fotossíntese, respiração, decomposição e combustão movimentam carbono entre organismos, atmosfera, oceanos e solo."],
+["Entropia","Grandeza termodinâmica relacionada à dispersão de energia e ao número de configurações microscópicas compatíveis com um estado.","A segunda lei explica por que processos naturais tendem a aumentar a entropia total de um sistema isolado."],
+["Sono","Estado biológico ativo que participa de memória, regulação emocional, metabolismo e recuperação.","Rotina consistente, luz adequada e tempo suficiente favorecem o sono; necessidade varia com idade e indivíduo."],
+["Hipóteses","Explicações ou previsões provisórias que podem ser comparadas com observações ou experimentos.","Uma hipótese útil gera consequências verificáveis e pode ser revisada diante de evidências contrárias."]]},
+"Tecnologia":{emoji:"💻",intro:"Ferramentas digitais, sistemas e como eles funcionam.",lessons:[
+["Algoritmos","Sequências definidas de instruções para resolver um problema ou executar uma tarefa.","Uma receita é uma analogia simples; algoritmos computacionais precisam tratar entradas, regras, condições e resultados de forma precisa."],
+["Internet","Rede global de redes que trocam dados usando protocolos comuns, como o conjunto TCP/IP.","A internet é a infraestrutura; sites, mensagens e streaming são serviços que a utilizam."],
+["Web","Sistema de páginas e recursos ligados por links e acessados por navegadores, normalmente via HTTP ou HTTPS.","A web é apenas um dos serviços da internet. Um aplicativo de mensagens pode usar a internet sem ser uma página web."],
+["Computação em nuvem","Uso de servidores remotos para armazenar dados, executar programas e oferecer serviços pela rede.","A nuvem reduz a necessidade de manter toda a infraestrutura local, mas depende de conectividade, segurança e políticas do provedor."],
+["Banco de dados","Sistema organizado para armazenar, consultar e atualizar informações de forma estruturada.","Um aplicativo pode guardar usuários, lições e progresso em tabelas ou documentos; permissões e cópias de segurança são essenciais."],
+["Criptografia","Técnicas matemáticas que protegem informações, tornando-as ilegíveis sem a chave apropriada.","Criptografia pode proteger mensagens e arquivos; ela não substitui senhas fortes, atualizações e cuidado com golpes."],
+["Inteligência artificial","Campo que cria sistemas capazes de realizar tarefas associadas a capacidades como percepção, previsão, geração de conteúdo e decisão.","Sistemas de IA podem errar, reproduzir vieses ou inventar informações; resultados importantes precisam de verificação."],
+["Machine learning","Métodos de IA que ajustam modelos a partir de dados para reconhecer padrões ou fazer previsões.","O desempenho depende da qualidade dos dados, do objetivo e da avaliação em exemplos que o modelo não viu no treinamento."],
+["Redes neurais","Modelos computacionais formados por camadas de unidades matemáticas que transformam entradas em saídas por parâmetros ajustáveis.","Apesar do nome inspirado no cérebro, redes neurais artificiais são modelos matemáticos e não reproduções completas do cérebro humano."],
+["Computação quântica","Computação que usa propriedades quânticas, como superposição e emaranhamento, para certos tipos de processamento.","Não acelera automaticamente qualquer tarefa; vantagens dependem do problema e de hardware ainda desafiador."],
+["Sistemas operacionais","Software básico que administra memória, processos, arquivos, dispositivos e interação com aplicativos.","iOS, Android, Windows e Linux oferecem mecanismos para que programas usem o hardware de maneira organizada."],
+["CPU","Unidade central de processamento que executa instruções gerais de programas.","A velocidade não depende apenas da frequência: arquitetura, núcleos, memória e tipo de tarefa também influenciam."],
+["GPU","Processador especializado em executar muitas operações em paralelo, útil para gráficos e várias cargas de IA.","CPU e GPU têm funções complementares; nem toda tarefa se beneficia de processamento paralelo."],
+["RAM","Memória de acesso rápido usada para manter dados e programas em uso no momento.","RAM é volátil: normalmente seu conteúdo se perde quando o aparelho desliga, ao contrário do armazenamento permanente."],
+["Wi-Fi","Tecnologia de rede local sem fio que conecta dispositivos a um ponto de acesso.","Wi-Fi não é sinônimo de internet: uma rede local pode funcionar mesmo sem conexão externa."],
+["GPS","Sistema de navegação por satélite que permite estimar localização e tempo a partir de sinais recebidos.","O aparelho calcula sua posição usando sinais de vários satélites; edifícios, obstáculos e condições atmosféricas podem reduzir a precisão."],
+["Blockchain","Estrutura de dados distribuída em que registros são agrupados em blocos ligados criptograficamente e validados por regras de consenso.","A tecnologia pode dificultar alterações retroativas, mas não garante que os dados inseridos sejam verdadeiros nem elimina todos os riscos."],
+["Cibersegurança","Práticas e tecnologias para proteger sistemas, redes e dados contra acesso indevido, danos e interrupções.","Atualizações, autenticação multifator, backups e atenção a mensagens suspeitas são medidas complementares."],
+["Privacidade digital","Controle e compreensão sobre quais dados são coletados, usados, compartilhados e armazenados em serviços digitais.","Permissões, configurações de conta e política de dados importam; publicar algo para um grupo pequeno não garante controle total sobre cópias."],
+["APIs","Interfaces que definem como sistemas de software solicitam e fornecem dados ou funções uns aos outros.","Uma aplicação de clima pode consultar uma API para obter previsões sem precisar produzir os dados meteorológicos."],
+["Código aberto","Modelo em que o código-fonte pode ser consultado, usado ou modificado conforme os termos da licença.","Código aberto não significa ausência de regras: licenças estabelecem condições de distribuição e atribuição."],
+["Compiladores","Programas que traduzem código de uma linguagem para outra forma executável ou intermediária.","Erros de compilação apontam problemas que impedem a tradução; outros erros só aparecem quando o programa é executado."],
+["Experiência do usuário (UX)","Qualidade da experiência de uma pessoa ao usar um produto, incluindo utilidade, clareza, acessibilidade e eficiência.","Uma interface bonita pode ser difícil de usar; testes com pessoas reais ajudam a descobrir onde elas se confundem."],
+["Interfaces","Pontos de interação entre pessoas e sistemas ou entre diferentes componentes de software.","Botões claros, feedback após uma ação e mensagens de erro compreensíveis ajudam o usuário a saber o que aconteceu."],
+["Robótica","Área que combina mecânica, eletrônica, sensores, controle e software para criar máquinas que executam tarefas.","Robôs precisam perceber o ambiente e agir dentro de limites físicos; autonomia varia muito entre sistemas."],
+["Automação","Uso de sistemas para executar tarefas com pouca intervenção humana contínua.","Automatizar pode reduzir repetição e erros, mas exige monitoramento, tratamento de exceções e avaliação de riscos."],
+["Big Data","Conjuntos de dados cujo volume, velocidade ou variedade exige métodos especializados de armazenamento e análise.","Mais dados não garantem melhores conclusões; qualidade, representatividade e privacidade continuam importantes."],
+["5G","Geração de redes móveis projetada para ampliar capacidade, velocidade e, em certas condições, reduzir latência.","A experiência real depende de cobertura, frequência usada, congestionamento, aparelho e plano."],
+["Realidade virtual","Tecnologia que cria ambientes digitais imersivos, normalmente usando um visor e sensores de movimento.","A sensação de presença depende de imagem, som, resposta aos movimentos e conforto; algumas pessoas sentem enjoo."],
+["Como um app funciona","Um aplicativo combina interface, lógica, dados e, muitas vezes, serviços remotos para responder às ações do usuário.","Ao tocar num botão, o app interpreta o evento, executa uma função, atualiza a tela e pode salvar ou enviar dados."]]},
+"Filosofia":{emoji:"📚",intro:"Perguntas sobre conhecimento, ética, realidade e vida boa.",lessons:[
+["Sócrates","Filósofo ateniense conhecido pelo diálogo e pelo questionamento de pressupostos, buscando esclarecer conceitos e contradições.","O método socrático usa perguntas sucessivas para testar uma ideia; admitir que não se sabe pode ser o começo da investigação."],
+["Platão","Filósofo grego que explorou conhecimento, justiça, política e a distinção entre aparências e formas inteligíveis.","A alegoria da caverna discute como educação e investigação podem mudar a compreensão do que consideramos real."],
+["Aristóteles","Filósofo grego que estudou lógica, natureza, ética, política e formas de explicação.","Na ética das virtudes, caráter se desenvolve por prática e hábito, buscando respostas adequadas às circunstâncias."],
+["Estoicismo","Tradição filosófica que enfatiza virtude, julgamento e distinção entre o que depende de nós e o que não controlamos diretamente.","Não significa não sentir emoções; significa examinar julgamentos e escolher ações coerentes mesmo diante de dificuldades."],
+["Epicurismo","Filosofia que entende a vida boa como prazer estável, tranquilidade e redução de sofrimento, valorizando amizade e desejos moderados.","Epicuro não defendia excesso constante: desejos simples e relações confiáveis podem trazer satisfação duradoura."],
+["Ceticismo","Abordagens que questionam se nossas crenças estão suficientemente justificadas e como lidar com incerteza.","Ceticismo responsável não é negar tudo; é ajustar a confiança à força das evidências."],
+["Agostinho","Pensador cristão que refletiu sobre tempo, memória, vontade, mal e relação entre fé e razão.","Suas reflexões sobre memória e experiência interior influenciaram debates posteriores sobre identidade e consciência."],
+["Maquiavel","Pensador político renascentista que analisou poder, estabilidade e ação de governantes em contextos concretos.","Ler Maquiavel exige distinguir análise descritiva da política de uma aprovação moral de cada prática que ele descreve."],
+["Descartes","Filósofo que buscou fundamentos seguros para o conhecimento e usou a dúvida metódica como ferramenta.","A dúvida cartesiana é um método de investigação, não uma exigência de duvidar de tudo para sempre."],
+["Spinoza","Filósofo que concebeu a natureza como uma realidade única e investigou como compreender afetos e liberdade.","Para Spinoza, compreender as causas das emoções pode aumentar nossa capacidade de agir com mais clareza."],
+["Hume","Filósofo empirista que investigou experiência, causalidade, hábito e limites da razão.","Observar que dois eventos ocorrem juntos não prova, por si só, que um cause o outro."],
+["Kant","Filósofo que investigou as condições do conhecimento e formulou uma ética centrada em princípios e respeito às pessoas.","Uma versão do imperativo categórico pergunta se a regra da sua ação poderia ser adotada universalmente sem contradição."],
+["Nietzsche","Filósofo que criticou valores herdados, investigou moralidade e refletiu sobre criação de valores e afirmação da vida.","Suas ideias são interpretadas de formas variadas; convém ler os argumentos em contexto em vez de reduzir sua obra a frases isoladas."],
+["Existencialismo","Família de filosofias que enfatiza existência concreta, liberdade, responsabilidade, angústia e construção de sentido.","Escolhas não ocorrem no vazio: condições sociais limitam possibilidades, mas ainda podemos refletir sobre como responder a elas."],
+["Utilitarismo","Teoria ética que avalia ações pelas consequências para o bem-estar geral.","Aplicar o princípio exige considerar todas as pessoas afetadas, consequências prováveis e problemas de medir sofrimento e benefício."],
+["Ética","Investigação filosófica sobre o que devemos fazer, quais valores importam e como justificar decisões.","Uma decisão ética pode exigir equilibrar consequências, deveres, direitos, justiça e contexto, em vez de seguir um único impulso."],
+["Virtude","Característica de caráter que permite agir bem de forma consistente, desenvolvida por prática e reflexão.","Coragem, por exemplo, não é ausência de medo nem imprudência; envolve responder adequadamente ao risco."],
+["Livre-arbítrio","Questão filosófica sobre em que sentido somos livres para escolher e responsáveis por ações.","Debates consideram causalidade, consciência, alternativas e responsabilidade; não há uma única definição aceita por todos."],
+["Determinismo","Tese de que acontecimentos decorrem de condições anteriores e leis ou relações causais.","Mesmo que ações tenham causas, ainda se discute se responsabilidade e liberdade podem ser compreendidas em termos compatíveis com isso."],
+["Conhecimento","Estudo do que significa saber algo, como crenças são justificadas e quais são os limites da certeza.","Uma afirmação verdadeira por acaso não é automaticamente conhecimento; justificativa e confiabilidade também importam."],
+["Verdade","Conceito sobre quando uma afirmação corresponde aos fatos, é coerente ou satisfaz outros critérios filosóficos.","Diferentes teorias da verdade tentam explicar como avaliar afirmações; opiniões pessoais não tornam automaticamente uma afirmação factual."],
+["Consciência","Experiência subjetiva e capacidade de ter percepções, pensamentos ou sentimentos.","A ciência investiga correlatos neurais e funções cognitivas, enquanto questões sobre a natureza da experiência seguem em debate filosófico."],
+["Identidade","Problema sobre o que faz uma pessoa ou objeto permanecer o mesmo ao longo do tempo.","Memória, corpo, continuidade psicológica e relações sociais oferecem respostas diferentes para perguntas sobre identidade pessoal."],
+["Justiça","Reflexão sobre distribuição de benefícios e encargos, direitos, procedimentos e tratamento das pessoas.","Teorias divergem sobre o peso da igualdade, mérito, necessidade, liberdade e reparação histórica."],
+["Felicidade","Conceito que pode significar prazer, satisfação com a vida, florescimento ou realização de valores.","Uma boa análise distingue prazer imediato de bem-estar duradouro e considera relações, saúde, autonomia e propósito."],
+["Sentido da vida","Pergunta sobre o que torna uma existência significativa ou digna de ser vivida.","Algumas respostas enfatizam relações, contribuição, criação, fé ou experiência; refletir sobre valores pode orientar escolhas concretas."],
+["Navio de Teseu","Experimento mental sobre identidade: se todas as peças de um navio forem substituídas, ele continua sendo o mesmo navio?","O problema mostra que continuidade material, forma, história e função podem oferecer critérios diferentes de identidade."],
+["Dilema do bonde","Experimento mental sobre escolhas morais quando evitar um dano pode exigir causar outro.","Comparar cenários ajuda a examinar consequências e deveres, mas situações reais costumam ter mais opções e incertezas."],
+["Boa vida","Questão sobre quais hábitos, relações, virtudes e condições tornam uma vida valiosa.","Filosofias diferem sobre prazer, virtude, autonomia e contribuição; a reflexão pode transformar valores abstratos em prioridades práticas."],
+["Paradoxo da tolerância","Problema filosófico e político sobre como uma sociedade tolerante deve responder a movimentos que buscam eliminar a tolerância e os direitos de outros.","A discussão não exige proibir toda opinião ofensiva; envolve avaliar quando ameaças, coerção ou violência podem destruir as condições que permitem a convivência plural."]]},
+"Economia":{emoji:"📈",intro:"Como pessoas, empresas e governos usam recursos e tomam decisões.",lessons:[
+["Oferta e demanda","Modelo que relaciona a quantidade que compradores desejam adquirir e a quantidade que vendedores desejam oferecer a diferentes preços.","Quando a demanda cresce e a oferta não acompanha, o preço tende a subir; o resultado real também depende de regras, expectativas e estrutura do mercado."],
+["Inflação","Aumento generalizado e persistente dos preços, reduzindo o poder de compra da moeda.","A inflação é medida por índices de uma cesta de bens e serviços; o preço de um único produto subir não significa necessariamente inflação geral."],
+["Juros","Preço do uso do dinheiro ao longo do tempo, expresso como taxa cobrada ou recebida.","Juros compostos são calculados sobre o saldo acumulado; por isso dívidas podem crescer rapidamente quando não são pagas."],
+["PIB","Valor monetário dos bens e serviços finais produzidos dentro de um território em certo período.","PIB mede atividade econômica, não distribuição de renda, qualidade de vida ou sustentabilidade sozinho."],
+["Desemprego","Situação de pessoas sem trabalho que estão disponíveis e procurando emprego, segundo critérios estatísticos definidos.","A taxa depende da definição de força de trabalho; pessoas que deixam de procurar emprego podem não aparecer como desempregadas nas estatísticas oficiais."],
+["Produtividade","Relação entre produção e recursos utilizados, como trabalho, capital, tempo ou energia.","Melhorar ferramentas, treinamento e organização pode elevar a produção por hora sem simplesmente exigir que as pessoas trabalhem mais."],
+["Moeda","Meio de troca, unidade de conta e reserva de valor usado para facilitar transações.","A confiança na moeda e a estabilidade de preços ajudam a torná-la útil; inflação alta reduz sua capacidade de guardar poder de compra."],
+["Bancos","Instituições que intermediam pagamentos, depósitos, crédito e outros serviços financeiros.","Bancos avaliam riscos e precisam administrar liquidez; depósitos, empréstimos e regras regulatórias conectam a instituição à economia."],
+["Crédito","Acordo em que recursos são disponibilizados agora em troca de pagamento futuro, normalmente com custos e condições.","Comparar taxa, prazo, tarifas e custo total é mais informativo do que olhar apenas o valor da parcela."],
+["Dívida","Obrigação de pagar dinheiro ou cumprir uma promessa financeira no futuro.","Dívida pode financiar algo útil, mas parcelas incompatíveis com a renda reduzem flexibilidade e aumentam o risco de inadimplência."],
+["Impostos","Pagamentos obrigatórios ao Estado que financiam serviços, infraestrutura e políticas públicas.","Impostos diferem por base, alíquota e incidência; quem legalmente recolhe um tributo nem sempre é quem suporta todo seu custo econômico."],
+["Mercado","Sistema de interações entre compradores e vendedores que trocam bens, serviços ou ativos.","Mercados variam em competição, informação e poder de negociação; nem todo resultado de mercado é eficiente ou justo."],
+["Concorrência","Disputa entre empresas ou vendedores por clientes, frequentemente por preço, qualidade, inovação e serviço.","A concorrência pode pressionar preços e estimular melhorias, mas depende de barreiras à entrada e regras contra práticas anticompetitivas."],
+["Monopólio","Estrutura em que um único vendedor domina a oferta de um produto ou serviço sem substitutos próximos suficientes.","Poder de mercado pode permitir preços mais altos; regulação e concorrência potencial são formas de lidar com certos monopólios."],
+["Comércio internacional","Troca de bens e serviços entre países, influenciada por custos, especialização, políticas e taxas de câmbio.","O comércio pode ampliar variedade e eficiência, mas os ganhos e perdas são distribuídos de forma desigual entre setores e trabalhadores."],
+["Câmbio","Preço de uma moeda expresso em outra moeda.","A taxa de câmbio influencia viagens, importações e exportações; ela responde a juros, comércio, expectativas e movimentos de capital."],
+["Globalização","Integração crescente de economias por comércio, investimento, tecnologia e cadeias de produção.","Uma peça de produto pode ser projetada num país, fabricada em outro e montada em um terceiro, conectando empregos e riscos."],
+["Ciclos econômicos","Flutuações da atividade econômica entre expansão e desaceleração ao longo do tempo.","Emprego, crédito, consumo e investimento podem reforçar uns aos outros; ciclos são difíceis de prever com precisão."],
+["Crise financeira","Ruptura grave no funcionamento de crédito, bancos ou mercados de ativos, podendo atingir a economia real.","Alavancagem excessiva, riscos mal avaliados e perda de confiança podem propagar problemas entre instituições."],
+["Poupança","Parte da renda que não é consumida no presente.","Poupar cria reserva para imprevistos e objetivos; o valor necessário depende de despesas, estabilidade de renda e metas."],
+["Investimento","Uso de recursos hoje com expectativa de retorno futuro, com risco e horizonte de tempo.","Retornos não são garantidos; diversificação e alinhamento com objetivos ajudam a administrar risco."],
+["Risco","Possibilidade de resultados diferentes do esperado, incluindo perdas ou ganhos.","Avaliar risco envolve probabilidade, tamanho do impacto, prazo e capacidade de suportar uma perda."],
+["Custo de oportunidade","Valor da melhor alternativa abandonada quando se escolhe uma opção.","Se você usa uma noite para trabalhar, o custo de oportunidade pode ser o estudo ou descanso que deixou de fazer."],
+["Incentivos","Benefícios, custos ou regras que alteram a motivação para agir de determinada maneira.","Uma taxa, recompensa ou facilidade pode mudar escolhas; efeitos reais dependem de contexto e das alternativas disponíveis."],
+["Externalidades","Efeitos de uma atividade sobre terceiros que não são totalmente refletidos no preço da transação.","Poluição é uma externalidade negativa; vacinação pode gerar benefícios para outras pessoas além de quem se vacina."],
+["Bens públicos","Bens não rivais e de difícil exclusão, como certos serviços de iluminação pública ou defesa nacional.","Como muitas pessoas podem se beneficiar sem pagar individualmente, financiamento coletivo pode ser necessário."],
+["Desigualdade","Diferenças na distribuição de renda, riqueza, oportunidades ou acesso a recursos.","Medidas distintas captam dimensões diferentes; crescimento econômico não garante, por si só, redução da desigualdade."],
+["Capital humano","Conhecimentos, habilidades, saúde e experiência que influenciam capacidades produtivas e oportunidades.","Educação e treinamento podem ampliar oportunidades, mas resultados também dependem de condições econômicas e acesso a empregos."],
+["Empreendedorismo","Criação ou desenvolvimento de iniciativas que organizam recursos para oferecer produtos ou serviços sob incerteza.","Empreender envolve testar demanda, controlar custos, compreender clientes e adaptar o plano quando surgem evidências novas."],
+["Orçamento","Plano que compara receitas, despesas e metas durante determinado período.","Registrar gastos fixos e variáveis ajuda a enxergar escolhas possíveis; um orçamento é uma ferramenta de decisão, não uma punição." ] ]},
+"Biologia":{emoji:"🧬",intro:"Vida, organismos, hereditariedade e ecossistemas.",lessons:[
+["Célula","Unidade básica dos seres vivos, delimitada por membrana e com estruturas que executam funções vitais.","Células procarióticas não têm núcleo delimitado por membrana; células eucarióticas têm núcleo e organelas especializadas."],
+["DNA","Molécula que contém informação hereditária codificada em sequências de nucleotídeos.","A sequência pode influenciar a produção de moléculas e características, mas ambiente e regulação genética também participam."],
+["RNA","Molécula que participa da expressão genética, incluindo a transmissão e o uso de informações do DNA.","Tipos diferentes de RNA atuam como mensageiros, componentes de ribossomos ou reguladores da atividade genética."],
+["Genes","Regiões do DNA que contribuem para produzir moléculas funcionais ou regular processos biológicos.","Muitas características dependem de vários genes e do ambiente; um gene raramente determina sozinho uma característica complexa."],
+["Mutação","Alteração na sequência do material genético.","Mutações podem não ter efeito, ser prejudiciais ou oferecer vantagem em certo ambiente; são uma fonte de variação hereditária."],
+["Seleção natural","Processo em que variantes hereditárias associadas a maior sucesso reprodutivo se tornam mais comuns em uma população.","A seleção depende do ambiente e não tem objetivo futuro; uma característica vantajosa hoje pode não ser vantajosa em outro contexto."],
+["Evolução","Mudança das características hereditárias de populações ao longo das gerações.","Evolução pode ocorrer por seleção natural, deriva genética, mutação e fluxo gênico; indivíduos não evoluem geneticamente por esforço."],
+["Ecossistemas","Redes de organismos e fatores físicos que interagem em determinado ambiente.","Mudanças numa espécie podem afetar outras por alimentação, competição, polinização e reciclagem de nutrientes."],
+["Cadeias alimentares","Representações simplificadas de quem transfere energia a quem pela alimentação.","Redes alimentares reais são mais complexas; a energia disponível diminui a cada transferência trófica."],
+["Fotossíntese","Processo em que organismos como plantas, algas e certas bactérias convertem energia luminosa em energia química.","Plantas usam dióxido de carbono e água para formar compostos orgânicos e liberar oxigênio em sua fotossíntese oxigênica."],
+["Respiração celular","Conjunto de processos que liberam energia utilizável a partir de moléculas orgânicas.","Na respiração aeróbica, células usam oxigênio para extrair energia de nutrientes; não é o mesmo que respirar com os pulmões."],
+["Sistema nervoso","Rede de células e estruturas que recebe informações, integra sinais e coordena respostas do organismo.","Cérebro, medula espinhal e nervos trabalham em conjunto com sistemas hormonais e órgãos sensoriais."],
+["Neurônios","Células especializadas em receber e transmitir sinais elétricos e químicos.","Sinapses permitem que neurônios influenciem outras células; redes de neurônios mudam com experiência e aprendizagem."],
+["Hormônios","Mensageiros químicos produzidos por glândulas e tecidos que regulam processos em diferentes partes do corpo.","Efeitos dependem de concentração, tempo e receptores; o mesmo hormônio pode agir de forma diferente conforme o tecido."],
+["Imunidade","Conjunto de mecanismos que reconhecem e respondem a ameaças como patógenos, incluindo defesas inatas e adaptativas.","A memória imunológica permite respostas mais rápidas a certos agentes após infecção ou vacinação."],
+["Bactérias","Organismos unicelulares procarióticos, presentes em quase todos os ambientes.","Muitas bactérias são benéficas ou essenciais; algumas causam doenças e podem desenvolver resistência a antibióticos."],
+["Vírus","Agentes infecciosos que precisam de células hospedeiras para se replicar.","Vírus não possuem metabolismo celular próprio completo; antibióticos que atuam em bactérias não tratam infecções virais."],
+["Fungos","Grupo de organismos que inclui leveduras, bolores e cogumelos, importantes na decomposição e em relações ecológicas.","Alguns fungos são usados em alimentos e medicamentos; outros causam infecções ou danos agrícolas."],
+["Microbioma","Comunidade de microrganismos que vive num ambiente, como o intestino humano, junto de seus genes e interações.","A composição varia entre pessoas e ao longo do tempo; alimentação, medicamentos e ambiente podem influenciá-la."],
+["Genética","Estudo da hereditariedade e da variação biológica.","A herança inclui padrões mendelianos, mas muitas características são poligênicas e influenciadas pelo ambiente."],
+["Hereditariedade","Transmissão de informação biológica de uma geração para outra.","Filhos recebem combinações de variantes genéticas dos pais; semelhança familiar não significa que todas as características sejam fixas."],
+["Adaptação","Característica hereditária que aumenta o sucesso de sobrevivência ou reprodução em determinado contexto.","Adaptações surgem ao longo de gerações, não porque um organismo decide mudar quando precisa."],
+["Biodiversidade","Variedade de genes, espécies e ecossistemas numa região ou no planeta.","Diversidade contribui para funções ecológicas e resiliência, e pode ser reduzida por perda de habitat, poluição e exploração excessiva."],
+["Extinção","Desaparecimento definitivo de uma espécie quando morre seu último indivíduo.","Extinções fazem parte da história da vida, mas atividades humanas podem acelerar perdas em muitas regiões."],
+["Comportamento animal","Estudo das ações de animais e de como genes, desenvolvimento, ambiente e aprendizagem influenciam essas ações.","Comportamentos podem servir à alimentação, reprodução, defesa ou cooperação; interpretar exige observar contexto e evidências."],
+["Homeostase","Processos que mantêm condições internas dentro de faixas compatíveis com o funcionamento do organismo.","Temperatura corporal, glicose e equilíbrio hídrico são regulados por sistemas de feedback."],
+["Órgãos","Estruturas compostas por diferentes tecidos que cooperam para realizar funções específicas.","O coração bombeia sangue, os pulmões realizam trocas gasosas e outros órgãos desempenham funções integradas."],
+["Sangue","Tecido líquido que transporta gases, nutrientes, resíduos, células de defesa e sinais químicos.","Plasma, glóbulos vermelhos, glóbulos brancos e plaquetas desempenham funções distintas."],
+["Sono","Estado regulado pelo cérebro que contribui para memória, metabolismo, imunidade e equilíbrio emocional.","Privação de sono pode prejudicar atenção e reação; horários e necessidades variam entre indivíduos e idades."],
+["Como nasce uma espécie","Especiação ocorre quando populações acumulam diferenças e passam a ter isolamento reprodutivo significativo.","Separação geográfica, seleção e deriva podem contribuir; a formação de espécies costuma ocorrer ao longo de muitas gerações."]]},
+"Astronomia":{emoji:"🌌",intro:"Planetas, estrelas, galáxias e a estrutura do universo.",lessons:[
+["Sistema Solar","Conjunto formado pelo Sol e pelos corpos ligados gravitacionalmente a ele, incluindo planetas, planetas anões, luas e pequenos objetos.","Os planetas orbitam o Sol; suas órbitas e composições refletem a formação do sistema há cerca de 4,6 bilhões de anos."],
+["Sol","Estrela no centro do Sistema Solar, que produz energia pela fusão nuclear de hidrogênio em seu núcleo.","A energia liberada atravessa camadas solares e chega à Terra como luz e outras formas de radiação."],
+["Lua","Satélite natural da Terra, que reflete a luz solar e apresenta fases conforme a geometria entre Sol, Terra e Lua.","As fases não são causadas principalmente pela sombra da Terra; eclipses exigem alinhamentos específicos."],
+["Eclipses","Eventos em que um corpo celeste bloqueia total ou parcialmente a luz de outro, ou entra em sua sombra.","Eclipse solar ocorre quando a Lua fica entre a Terra e o Sol; eclipse lunar ocorre quando a Terra projeta sombra na Lua."],
+["Marés","Variações periódicas do nível dos oceanos, causadas principalmente pela atração gravitacional da Lua e também do Sol.","A forma das costas, profundidade e clima local influenciam a altura e o horário das marés."],
+["Planetas rochosos","Mercúrio, Vênus, Terra e Marte, com superfícies sólidas e composições relativamente densas.","Eles se formaram na região interna mais quente do Sistema Solar, onde materiais voláteis eram menos abundantes."],
+["Gigantes gasosos","Júpiter e Saturno são gigantes gasosos; Urano e Netuno são frequentemente classificados como gigantes de gelo.","Esses planetas têm atmosferas espessas e sistemas de luas e anéis, mas suas estruturas internas diferem."],
+["Asteroides","Pequenos corpos rochosos ou metálicos que orbitam o Sol, muitos concentrados no cinturão entre Marte e Júpiter.","A maioria não representa ameaça à Terra; o acompanhamento de órbitas identifica objetos que merecem observação."],
+["Cometas","Corpos ricos em gelo, poeira e rocha que podem formar coma e cauda quando se aproximam do Sol.","A cauda é produzida por aquecimento e interação com vento solar e radiação; normalmente aponta para longe do Sol."],
+["Cinturão de Kuiper","Região além da órbita de Netuno que contém corpos gelados, incluindo Plutão e outros objetos transnetunianos.","Esses corpos preservam pistas sobre as condições da formação do Sistema Solar exterior."],
+["Exoplanetas","Planetas que orbitam estrelas diferentes do Sol.","São descobertos por métodos como trânsito e velocidade radial; alguns têm tamanho e órbita muito diferentes dos planetas locais."],
+["Estrelas","Esferas de plasma mantidas pela gravidade, que produzem energia principalmente por fusão nuclear durante boa parte de suas vidas.","Massa inicial influencia brilho, temperatura, duração e destino final de uma estrela."],
+["Nascimento estelar","Formação de estrelas a partir do colapso gravitacional de regiões densas de nuvens de gás e poeira.","À medida que o material se contrai, o núcleo aquece; quando as condições permitem fusão, a estrela entra numa nova fase."],
+["Supernovas","Explosões estelares associadas a certos finais de vida de estrelas massivas ou a sistemas com anãs brancas.","Elas espalham elementos e podem deixar estrelas de nêutrons ou buracos negros, dependendo do evento."],
+["Buracos negros","Regiões do espaço-tempo cuja gravidade é tão intensa que, dentro do horizonte de eventos, nada pode escapar para fora.","Não são aspiradores cósmicos: à distância, a gravidade depende da massa como a de outros objetos."],
+["Galáxias","Sistemas de estrelas, gás, poeira, matéria escura e outros componentes ligados pela gravidade.","Galáxias variam em forma e tamanho e podem interagir ou se fundir ao longo de bilhões de anos."],
+["Via Láctea","Galáxia espiral barrada que contém o Sol e centenas de bilhões de estrelas, segundo estimativas.","O Sistema Solar fica num dos braços espirais, muito distante do centro galáctico."],
+["Nebulosas","Nuvens interestelares de gás e poeira, algumas associadas à formação estelar e outras a estrelas em fases finais.","A luz pode vir de gás excitado, estrelas próximas ou luz refletida por poeira."],
+["Matéria escura","Componente inferido principalmente por efeitos gravitacionais, como movimentos de galáxias e estrutura em grande escala.","Sua natureza física ainda não foi identificada diretamente; não é simplesmente matéria comum escura ou poeira."],
+["Energia escura","Nome dado ao componente ou mecanismo associado à expansão acelerada observada do universo.","Sua natureza permanece desconhecida; diferentes modelos tentam explicar observações cosmológicas."],
+["Big Bang","Modelo cosmológico segundo o qual o universo observável evoluiu de um estado inicial muito quente e denso há cerca de 13,8 bilhões de anos.","O modelo descreve a expansão do espaço; não é uma explosão convencional ocorrendo num espaço vazio preexistente."],
+["Expansão do universo","Aumento das distâncias em grande escala entre regiões não ligadas gravitacionalmente, observado por vários métodos.","A expansão não significa que todos os objetos, como sistemas solares, aumentem de tamanho; estruturas ligadas resistem a ela."],
+["Ondas gravitacionais","Ondulações no espaço-tempo produzidas por acelerações de massas muito grandes, como fusões de buracos negros.","Detectores extremamente sensíveis medem pequenas variações de distância provocadas por essas ondas."],
+["Relatividade","Teorias que descrevem espaço, tempo, movimento e gravidade, importantes para objetos rápidos e campos gravitacionais intensos.","Correções relativísticas são necessárias para a precisão dos relógios de satélites de navegação."],
+["Vida no universo","Campo de pesquisa que busca entender condições para vida e possíveis sinais de vida além da Terra.","Até agora, não há confirmação pública de vida extraterrestre; procurar biossinais exige descartar explicações não biológicas."],
+["Zona habitável","Região em torno de uma estrela onde, sob certas condições atmosféricas, água líquida poderia existir na superfície de um planeta.","Estar na zona habitável não garante vida: atmosfera, campo magnético, geologia e muitos outros fatores importam."],
+["Telescópios","Instrumentos que coletam e analisam radiação para estudar objetos distantes.","Telescópios observam diferentes comprimentos de onda; alguns ficam no espaço para evitar a absorção da atmosfera."],
+["Ano-luz","Distância que a luz percorre no vácuo em um ano, cerca de 9,46 trilhões de quilômetros.","É unidade de distância, não de tempo. Observar objetos distantes significa receber luz que saiu deles no passado."],
+["Estação espacial","Estrutura habitável em órbita usada para pesquisa e operações em microgravidade.","A Estação Espacial Internacional é mantida por cooperação internacional e permite experimentos difíceis de realizar na Terra."],
+["Distâncias cósmicas","Escalas enormes medidas com métodos como paralaxe, estrelas padrão e desvio para o vermelho.","Não existe uma única régua para todas as distâncias; astrônomos combinam métodos, cada qual útil em uma faixa."]]},
+"Geografia":{emoji:"🌍",intro:"Território, paisagens, população, clima e relações entre lugares.",lessons:[
+["Mapas","Representações reduzidas e seletivas da superfície terrestre ou de partes dela.","Todo mapa envolve escolhas e distorções; título, escala, legenda e projeção ajudam a interpretar o que está representado."],
+["Latitude","Distância angular ao norte ou ao sul do Equador, medida em graus.","Latitude influencia a quantidade de energia solar recebida, mas altitude, correntes e relevo também afetam o clima."],
+["Longitude","Distância angular a leste ou oeste do meridiano de referência, geralmente Greenwich.","Longitudes ajudam a localizar lugares e fundamentam a organização dos fusos horários."],
+["Fusos horários","Divisões convencionais usadas para organizar a hora em diferentes regiões do mundo.","Fronteiras políticas e decisões locais fazem os fusos reais diferirem de uma divisão geométrica perfeita."],
+["Relevo","Formas da superfície terrestre, como montanhas, planaltos, planícies e depressões.","Tectonismo, erosão, sedimentação e clima moldam paisagens ao longo de diferentes escalas de tempo."],
+["Clima","Padrões de temperatura, precipitação, vento e outras condições atmosféricas em longos períodos.","Latitude, altitude, maritimidade, correntes oceânicas e relevo ajudam a explicar diferenças climáticas."],
+["Tempo atmosférico","Condição da atmosfera num local e momento, incluindo temperatura, chuva, vento e nebulosidade.","Previsões estimam cenários prováveis; pequenas diferenças nas condições iniciais limitam a precisão a longo prazo."],
+["Ciclo da água","Movimento da água entre oceanos, atmosfera, solo, rios, geleiras e seres vivos.","Desmatamento e urbanização podem mudar infiltração, escoamento e risco de enchentes."],
+["Rios","Cursos naturais de água que escoam de áreas mais altas para níveis inferiores, geralmente em direção a lagos ou mares.","Regime de um rio depende de chuva, neve, relevo, geologia, vegetação e uso humano da bacia."],
+["Bacias hidrográficas","Áreas em que a água escoa para um mesmo rio principal ou sistema de drenagem.","Atividades em uma parte da bacia podem afetar abastecimento, sedimentos e enchentes em outras áreas."],
+["Oceanos","Grandes massas de água salgada que regulam clima, sustentam ecossistemas e participam do ciclo do carbono.","Oceano absorve e redistribui calor, mas enfrenta pressões como aquecimento, acidificação e poluição."],
+["Correntes marítimas","Movimentos persistentes de água impulsionados por ventos, diferenças de densidade, rotação da Terra e configuração dos continentes.","Correntes transportam calor e nutrientes, influenciando clima costeiro e ecossistemas marinhos."],
+["Placas tectônicas","Placas rígidas da litosfera que se movem lentamente e interagem em seus limites.","Movimentos convergentes, divergentes e transformantes estão ligados a terremotos, vulcões e formação de montanhas."],
+["Desertos","Regiões com precipitação muito baixa, que podem ser quentes ou frias.","Desertos não são necessariamente quentes; a falta de água disponível é a característica climática central."],
+["Florestas","Ecossistemas dominados por árvores, com grande variedade de espécies, estruturas e condições climáticas.","Florestas armazenam carbono, regulam água e abrigam biodiversidade, mas respondem de formas distintas a clima e uso do solo."],
+["Biomas","Grandes conjuntos ecológicos definidos por clima, vegetação e organismos característicos.","Biomas como Amazônia, Cerrado e Caatinga têm espécies e adaptações distintas; não são apenas categorias de paisagem visual."],
+["População","Conjunto de pessoas que vivem numa área ou território em determinado período.","Tamanho e estrutura populacional mudam com nascimentos, mortes e migrações."],
+["Urbanização","Crescimento da proporção de pessoas que vivem em cidades e transformação de áreas urbanas.","Pode ampliar acesso a serviços e empregos, mas exige planejamento de moradia, mobilidade, saneamento e áreas verdes."],
+["Migração","Deslocamento de pessoas entre regiões, temporário ou permanente, por motivos variados.","Emprego, conflitos, estudo, família e clima podem influenciar migrações; decisões individuais combinam fatores de atração e expulsão."],
+["Densidade demográfica","Relação entre o número de habitantes e a área de um território.","Média nacional pode esconder grandes diferenças entre cidades, áreas rurais e regiões pouco habitadas."],
+["Globalização","Intensificação das conexões econômicas, culturais, políticas e tecnológicas entre lugares.","Fluxos globais podem criar oportunidades e dependências; seus efeitos variam por território e grupo social."],
+["Fronteiras","Limites políticos ou administrativos que separam jurisdições e podem ser físicos, negociados ou contestados.","Fronteiras mudam historicamente e afetam circulação, identidade, comércio e acesso a recursos."],
+["Geopolítica","Estudo de como localização, recursos, poder, território e relações internacionais se influenciam.","Analisar um conflito requer considerar história, interesses, atores locais e evidências, evitando explicações monocausais."],
+["Recursos naturais","Materiais e processos da natureza usados pelas sociedades, como água, solos, minerais e energia solar.","Disponibilidade depende de localização, tecnologia, custos, impactos ambientais e formas de gestão."],
+["Agricultura","Cultivo de plantas e criação de animais para alimentos, fibras, energia e outros produtos.","Sistemas agrícolas variam em escala, irrigação, mecanização e diversidade; produtividade precisa ser avaliada junto de impactos e condições sociais."],
+["Energia","Recursos e sistemas usados para fornecer eletricidade, calor e movimento, como fontes renováveis e fósseis.","Cada fonte apresenta custos, infraestrutura, confiabilidade e impactos diferentes ao longo de seu ciclo de vida."],
+["Mudanças climáticas","Alterações duradouras do clima; o aquecimento atual é causado principalmente pelas emissões humanas de gases de efeito estufa.","Impactos variam por região e incluem ondas de calor, mudanças na precipitação, elevação do nível do mar e riscos para ecossistemas."],
+["Brasil","País de grande extensão territorial, com diversidade de biomas, regiões, populações e atividades econômicas.","A escala continental ajuda a explicar diferenças de clima, densidade populacional, infraestrutura e formas de ocupação."],
+["América do Sul","Continente com cordilheira dos Andes, grandes bacias hidrográficas, florestas tropicais, desertos e zonas temperadas.","A geografia física e a história política contribuem para a diversidade econômica, cultural e ambiental dos países sul-americanos."],
+["Como interpretar um mapa","Ler título, orientação, escala, legenda, fonte e projeção antes de tirar conclusões.","Pergunte o que foi incluído, o que ficou de fora e se a escala de cores ou símbolos pode exagerar diferenças."]]}
+};
+
+const ALL = Object.entries(SUBJECTS).flatMap(([subject,data]) => data.lessons.map((lesson,index)=>({subject,index,title:lesson[0],definition:lesson[1],example:lesson[2],id:subject+'::'+index})));
+const STORAGE_KEY='conhecimentoInfinito_v3';
+function localDateKey(d=new Date()){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function freshState(){return {xp:0,done:{},favorites:[],quizCorrect:{},quizAttempts:{},notes:{},streak:0,lastVisit:'',visitDays:[],startedAt:localDateKey()}}
+function loadState(){try{const v=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null');if(!v||typeof v!=='object')return freshState();const base=freshState();return {...base,...v,done:v.done&&typeof v.done==='object'?v.done:{},favorites:Array.isArray(v.favorites)?v.favorites:[],quizCorrect:v.quizCorrect&&typeof v.quizCorrect==='object'?v.quizCorrect:{},quizAttempts:v.quizAttempts&&typeof v.quizAttempts==='object'?v.quizAttempts:{},notes:v.notes&&typeof v.notes==='object'?v.notes:{},visitDays:Array.isArray(v.visitDays)?v.visitDays:[]}}catch(e){return freshState()}}
+let state=loadState();
+let currentSubject='Psicologia';
+let currentLessonId=null;
+let toastTimer=null;
+function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch(e){toast('O navegador não conseguiu salvar. Verifique o armazenamento do aparelho.')}updateStats()}
+function toast(msg){const t=document.getElementById('toast');if(!t)return;t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2600)}
+function doneCount(){return Object.keys(state.done).length}
+function favoriteCount(){return state.favorites.length}
+function quizCount(){return Object.values(state.quizCorrect).reduce((a,b)=>a+(Number(b)||0),0)}
+function getLesson(id){return ALL.find(x=>x.id===id)}
+function isDone(id){return !!state.done[id]}
+function completedInSubject(s){return SUBJECTS[s].lessons.reduce((n,_,i)=>n+(isDone(s+'::'+i)?1:0),0)}
+function contiguousCompleted(s){let n=0;while(n<30&&isDone(s+'::'+n))n++;return n}
+function isUnlocked(s,i){return i<Math.min(30,contiguousCompleted(s)+3)}
+function levelNum(){return Math.floor(state.xp/100)+1}
+function xpToNext(){return state.xp%100}
+function updateStreak(){const today=localDateKey();if(state.lastVisit===today)return;const yesterday=new Date();yesterday.setDate(yesterday.getDate()-1);const y=localDateKey(yesterday);state.streak=state.lastVisit===y?Math.max(1,state.streak+1):1;state.lastVisit=today;if(!state.visitDays.includes(today))state.visitDays.push(today);if(state.visitDays.length>400)state.visitDays=state.visitDays.slice(-400);try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch(e){}}
+function updateStats(){
+ const done=doneCount(),xp=state.xp,streak=state.streak;
+ const put=(id,val)=>{const e=document.getElementById(id);if(e)e.textContent=val};
+ put('feedXp',xp);put('feedStreak',streak+' 🔥');put('feedDone',done);
+ put('profileXp',xp+' XP');put('profileLevel','Nível '+levelNum());put('profileDone',done+' lições concluídas');
+ put('profileStreak',streak+' 🔥');put('profileFavs',favoriteCount());put('profileQuizzes',quizCount());
+ const bar=document.getElementById('profileProgress');if(bar)bar.style.width=xpToNext()+'%';
+ put('nextLevelText',xpToNext()+'/100 XP para o próximo nível');
+ renderAchievements();
+}
+function addXP(amount,reason){state.xp+=amount;saveState();if(reason)toast('+'+amount+' XP • '+reason)}
+function showScreen(id){
+ const target=document.getElementById(id);if(!target)return;
+ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+ target.classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ const navId=id==='subject'?'nav-topics':'nav-'+id;
+ const nav=document.getElementById(navId);if(nav)nav.classList.add('active');
+ if(id==='feed')renderFeed();
+ if(id==='journeys')renderJourneys();
+ if(id==='topics')renderTopics(document.getElementById('subjectSearch')?.value||'');
+ if(id==='favorites')renderFavorites();
+ if(id==='profile')updateStats();
+ window.scrollTo({top:0,behavior:'instant'});
+}
+function renderFeed(){
+ const root=document.getElementById('feedList');if(!root)return;
+ const picks=Object.keys(SUBJECTS).flatMap(s=>ALL.filter(x=>x.subject===s&&isUnlocked(x.subject,x.index)&&!isDone(x.id))); 
+ if(!picks.length){root.innerHTML='<div class="empty"><h3>Você concluiu todas as lições liberadas!</h3><p>Entre em uma jornada e conclua mais lições para liberar as próximas etapas.</p><button class="btn" onclick="showScreen(\'journeys\')">Ver jornadas</button></div>';return}
+ root.innerHTML=picks.map(x=>lessonCard(x,'feed')).join('');
+}
+function lessonCard(x,mode){
+ const done=isDone(x.id),unlocked=isUnlocked(x.subject,x.index),fav=state.favorites.includes(x.id);
+ const level=Math.floor(x.index/6)+1,step=x.index%6+1;
+ return `<article class="card"><div class="between"><span class="tag">${escapeHTML(x.subject)}</span><span class="tag ${done?'green':unlocked?'':'locked'}">${done?'✓ Concluída':unlocked?'Nível '+level+' • '+step+'/6':'🔒 Bloqueada'}</span></div><h2>${escapeHTML(x.title)}</h2><p class="lesson-desc">${escapeHTML(x.definition)}</p><div class="lesson-actions"><button class="btn" ${unlocked?'':'disabled'} onclick="openLesson('${x.id}')">${done?'Revisar':'Ler lição'}</button><button class="btn secondary" onclick="toggleFavorite('${x.id}')">${fav?'★ Salvo':'☆ Favoritar'}</button><button class="btn subtle" onclick="shareLesson('${x.id}')">Compartilhar</button></div>${!unlocked?'<p class="locked-note">Conclua as lições anteriores deste assunto para desbloquear esta.</p>':''}</article>`;
+}
+function renderTopics(query=''){
+ const root=document.getElementById('topicList');if(!root)return;
+ const q=(query||'').trim().toLocaleLowerCase('pt-BR');
+ const entries=Object.entries(SUBJECTS).filter(([s,d])=>(s+' '+d.intro).toLocaleLowerCase('pt-BR').includes(q));
+ root.innerHTML=entries.map(([s,d])=>{const n=completedInSubject(s),next=Math.min(30,n+3);return `<button class="subject-card" onclick="openSubject('${s}')"><span class="emoji">${d.emoji}</span><strong>${escapeHTML(s)}</strong><span class="tiny">${n}/30 lições concluídas</span><div class="progress"><i style="width:${n/30*100}%"></i></div></button>`}).join('')||'<div class="empty">Nenhum assunto encontrado.</div>';
+}
+function openSubject(s){if(!SUBJECTS[s])return;currentSubject=s;document.getElementById('subjectTitle').textContent=SUBJECTS[s].emoji+' '+s;document.getElementById('subjectIntro').textContent=SUBJECTS[s].intro;showScreen('subject');renderSubjectLessons(s)}
+function renderSubjectLessons(s){
+ const n=completedInSubject(s),pr=document.getElementById('subjectProgress');
+ pr.innerHTML=`<div class="card"><div class="between"><strong>${n}/30 lições concluídas</strong><span class="tag">5 níveis</span></div><div class="progress"><i style="width:${n/30*100}%"></i></div><p class="tiny">Você pode acessar as três primeiras lições da jornada. Cada conclusão libera a próxima lição.</p></div>`;
+ const root=document.getElementById('subjectLessons');
+ root.innerHTML=SUBJECTS[s].lessons.map((l,i)=>{const x=getLesson(s+'::'+i);return lessonCard(x,'subject')}).join('');
+}
+function renderJourneys(){
+ const root=document.getElementById('journeyList');if(!root)return;
+ root.innerHTML=Object.entries(SUBJECTS).map(([s,d])=>{const n=completedInSubject(s),unlocked=Math.min(30,n+3),level=Math.min(5,Math.floor(n/6)+1);return `<button class="subject-card" onclick="openSubject('${s}')"><span class="emoji">${d.emoji}</span><strong>${escapeHTML(s)}</strong><span class="tiny">${n}/30 lições • Nível ${level} de 5</span><div class="progress"><i style="width:${n/30*100}%"></i></div><span class="tiny">${Math.max(0,30-n)} lições restantes</span></button>`}).join('');
+}
+function renderFavorites(){
+ const root=document.getElementById('favoriteList');if(!root)return;
+ const items=state.favorites.map(getLesson).filter(Boolean);
+ root.innerHTML=items.length?items.map(x=>lessonCard(x,'favorites')).join(''):'<div class="empty"><h3>Seus favoritos aparecerão aqui.</h3><p>Toque em “Favoritar” numa lição para guardá-la para revisão.</p><button class="btn" onclick="showScreen(\'topics\')">Explorar assuntos</button></div>';
+}
+function toggleFavorite(id){
+ if(!getLesson(id))return;
+ const i=state.favorites.indexOf(id);
+ if(i>=0){state.favorites.splice(i,1);toast('Removido dos favoritos')}
+ else{state.favorites.push(id);toast('Adicionado aos favoritos')}
+ saveState();if(document.getElementById('favorites').classList.contains('active'))renderFavorites();
+ if(document.getElementById('subject').classList.contains('active'))renderSubjectLessons(currentSubject);
+ if(document.getElementById('feed').classList.contains('active'))renderFeed();
+}
+function subjectGuide(subject){
+ const guides={
+  'Psicologia':{focus:'Observe a diferença entre o que aconteceu, a interpretação que você fez e a emoção que surgiu. Um conceito psicológico ajuda a formular hipóteses, não a ler a mente de alguém.',apply:'Em uma situação real, descreva primeiro os fatos observáveis. Depois liste duas explicações possíveis e pense em que evidência ajudaria a distingui-las.',caution:'Não transforme um conceito em diagnóstico ou regra universal. Contexto, história pessoal e diferenças individuais mudam o comportamento.',exercise:'Lembre de uma interação recente relacionada a este tema. Escreva o que você observou, o que concluiu e uma interpretação alternativa.'},
+  'História':{focus:'Um acontecimento histórico raramente tem uma única causa. Para compreendê-lo, conecte contexto, interesses dos grupos envolvidos, acontecimentos anteriores e consequências.',apply:'Monte uma sequência simples: o que existia antes, o que mudou, quem participou, quem ganhou ou perdeu e quais efeitos continuaram depois.',caution:'Evite explicar o passado apenas com valores atuais ou tratar um povo como se todos pensassem da mesma forma. Fontes e perspectivas podem divergir.',exercise:'Explique este tema em três etapas: contexto, acontecimento principal e consequência. Depois pergunte o que ainda precisaria de evidência.'},
+  'Ciência':{focus:'Uma explicação científica relaciona observações a mecanismos e evidências. É importante distinguir uma hipótese, uma medição, uma correlação e uma conclusão bem sustentada.',apply:'Pergunte como a ideia poderia ser testada, que resultado seria esperado e que observação poderia mostrar que a explicação está incompleta.',caution:'Um exemplo isolado não prova uma regra. Resultados dependem de método, qualidade dos dados, condições do teste e limites da medição.',exercise:'Crie uma pergunta testável sobre este conceito e diga que observação ajudaria a respondê-la.'},
+  'Tecnologia':{focus:'Para entender uma tecnologia, observe o problema que ela resolve, como funciona, quais recursos exige e quais limitações apresenta.',apply:'Escolha uma tarefa real e avalie se esta tecnologia a torna mais rápida, segura, acessível ou confiável. Compare também custo e riscos.',caution:'Uma ferramenta não é automaticamente melhor só por ser nova. Privacidade, segurança, manutenção, acessibilidade e dependência importam.',exercise:'Descreva um uso útil deste conceito e um cenário em que ele não seria a melhor solução.'},
+  'Filosofia':{focus:'Uma ideia filosófica fica mais clara quando se identificam a afirmação central, as razões que a sustentam e as premissas que ela assume.',apply:'Formule o argumento em uma frase, apresente uma razão a favor e tente construir uma objeção justa. Depois veja se a ideia responde à objeção.',caution:'Discordar de uma conclusão não basta para refutar o argumento. É preciso examinar as razões, os conceitos e as suposições envolvidos.',exercise:'Escreva uma pergunta difícil que este conceito levanta e uma possível resposta contrária.'},
+  'Economia':{focus:'Fenômenos econômicos envolvem escolhas sob restrições, incentivos e efeitos que podem variar entre grupos. Uma mudança pode beneficiar alguns e impor custos a outros.',apply:'Identifique quem toma a decisão, quais alternativas existem, o que cada parte ganha ou sacrifica e quais efeitos podem surgir depois.',caution:'Não confunda uma tendência geral com uma previsão garantida. Incentivos, instituições, distribuição de recursos e contexto alteram os resultados.',exercise:'Crie um exemplo cotidiano e identifique a escolha, o custo de oportunidade e quem é afetado.'},
+  'Biologia':{focus:'Em biologia, processos costumam ser entendidos relacionando estrutura, função, ambiente e escala — da célula ao organismo e ao ecossistema.',apply:'Pergunte qual estrutura ou processo participa, o que ele faz e como uma mudança nele pode afetar outras partes do sistema.',caution:'Ser comum na natureza não significa ser sempre benéfico ou acontecer da mesma forma em todos os organismos. Condições e evolução importam.',exercise:'Explique como este conceito se relaciona com outro nível biológico, como célula, organismo, população ou ecossistema.'},
+  'Astronomia':{focus:'A astronomia trabalha com grandes escalas e muitas vezes depende de luz, movimento e outros sinais observados à distância para inferir o que acontece no espaço.',apply:'Compare tamanho, distância, tempo e escala antes de imaginar o fenômeno. Pergunte qual observação permite aos cientistas chegar à conclusão.',caution:'Imagens e ilustrações frequentemente alteram escalas para facilitar a visualização. Uma representação não é necessariamente uma imagem literal do fenômeno.',exercise:'Explique o conceito sem usar a imagem mental inicial; inclua uma informação sobre escala, movimento ou evidência.'},
+  'Geografia':{focus:'A geografia conecta características naturais, população, economia, cultura e decisões políticas em diferentes escalas, do local ao global.',apply:'Localize o fenômeno, identifique fatores físicos e humanos e pense como ele muda de uma região para outra.',caution:'Mapas simplificam a realidade. Escala, projeção, legenda, data e dados selecionados influenciam a interpretação.',exercise:'Dê um exemplo local e outro global do conceito e explique o que muda entre as duas escalas.'}
+ };
+ return guides[subject]||{focus:'Relacione a definição com o exemplo e identifique quais partes da explicação são essenciais.',apply:'Procure uma situação real em que o conceito ajude a explicar algo que você observa.',caution:'Considere o contexto e evite transformar uma explicação útil em uma regra absoluta.',exercise:'Explique a ideia com suas próprias palavras e invente um exemplo diferente.'};
+}
+function openLesson(id){
+ const x=getLesson(id);if(!x)return;
+ if(!isUnlocked(x.subject,x.index)){toast('Conclua as lições anteriores para desbloquear esta.');return}
+ currentLessonId=id;
+ const already=isDone(id),quizDone=!!state.quizCorrect[id],guide=subjectGuide(x.subject);
+ const root=document.getElementById('lessonSheet');
+ root.innerHTML=`<div class="sheet-head"><div><span class="tag">${escapeHTML(x.subject)} • Nível ${Math.floor(x.index/6)+1} • Lição ${(x.index%6)+1}/6</span><h2 style="margin-top:12px">${escapeHTML(x.title)}</h2></div><button class="btn subtle small" onclick="closeLesson()">Fechar ✕</button></div>
+ <div class="study-box"><div class="lesson-section-label">1 · Ideia central</div><p>${escapeHTML(x.definition)}</p></div>
+ <div class="study-box"><div class="lesson-section-label">2 · Exemplo concreto</div><p>${escapeHTML(x.example)}</p></div>
+ <div class="study-box"><div class="lesson-section-label">3 · Explicação aprofundada</div><p>${escapeHTML(guide.focus)}</p><p style="margin-top:9px">Para analisar este conceito, conecte a definição ao exemplo: identifique o elemento principal, o mecanismo ou relação envolvida e o resultado que isso ajuda a explicar. Em vez de decorar apenas o nome, procure explicar por que o exemplo combina com a ideia.</p></div>
+ <div class="study-box"><div class="lesson-section-label">4 · Como aplicar</div><p>${escapeHTML(guide.apply)}</p></div>
+ <div class="callout"><strong>⚠️ Limite importante:</strong> ${escapeHTML(guide.caution)}</div>
+ <div class="study-box"><div class="lesson-section-label">5 · Exercício ativo de 1 minuto</div><p>${escapeHTML(guide.exercise)}</p><p style="margin-top:9px"><strong>Pergunta de recuperação:</strong> sem olhar para cima, como você explicaria “${escapeHTML(x.title)}” para alguém que nunca ouviu falar do assunto?</p></div>
+ <div class="study-box"><div class="lesson-section-label">6 · Resumo para guardar</div><p>${escapeHTML(x.title)}: ${escapeHTML(x.definition)} Guarde também este exemplo: ${escapeHTML(x.example)}</p></div>
+ <div class="divider"></div><div class="between"><h3 style="margin:0">Mini-quiz</h3><span class="tag">${quizDone?'✓ Já acertou':'+15 XP'}</span></div><p>Qual descrição corresponde melhor a “${escapeHTML(x.title)}”?</p><div id="quizOptions">${buildQuiz(x)}</div><div id="quizFeedback" aria-live="polite">${quizDone?'<div class="feedback good">Você já acertou este quiz. Tente explicar o conceito sem consultar a lição para reforçar a memória.</div>':''}</div>
+ <div class="divider"></div><h3>📝 Minha anotação</h3><p>Registre uma dúvida, uma conexão ou um exemplo seu. A anotação fica salva neste navegador.</p><textarea id="lessonNote" class="note-area" placeholder="O que quero lembrar desta lição?">${escapeHTML((state.notes&&state.notes[id])||'')}</textarea><div class="row"><button class="btn secondary" onclick="saveLessonNote('${id}')">Salvar anotação</button></div>
+ <div class="divider"></div><div class="row"><button class="btn" onclick="completeLesson('${id}')" ${already?'disabled':''}>${already?'✓ Lição concluída':'Concluir lição +10 XP'}</button><button class="btn secondary" onclick="toggleFavorite('${id}')">${state.favorites.includes(id)?'★ Favorito':'☆ Favoritar'}</button></div>
+ <div class="row" style="margin-top:9px"><button class="btn subtle small" onclick="speakLesson('${id}')">🔊 Ouvir explicação</button><button class="btn subtle small" onclick="shareLesson('${id}')">↗ Compartilhar texto/link</button><button class="btn subtle small" onclick="shareLessonImage('${id}')">▧ Criar imagem</button></div>`;
+ document.getElementById('lessonOverlay').classList.add('active');
+ document.body.style.overflow='hidden';
+}
+function buildQuiz(x){
+ const sameSubject=SUBJECTS[x.subject].lessons.map((lesson,index)=>({index,title:lesson[0],definition:lesson[1]})).filter(item=>item.index!==x.index);
+ const candidates=sameSubject.filter(item=>Math.abs(item.index-x.index)>1);
+ const pick1=candidates[(x.index*3+2)%candidates.length]||sameSubject[0];
+ const pick2=candidates[(x.index*7+5)%candidates.length]||sameSubject[1];
+ const compact=(text,max=230)=>text.length>max?text.slice(0,max-1).trim()+'…':text;
+ const options=[{text:x.definition,correct:true},{text:pick1.definition,correct:false},{text:pick2.definition,correct:false}];
+ const seed=(x.index+Math.floor(x.index/3))%3;const rotated=options.slice(seed).concat(options.slice(0,seed));
+ return rotated.map((o,i)=>`<button class="quiz-option" ${state.quizCorrect[x.id]?'disabled':''} onclick="answerQuiz('${x.id}',${o.correct?'true':'false'},this)" data-correct="${o.correct?'1':'0'}">${String.fromCharCode(65+i)}. ${escapeHTML(compact(o.text))}</button>`).join('');
+}
+function saveLessonNote(id){
+ const field=document.getElementById('lessonNote');if(!field)return;
+ if(!state.notes||typeof state.notes!=='object')state.notes={};
+ const value=field.value.trim();
+ if(value)state.notes[id]=value;else delete state.notes[id];
+ saveState();toast(value?'Anotação salva neste aparelho.':'Anotação removida.');
+}
+function answerQuiz(id,correct,button){
+ const root=document.getElementById('quizOptions');if(!root||root.dataset.answered==='1')return;
+ root.dataset.answered='1';root.querySelectorAll('button').forEach(b=>{b.disabled=true;if(b.dataset.correct==='1')b.classList.add('correct')});
+ const feedback=document.getElementById('quizFeedback');
+ state.quizAttempts[id]=(state.quizAttempts[id]||0)+1;
+ if(correct){if(state.quizCorrect[id]){feedback.innerHTML='<div class="feedback good">Você já recebeu XP por acertar este quiz. Muito bem!</div>';return}state.quizCorrect[id]=1;feedback.innerHTML='<div class="feedback good">Correto! Você identificou a ideia central. +15 XP</div>';addXP(15,'quiz correto')}
+ else{button.classList.add('wrong');feedback.innerHTML='<div class="feedback bad">Ainda não. A alternativa correta está destacada. Leia a explicação e tente novamente em uma revisão.</div>';saveState()}
+}
+function completeLesson(id){
+ const x=getLesson(id);if(!x)return;
+ if(isDone(id)){toast('Esta lição já foi concluída.');return}
+ state.done[id]=Date.now();addXP(10,'lição concluída');
+ closeLesson();
+ renderFeed();renderJourneys();if(document.getElementById('subject').classList.contains('active'))renderSubjectLessons(currentSubject);
+ checkNewAchievements();
+ toast('Lição concluída! Próxima lição liberada.');
+}
+function closeLesson(){document.getElementById('lessonOverlay').classList.remove('active');document.body.style.overflow='';currentLessonId=null}
+document.getElementById('lessonOverlay').addEventListener('click',e=>{if(e.target.id==='lessonOverlay')closeLesson()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLesson()});
+function speakLesson(id){
+ const x=getLesson(id);if(!x)return;
+ if(!('speechSynthesis' in window)){toast('Leitura em voz alta não disponível neste navegador.');return}
+ const guide=subjectGuide(x.subject);
+ try{window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(x.title+'. Ideia central. '+x.definition+' Exemplo prático. '+x.example+' Como aplicar. '+guide.apply+' Limite importante. '+guide.caution);u.lang='pt-BR';u.rate=.93;window.speechSynthesis.speak(u)}catch(e){toast('Não foi possível iniciar a leitura em voz alta.')}
+}
+async function shareLessonImage(id){
+ const x=getLesson(id);if(!x)return;
+ try{
+  const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1350;
+  const c=canvas.getContext('2d');
+  const grad=c.createLinearGradient(0,0,1080,1350);grad.addColorStop(0,'#17152a');grad.addColorStop(1,'#090b10');c.fillStyle=grad;c.fillRect(0,0,1080,1350);
+  c.strokeStyle='#8b76ff';c.lineWidth=5;c.strokeRect(48,48,984,1254);
+  c.fillStyle='#b5a8ff';c.font='bold 32px system-ui';c.fillText('🧠 CONHECIMENTO INFINITO',80,125);
+  c.fillStyle='#d9d1ff';c.font='bold 25px system-ui';c.fillText(x.subject.toUpperCase(),80,205);
+  c.fillStyle='#ffffff';c.font='bold 58px system-ui';
+  const wrap=(text,maxWidth,font,lineHeight,startY)=>{c.font=font;let words=text.split(/\s+/),line='',y=startY;for(const word of words){const test=line?line+' '+word:word;if(c.measureText(test).width>maxWidth&&line){c.fillText(line,80,y);line=word;y+=lineHeight}else line=test}if(line)c.fillText(line,80,y);return y+lineHeight};
+  let y=wrap(x.title,900,'bold 58px system-ui',72,300);
+  c.fillStyle='#e2e6ef';y=wrap(x.definition,900,'36px system-ui',52,y+35);
+  c.fillStyle='#a4adbd';c.font='28px system-ui';c.fillText('Aprenda uma ideia nova todos os dias.',80,1210);
+  const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));
+  if(!blob)throw new Error('Não foi possível criar a imagem');
+  const file=new File([blob], 'conhecimento-infinito-'+id.replace(/[^a-z0-9]+/gi,'-')+'.png',{type:'image/png'});
+  if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){
+   await navigator.share({title:x.title,text:'Aprenda no Conhecimento Infinito.',files:[file]});return;
+  }
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=file.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);toast('Imagem criada. Abra o arquivo e use Compartilhar para publicar.');
+ }catch(e){if(e&&e.name==='AbortError')return;toast('Não foi possível compartilhar a imagem neste navegador. Tente Compartilhar texto/link.');}
+}
+async function shareLesson(id){
+ const x=getLesson(id);if(!x)return;
+ const text=x.title+' — '+x.definition+'\\n\\nAprenda no Conhecimento Infinito.';
+ const url=location.href.split('#')[0];
+ if(navigator.share){try{await navigator.share({title:x.title,text:text,url:url});return}catch(e){if(e&&e.name==='AbortError')return}}
+ try{if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(text+'\\n'+url);toast('Texto copiado! Você pode colar no WhatsApp ou em outra rede.');return}}catch(e){}
+ const wa='https://wa.me/?text='+encodeURIComponent(text+'\\n'+url);
+ const xurl='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url);
+ const root=document.getElementById('lessonSheet');
+ if(document.getElementById('lessonOverlay').classList.contains('active')){
+  const shareBox=document.createElement('div');shareBox.className='callout';shareBox.innerHTML='<strong>Compartilhar por:</strong><div class="row" style="margin-top:8px"><button class="btn small" onclick="window.open('+JSON.stringify(wa)+',\'_blank\')">WhatsApp</button><button class="btn secondary small" onclick="window.open('+JSON.stringify(xurl)+',\'_blank\')">X</button><button class="btn subtle small" onclick="copyText('+JSON.stringify(text+'\\n'+url)+')">Copiar texto</button></div>';root.appendChild(shareBox);
+ }else{toast('Abra uma lição para compartilhar o conteúdo.')}
+}
+async function copyText(t){try{if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(t);toast('Copiado para a área de transferência.');return}}catch(e){}toast('Selecione e copie o texto da lição para compartilhar.')}
+function achievementData(){
+ const d=doneCount(),f=favoriteCount(),q=quizCount(),s=state.streak;
+ return [
+ {name:'Primeiro passo',desc:'Conclua sua primeira lição.',icon:'🌱',ok:d>=1},
+ {name:'Leitor assíduo',desc:'Conclua 10 lições.',icon:'📖',ok:d>=10},
+ {name:'Mente curiosa',desc:'Conclua 25 lições.',icon:'🧠',ok:d>=25},
+ {name:'Polímata',desc:'Conclua lições em 5 assuntos diferentes.',icon:'🌐',ok:new Set(Object.keys(state.done).map(id=>id.split('::')[0])).size>=5},
+ {name:'Colecionador',desc:'Salve 5 favoritos.',icon:'⭐',ok:f>=5},
+ {name:'Pensador crítico',desc:'Acerte 10 mini-quizzes.',icon:'💡',ok:q>=10},
+ {name:'Constância',desc:'Estude por 3 dias seguidos.',icon:'🔥',ok:s>=3},
+ {name:'Explorador',desc:'Conclua 50 lições.',icon:'🧭',ok:d>=50}
+ ];
+}
+function renderAchievements(){
+ const root=document.getElementById('achievementList');if(!root)return;
+ root.innerHTML=achievementData().map(a=>`<div class="badge-card ${a.ok?'':'locked'}"><div class="symbol">${a.icon}</div><strong>${escapeHTML(a.name)}</strong><p class="tiny">${escapeHTML(a.desc)}</p><span class="tag ${a.ok?'green':'locked'}">${a.ok?'Desbloqueada':'Bloqueada'}</span></div>`).join('');
+}
+function checkNewAchievements(){renderAchievements()}
+function exportProgress(){
+ const data={app:'Conhecimento Infinito',version:3,exportedAt:new Date().toISOString(),state};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='meu-progresso-conhecimento-infinito.json';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);toast('Arquivo de progresso preparado.');
+}
+function resetProgress(){
+ if(!confirm('Tem certeza? Isso apaga XP, lições concluídas, favoritos, quizzes e sequência salvos neste navegador.'))return;
+ state=freshState();updateStreak();saveState();showScreen('feed');toast('Progresso reiniciado.');
+}
+function escapeHTML(value){
+ return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function init(){
+ updateStreak();saveState();renderFeed();renderTopics();renderJourneys();renderAchievements();
+}
+init();
+</script>
+</body>
+</html>
