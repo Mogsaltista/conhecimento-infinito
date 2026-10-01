@@ -1,0 +1,93 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Conhecimento Infinito</title><style>:root{--b:#090b10;--c:#121620;--t:#f5f7fb;--m:#9da6b8;--a:#7c5cff}*{box-sizing:border-box}body{margin:0;background:var(--b);color:var(--t);font:16px system-ui,-apple-system,sans-serif}header{padding:22px 18px;position:sticky;top:0;background:#090b10ee;z-index:3}h1{margin:0;font-size:24px}main{max-width:720px;margin:auto;padding:10px 16px 90px}.sub,p{color:var(--m)}.card,.subject{background:var(--c);border:1px solid #252c39;border-radius:20px;padding:18px;margin:12px 0}.tag{display:inline-block;background:#292248;color:#d5ccff;padding:6px 10px;border-radius:99px;font-size:12px}.btn{background:var(--a);color:white;border:0;border-radius:12px;padding:11px 15px;margin:3px;font-weight:700}.ghost{background:#1b202b}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.subject{width:100%;color:white;text-align:left;margin:0}.bar{height:6px;background:#292f3b;border-radius:8px;margin-top:10px}.bar i{display:block;height:100%;background:var(--a)}section{display:none}.show{display:block}nav{position:fixed;bottom:0;left:0;right:0;background:#10141c;border-top:1px solid #252c39;display:flex;justify-content:space-around;padding:8px;z-index:5}nav button{background:none;color:var(--m);border:0}nav b{display:block;font-size:20px}.modal{display:none;position:fixed;inset:0;background:#000b;padding:18px;overflow:auto;z-index:9}.modal.show{display:block}.sheet{max-width:700px;margin:25px auto;background:var(--c);padding:22px;border-radius:22px}.opt{display:block;width:100%;background:#1b202b;color:white;border:0;border-radius:12px;padding:12px;margin:8px 0;text-align:left}.xp{color:#b0a4ff;font-weight:800}</style></head><body><header><h1>🧠 Conhecimento Infinito</h1><div class="sub">Aprenda no seu ritmo • sem limite diário</div></header><main><section id="feed" class="show"><h2>Seu feed</h2><div id="list"></div></section><section id="journey"><h2>Jornadas</h2><p>30 lições por assunto.</p><div class="grid" id="subs"></div></section><section id="topics"><h2>Assuntos</h2><div class="grid" id="topicsList"></div></section><section id="profile"><h2>Perfil</h2><div class="card"><div class="xp" id="xp"></div><h2 id="level"></h2><p id="done"></p></div></section></main><nav><button onclick="show('feed')"><b>⌂</b>Feed</button><button onclick="show('journey')"><b>◈</b>Jornadas</button><button onclick="show('topics')"><b>◉</b>Assuntos</button><button onclick="show('profile')"><b>●</b>Perfil</button></nav><div id="modal" class="modal"><div id="sheet" class="sheet"></div></div><script>
+const S={Psicologia:['Efeito Dunning-Kruger','Memória de trabalho','Viés de confirmação','Condicionamento clássico','Reforço e punição','Atenção seletiva','Efeito halo','Dissonância cognitiva','Heurísticas','Profecia autorrealizável','Apego','Motivação','Emoções','Personalidade','Empatia','Hábitos','Autocontrole','Estresse','Aprendizagem','Cognição','Linguagem','Decisão','Influência social','Conformidade','Identidade','Autoeficácia','Metacognição','Percepção social','Memória','Formação de hábitos'],História:['Revolução Neolítica','Mesopotâmia','Egito Antigo','Grécia Antiga','Roma','Idade Média','Renascimento','Reforma','Revolução Científica','Iluminismo','Revolução Industrial','Revolução Francesa','Independência dos EUA','Independência do Brasil','Imperialismo','Primeira Guerra Mundial','Revolução Russa','Crise de 1929','Segunda Guerra Mundial','Guerra Fria','Descolonização','Ditadura no Brasil','Redemocratização','Globalização','África Antiga','China Imperial','Índia Antiga','Império Otomano','América pré-colombiana','História da internet'],Ciência:['Método científico','Átomos','Moléculas','Gravidade','Relatividade','Evolução','DNA','Células','Energia','Termodinâmica','Eletricidade','Magnetismo','Ondas','Luz','Som','Pressão','Clima','Placas tectônicas','Vulcões','Quântica','Probabilidade','Vacinas','Antibióticos','Microrganismos','Ecossistemas','Ciclo da água','Carbono','Entropia','Sono','Hipóteses'],Tecnologia:['Algoritmos','Internet','Web','Nuvem','Banco de dados','Criptografia','Inteligência artificial','Machine learning','Redes neurais','Computação quântica','Sistemas operacionais','CPU','GPU','RAM','Wi-Fi','GPS','Blockchain','Cibersegurança','Privacidade digital','APIs','Código aberto','Compiladores','UX','Interfaces','Robótica','Automação','Big Data','5G','Realidade virtual','Como um app funciona'],Filosofia:['Sócrates','Platão','Aristóteles','Estoicismo','Epicurismo','Ceticismo','Agostinho','Maquiavel','Descartes','Spinoza','Hume','Kant','Nietzsche','Existencialismo','Utilitarismo','Ética','Virtude','Livre-arbítrio','Determinismo','Conhecimento','Verdade','Consciência','Identidade','Justiça','Felicidade','Sentido da vida','Navio de Teseu','Dilema do bonde','Boa vida'],Economia:['Oferta e demanda','Inflação','Juros','PIB','Desemprego','Produtividade','Moeda','Bancos','Crédito','Dívida','Impostos','Mercado','Concorrência','Monopólio','Comércio internacional','Câmbio','Globalização','Ciclos econômicos','Crise financeira','Poupança','Investimento','Risco','Custo de oportunidade','Incentivos','Externalidades','Bens públicos','Desigualdade','Capital humano','Empreendedorismo','Orçamento'],Biologia:['Célula','DNA','RNA','Genes','Mutação','Seleção natural','Evolução','Ecossistemas','Cadeias alimentares','Fotossíntese','Respiração celular','Sistema nervoso','Neurônios','Hormônios','Imunidade','Bactérias','Vírus','Fungos','Microbioma','Genética','Hereditariedade','Adaptação','Biodiversidade','Extinção','Comportamento animal','Homeostase','Órgãos','Sangue','Sono','Como nasce uma espécie'],Astronomia:['Sistema Solar','Sol','Lua','Eclipses','Marés','Planetas rochosos','Gigantes gasosos','Asteroides','Cometas','Cinturão de Kuiper','Exoplanetas','Estrelas','Nascimento estelar','Supernovas','Buracos negros','Galáxias','Via Láctea','Nebulosas','Matéria escura','Energia escura','Big Bang','Expansão do universo','Ondas gravitacionais','Relatividade','Vida no universo','Zona habitável','Telescópios','Ano-luz','Estação espacial','Distâncias cósmicas'],Geografia:['Mapas','Latitude','Longitude','Fusos horários','Relevo','Clima','Tempo','Ciclo da água','Rios','Bacias hidrográficas','Oceanos','Correntes marítimas','Placas tectônicas','Desertos','Florestas','Biomas','População','Urbanização','Migração','Densidade demográfica','Globalização','Fronteiras','Geopolítica','Recursos naturais','Agricultura','Energia','Mudanças climáticas','Brasil','América do Sul','Como interpretar um mapa']};
+
+const el = id => document.getElementById(id);
+const listEl = el('list');
+const subsEl = el('subs');
+const topicsListEl = el('topicsList');
+const xpEl = el('xp');
+const levelEl = el('level');
+const doneEl = el('done');
+const sheetEl = el('sheet');
+const modalEl = el('modal');
+
+let st;
+try {
+  st = JSON.parse(localStorage.getItem('ki2') || '{"xp":0,"done":{}}');
+  if (!st || typeof st !== 'object') throw new Error('Estado inválido');
+  if (typeof st.xp !== 'number') st.xp = 0;
+  if (!st.done || typeof st.done !== 'object') st.done = {};
+} catch (e) {
+  st = {xp:0, done:{}};
+}
+
+const K = (s,i) => s + i;
+function save() {
+  try { localStorage.setItem('ki2', JSON.stringify(st)); } catch (e) {}
+  profile();
+}
+function add(x) { st.xp += x; save(); }
+function show(id) {
+  document.querySelectorAll('main section').forEach(x => x.classList.remove('show'));
+  const target = el(id);
+  if (target) target.classList.add('show');
+  if (id === 'journey') journeys();
+  if (id === 'topics') topics();
+  if (id === 'profile') profile();
+}
+function text(s,t) {
+  return `Este é um conceito de ${s.toLowerCase()}. A ideia central é entender o que significa <b>${t}</b>, como ele funciona e como reconhecê-lo em exemplos reais. Depois, compare com conceitos próximos para transformar informação em conhecimento.`;
+}
+function feed() {
+  if (!listEl) return;
+  listEl.innerHTML = Object.entries(S).flatMap(([s,a]) => a.map((t,i) => ({s,t,i})))
+    .slice(0,50).map(x => `<article class="card"><span class="tag">${x.s} • Lição ${x.i+1}</span><h2>${x.t}</h2><p>${text(x.s,x.t)}</p><button class="btn" onclick="openL('${x.s}',${x.i})">LER</button><button class="btn ghost" onclick="listen('${x.s}',${x.i})">OUVIR</button></article>`).join('');
+}
+function openL(s,i) {
+  const t = S[s] && S[s][i];
+  if (!t || !sheetEl || !modalEl) return;
+  sheetEl.innerHTML = `<span class="tag">${s} • ${i+1}/30</span><h2>${t}</h2><p>${text(s,t)}</p><h3>Por que importa?</h3><p>Aprender por definição, exemplo e aplicação ajuda a conectar esta ideia a outras informações.</p><h3>Mini-quiz</h3><button class="opt" onclick="add(15);alert('Acertou! +15 XP')">Compreender e aplicar o conceito</button><button class="opt" onclick="alert('Tente novamente')">Apenas decorar o nome</button><br><button class="btn" onclick="complete('${s}',${i})">Marcar como estudada +10 XP</button> <button class="btn ghost" onclick="listen('${s}',${i})">🔊 Ouvir</button><button class="btn ghost" onclick="closeM()">Fechar</button>`;
+  modalEl.classList.add('show');
+}
+function closeM() { if (modalEl) modalEl.classList.remove('show'); }
+function complete(s,i) {
+  if (!st.done[K(s,i)]) { st.done[K(s,i)] = 1; add(10); }
+  closeM(); journeys(); feed();
+}
+function listen(s,i) {
+  try {
+    if (!('speechSynthesis' in window)) { alert('A leitura em voz alta não está disponível neste navegador.'); return; }
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(S[s][i]);
+    u.lang = 'pt-BR';
+    speechSynthesis.speak(u);
+    add(5);
+  } catch (e) { alert('Não foi possível iniciar a leitura em voz alta.'); }
+}
+function journeys() {
+  if (!subsEl) return;
+  subsEl.innerHTML = Object.entries(S).map(([s,a]) => {
+    const n = a.filter((_,i) => st.done[K(s,i)]).length;
+    return `<button class="subject" onclick="subject('${s}')"><b>${s}</b><div class="sub">${n}/30 lições</div><div class="bar"><i style="width:${n/30*100}%"></i></div></button>`;
+  }).join('');
+}
+function topics() {
+  if (!topicsListEl) return;
+  topicsListEl.innerHTML = Object.keys(S).map(s => `<button class="subject" onclick="subject('${s}')">📚 ${s}<div class="sub">30 lições</div></button>`).join('');
+}
+function subject(s) {
+  show('feed');
+  if (!listEl || !S[s]) return;
+  listEl.innerHTML = S[s].map((t,i) => `<article class="card"><span class="tag">${s} • ${i+1}/30</span><h2>${t}</h2><p>${text(s,t)}</p><button class="btn" onclick="openL('${s}',${i})">LER</button><button class="btn ghost" onclick="listen('${s}',${i})">OUVIR</button></article>`).join('');
+}
+function profile() {
+  if (xpEl) xpEl.textContent = st.xp + ' XP';
+  if (levelEl) levelEl.textContent = 'Nível ' + (Math.floor(st.xp/100)+1);
+  if (doneEl) doneEl.textContent = Object.keys(st.done).length + ' lições concluídas';
+}
+
+// Expose functions explicitly for buttons using onclick in Safari.
+Object.assign(window, {show, openL, closeM, complete, listen, journeys, topics, subject, profile, feed, add});
+feed();
+profile();
+</script></body></html>
